@@ -1,0 +1,139 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define MAXSIZE 50
+#define OK 1
+#define ERROR 0
+#define TRUE 1
+#define FALSE 0
+typedef int Status;
+typedef int ElemType;
+
+typedef struct node {
+   ElemType data;
+   struct node *next;
+} Node;
+
+typedef Node *LinkList; // LinKlist的类型就是Node *了
+
+Status GetElem(LinkList L, int i, ElemType *e){ // 获取链表元素
+    int j = 0;
+    LinkList p = L->next; // L 为头节点
+    while (p && j < i - 1) {
+        p = p->next;
+        j++;
+    }
+    if (!p || j > i - 1) return ERROR; // 如果p为NULL或者j不等于i - 1
+    *e = p->data;
+    return OK;
+}
+
+// 指针是用来在原来的数据上做操作的东西
+Status ListInsert(LinkList *L, int i, ElemType e) {
+    int j = 0;
+    LinkList p = *L, t; // p指向头节点
+    while (p && j < i - 1) { // 定位到i - 1的位置
+        p = p->next;
+        j++;
+    }
+    if (!p || j > i - 1) return ERROR; // p的下一个节点是插入的位置，所以p不能为NULL
+    t = (LinkList) malloc(sizeof(Node));
+    t->data = e;
+    t->next = p->next;
+    p->next = t;
+    return OK;
+}
+
+Status ListDelete(LinkList *L, int i, ElemType *e){
+    int j = 0;
+    LinkList p = *L, q;
+    while (p->next && j < i - 1) { // p为头节点，p的下一个结点才是要删除的节点，所以p->next不能为NULL
+        p = p->next;
+        j++;
+    }
+    if (!(p->next) && j > i - 1) return ERROR;
+    q = p->next;
+    p->next = q->next;
+    free(q);
+    return OK;
+}
+
+void CreateListHead(LinkList *L, int n){ // 链表头插法
+    LinkList p;
+    int i;
+    srand(time(0));
+    *L = (LinkList)malloc(sizeof(Node));
+    (*L)->next = NULL;
+    for (i = 0; i < n; i++){
+        p = (LinkList)malloc(sizeof(Node));
+        p->data = rand() % 100 + 1;
+        p->next = (*L)->next;
+        (*L)->next = p;
+    }
+}
+
+void CreateListTail(LinkList *L, int n){ // 链表尾插法
+    LinkList p, t;
+    int i;
+    *L = (LinkList)malloc(sizeof(Node));
+    (*L)->next = NULL;
+    p = *L;
+    for (i = 0; i < n; i++){
+        t = (LinkList)malloc(sizeof(Node));
+        t->data = rand() % 100 + 1;
+        p->next = t;
+        p = t;
+    }
+    p->next = NULL;
+}
+
+Status CLearList(LinkList *L){
+    LinkList p, q;
+    p = (*L)->next; // 先将p指向头节点的下一个
+    while (p){ // 如果p为NULL，退出
+        q = p->next; // 保留下一个节点的状态
+        free(p);
+        p = q;
+    }
+    (*L)->next = NULL;
+    return OK;
+}
+
+void show(LinkList L){
+    L = L->next;
+    while (L) {
+        printf("%d\n", L->data);
+        L = L->next;
+    }
+}
+
+int main(){
+    LinkList L;
+    ElemType e;
+    CreateListHead(&L, 10);
+    show(L);
+    putchar('\n');
+    CreateListTail(&L, 10);
+    show(L);
+    putchar('\n');
+    GetElem(L, 2, &e);
+    printf("Get %d\n", e);
+    ListInsert(&L, 2, 6);
+    show(L);
+    ListDelete(&L, 3, &e);
+    printf("Delete %d\n", e);
+    CLearList(&L);
+    show(L);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+/*
+ *
+ *
+ * n 大于 11 小于 999，且 n 满足 n,n^2,n^3 都是回文数，输出所有 n，比如 n=11，n2=121，n3=1331
+符合条件
+ *
+ *
+ *
+ */
+
+
+#include <stdio.h>
+
+#define N 50
+
+int drome(int n){
+    int s = 0, t = n;
+    while (n){
+        s = s * 10 + n % 10;
+        n /= 10;
+    }
+    if (s == t) return 1;
+    return 0;
+}
+
+int main(){
+    for (int i = 11; i < 1000; i++)
+        if (drome(i) && drome(i * i) && drome(i * i * i))
+            printf("%d is palindrome\n", i);
+    return 0;
+}

@@ -1,0 +1,56 @@
+/*
+ *
+3.7 活动安排问题
+已知有一个会议室，现在有n个人申请使用这个会议室。给定这n个人申请的开始时间和结束时间。求出最多能有多少人可以使用到会议室。
+输入：s = [2, 2, 6, 4, 4], e = [6, 3, 7, 5, 6]
+输出：3
+ */
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define N 50
+
+typedef struct {
+    int s, e;
+} Sche;
+
+void sort(Sche sche[], int n){
+    for (int i = 0; i < n - 1; ++i) {
+        int k = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (sche[k].e > sche[j].e) k = j;
+        }
+        if (k != i){
+            Sche t = sche[k];
+            sche[k] = sche[i];
+            sche[i] = t;
+        }
+    }
+
+}
+
+int schedula(Sche sche[], int n){
+    int res = n, idx = 0;//idx标记最后合适的活动，感觉就是得灵活设置这种关键变量
+    // 按照结束时间进行升序排序
+    sort(sche, n);
+    for (int i = 1; i < n; ++i) {
+        if (sche[i].s > sche[idx].e) idx = i;
+        else res--;
+    }
+    return res;
+}
+
+int main(){
+    int s[] = {2, 2, 6, 4, 4}, e[] = {6, 3, 7, 5, 6}, n = 5;
+    Sche sche[N];
+    for (int i = 0; i < 5; ++i) {
+        sche[i].s = s[i];
+        sche[i].e = e[i];
+    }
+    printf("%d", schedula(sche, n));
+    return 0;
+
+}

@@ -1,0 +1,35 @@
+/*
+ *
+
+ 方程根
+
+ */
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+
+    int a, b, c;
+    scanf("%d%d%d", &a, &b, &c);
+    if (a == 0) {
+        if (b == 0){
+            if (c == 0) printf("无穷多个根\n");
+            else printf("没有根\n");
+        }
+        else{
+            if (c == 0) printf("x = %d\n", 0);
+            else printf("x = %lf\n", 1.0 * -c / b);
+        }
+    } else {
+        int d = b * b - 4 * a * c;
+        if (d < 0) printf("没有根\n");
+        else if (d == 0) printf("x = %lf", -b / 2.0 * a);
+        else {
+            double x1 = (-b + sqrt(d)) / 2.0 * a;
+            double x2 = (-b - sqrt(d)) / 2.0 * a;
+            printf("x1 = %lf, x2 = %lf", x1, x2);
+        }
+    }
+    return 0;
+}

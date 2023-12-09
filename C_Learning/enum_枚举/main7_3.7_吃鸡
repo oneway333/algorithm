@@ -1,0 +1,32 @@
+/*
+ *
+3.7 吃鸡
+猪猪喜欢吃烤鸡，经过大量的实践总结，它发现烤鸡主要好吃在三种调料（孜然、芥末、辣椒面）上。每一份调料的美味度为1，烤鸡的美味度为所有调料美味度的和。
+ 现在猪猪想搞清楚对于任何一个正整数n表示美味度，它一共有多少种不同的调味方案。
+输入：n = 5
+输出：21
+输入：n = 7
+输出：36
+ */
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
+int chicken(int n){
+    int res = 0;
+    for (int i = 0; i <= n; ++i) {
+        for (int j = 0; j <= n - i; ++j) {
+            res++;
+        }
+    }
+    return res;
+}
+
+int main(){
+    int n;
+    scanf("%d", &n);
+    printf("%d", chicken(n));
+    return 0;
+}

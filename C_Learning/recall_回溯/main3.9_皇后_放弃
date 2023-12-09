@@ -1,0 +1,77 @@
+/*
+ *
+3.9 n 皇后
+在n×n格的棋盘上放置彼此不受攻击的n个皇后。按照国际象棋的规则，皇后可以攻击与之处在同一行或同一列或同一斜线上的棋子。n后问题等价于在n×n格的棋盘上放置n个皇后，
+ 任何2个皇后不放在同一行或同一列或同一斜线上。下图表示八皇后的一种解，输入一个n返回解的个数。
+
+输入：n = 4
+输出：2
+输入：n = 8
+输出：92
+ */
+
+#include <stdio.h>
+
+#define N 20
+
+int path[N];
+int res;
+int num;
+
+void modify(int nums[N][N], int n, int k, int j, int t){
+    for (int i = 0; i < n; ++i) {
+        if (j + i < n) nums[k][j + i] = k + 1 - t;
+        if (j - i > - 1) nums[k][j - i] = k + 1 - t;
+        if (k + i < n) nums[k + i][j] = k + 1 - t;
+        if (k - i > -1) nums[k - i][j] = k + 1 - t;
+        if (j + i < n && k + i < n) nums[k + i][j + i] = k + 1 - t;
+        if (j + i < n && k - i > -1) nums[k - i][j + i] = k + 1 - t;
+        if (j - i > -1 && k - i > -1) nums[k - i][j - i] = k + 1 - t;
+        if (j - i > -1 && k + i < n) nums[k + i][j - i] = k + 1 - t;
+    }
+    printf("%d\n", ++num);
+    for (int i = 0; i < n; ++i) {
+        for (int l = 0; l < n; ++l) {
+            printf("%d ", nums[i][l]);
+        }
+        putchar('\n');
+    }
+    putchar('\n');
+}
+
+void queen(int nums[N][N], int n, int count, int k){
+    // 每当n能全部放入的时候，res++
+    if (count <= 0) {
+        res++;
+        return;
+    }
+    for (int j = 0; j < n; ++j) {
+        if (nums[k - 1][j] != 0) continue;
+        // 将nums修改一遍,打上第k次的标记，方便后面还原回来
+        modify(nums, n, k - 1, j, 0);
+        // 交给下一行
+        queen(nums, n, --count,k + 1);
+        // 将nums还原回来
+        if (k - 1 != n - 1){
+            modify(nums, n, k - 1, j, 1);
+            // 还原回来一个
+            count++;
+        }
+    }
+}
+
+
+int main(){
+    int n;
+    scanf("%d", &n);
+    int nums[N][N] = {0};
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            nums[i][j] = 0;
+        }
+    }
+    queen(nums, n, n, 1);
+    printf("%d\n", res);
+    return 0;
+
+}

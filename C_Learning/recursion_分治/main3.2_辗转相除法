@@ -1,0 +1,19 @@
+/*
+ *
+3.2 辗转相除法
+给定两个正整数m、n (m ≥ n)，m和n的最大公约数与n和m % n的最大公约数相同。因此按照这个规律，我们可以一直缩小m和n直到其中一个为0，那么剩下的数就是两者的最大公约数。
+gcd(252, 105) = gcd(105, 42) = gcd(42, 21) = gcd(21, 0) = 21
+ */
+
+#include <stdio.h>
+
+int gcd(int m, int n){
+    if (n == 0) return m;
+    return gcd(n, m % n);
+}
+
+int main(){
+    int m = 252, n = 105;
+    printf("%d", gcd(m, n));
+    return 0;
+}

@@ -1,0 +1,49 @@
+/*
+ *
+ *
+ * 一元二次函数求解
+ *
+ *
+ *
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+void calculate(double a, double b, double c){
+    FILE *fp;
+    // 注意这个要追加写。。。
+    if ((fp = fopen("result.txt", "a")) == NULL){
+        printf("file open failed!");
+        exit(0);
+    }
+    if (a == 0){
+        if (b == 0){
+            if (c == 0) fprintf(fp, "a = %lf, b = %lf, c = %lf, %s\n", a, b, c, "无穷解");
+            else fprintf(fp, "a = %lf, b = %lf, c = %lf, %s\n", a, b, c, "无解");
+        } else {
+            fprintf(fp, "a = %lf, b = %lf, c = %lf, X = %lf\n", a, b, c, -c / b);
+        }
+    } else {
+        double d = b * b - 4 * a * c;
+        if (d < 0) fprintf(fp, "a = %lf, b = %lf, c = %lf, %s\n", a, b, c, "无解");
+        else if (d == 0) fprintf(fp, "a = %lf, b = %lf, c = %lf, X = %lf\n", a, b, c, -b / (2 * a));
+        else fprintf(fp, "a = %lf, b = %lf, c = %lf, x1 = %lf, x2 = %lf\n", a, b, c, (-b + d) / (2 * a), (-b - d) / (2 * a));
+    }
+    fclose(fp);
+}
+
+int main(){
+    double a, b, c;
+    FILE *fp;
+    if ((fp = fopen("Coefficient.txt", "r")) == NULL){
+        printf("file open failed!");
+        exit(0);
+    }
+    // 假设都是以空格隔开
+    while (fscanf(fp, "%lf %lf %lf", &a, &b, &c) == 3)
+        calculate(a, b, c);
+    fclose(fp);
+    return 0;
+}

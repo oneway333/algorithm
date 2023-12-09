@@ -1,0 +1,68 @@
+/*
+ *3.5 最长回文串
+给定一个包含大写字母和小写字母的字符串s，返回通过这些字母构造成的最长的回文串的长度。在构造过程中，请注意区分大小写 。比如 "Aa" 不能当做一个回文字符串。
+        输入：abccccdd
+        输出：7
+ *
+ */
+
+
+#include <stdio.h>
+#include "string.h"
+#include <stdlib.h>
+
+#define N 500
+
+// 初始化数组，每个表示字母出现次数
+void init(int up[], int low[], char s[]){
+    int i = 0;
+    while (s[i]){
+        if (s[i] >= 'A' && s[i] <= 'Z') up[s[i] - 'A']++;
+        else low[s[i] - 'a']++;
+        i++;
+    }
+}
+
+int calculate(int up[], int low[]){
+    // 奇数最多的个数
+    int max = 0;
+    // 奇数个数最多的字母
+    char c;
+    // 结果
+    int res = 0;
+    // 找出max和c
+    for (int i = 0; i < 26; ++i) {
+        if (up[i] % 2 &&max < up[i]){
+            max = up[i];
+            c = i + 'A';
+        }
+    }
+    for (int i = 0; i < 26; ++i) {
+        if (low[i] % 2 && max < low[i]){
+            max = low[i];
+            c = i + 'a';
+        }
+    }
+
+    for (int i = 0; i < 26; ++i) {
+        if (c == i + 'A') continue;
+        res += up[i] / 2;
+    }
+
+    for (int i = 0; i < 26; ++i) {
+        if (c == i + 'a') continue;
+        res += low[i] / 2;
+    }
+    // 返回最长回文串长度
+    return 2 * res + max;
+}
+
+int main() {
+    char s[N];
+    scanf("%s", s);
+    // 带小写字母
+    int up[26]={0}, low[26]={0};
+    init(up, low, s);
+    printf("%d ", calculate(up, low));
+    return 0;
+}

@@ -1,0 +1,50 @@
+/*
+ *
+3.4 装载问题
+有n个集装箱要装到载重量为c1和c2的两艘船上，其中第i个集装箱的重量为wi并且保证$\sum_{i=1}^nw_i≤c_1+c_2$。问这些集装箱能否成功装到船上。
+输入：c1 = 10, c2 = 10, w = [9, 9, 2]
+输出：0
+输入：c1 = 8, c2 = 9, w = [2, 5, 3, 4, 3]
+输出：1
+
+ */
+
+#include <stdio.h>
+
+#define N 500
+
+int sum(int w[], int n){
+    int s = 0;
+    for (int i = 0; i < n; ++i) {
+        s += w[i];
+    }
+    return s;
+}
+
+int overload(int c1, int c2, int w[], int n){
+    // 和背包一样，将w当作p
+    int dp[N][N] = {0};
+    for (int j = 0; j <= c1; ++j)
+        dp[n - 1][j] = w[n - 1] > j ? 0 : w[n - 1];
+    for (int i = n - 2; i >= 0; i--) {
+        for (int j = 0; j <= c1; ++j) {
+            dp[i][j] = dp[i + 1][j];
+            if (j >= w[i]){
+                int t = dp[i + 1][j - w[i]] + w[i];
+                dp[i][j] = dp[i][j] > t ? dp[i][j] : t;
+            }
+        }
+    }
+    // 大于小于等于号得小心。。。。
+    return sum(w, n) - dp[0][c1] <= c2;
+
+}
+
+int main(){
+
+    int c11 = 10, c12 = 10, w1[] = {9, 9, 2}, n1 = sizeof(w1) / sizeof(int);
+    int c21 = 8, c22 = 9, w2[] = {2, 5, 3, 4, 3}, n2 =  sizeof(w2) / sizeof(int);
+    printf("%d\n", overload(c11, c12, w1, n1));
+    printf("%d\n", overload(c21, c22, w2, n2));
+    return 0;
+}

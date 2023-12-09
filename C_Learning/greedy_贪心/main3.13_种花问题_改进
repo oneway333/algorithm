@@ -1,0 +1,30 @@
+/*
+.13 种花问题
+假设有一个很长的花坛，一部分地块种植了花，另一部分却没有。可是，花不能种植在相邻的地块上，它们会争夺水源，两者都会死去。
+ 给你一个整数数组flowerbed表示花坛，由若干0和1组成，其中0表示没种植花，1表示种植了花。另有一个数n，能否在不打破种植规则的情况下种入n朵花？
+输入：flowerbed = [1,0,0,0,1], n = 1
+输出：1
+输入：flowerbed = [1,0,0,0,1], n = 2
+输出：0
+ *+
+ */
+
+#include <stdio.h>
+
+int plant(int a[], int n, int len){
+    for (int i = 0; i < len - 1; ++i) {
+        if (a[i] == 1) continue;
+        if (a[i - 1] == 1 || a[i + 1] == 1) continue;
+        n--;
+        if (n == 0) return 1;
+    }
+    return 0;
+}
+
+int main(){
+    int flowerbed1[] = {1, 0, 0, 0, 1}, n1 = 1;
+    int flowerbed2[] = {1, 0, 0, 0, 1}, n2 = 2;
+    printf("%d\n", plant(flowerbed1, n1, sizeof(flowerbed1) / sizeof(int)));
+    printf("%d\n", plant(flowerbed2, n2, sizeof(flowerbed2) / sizeof(int)));
+    return 0;
+}

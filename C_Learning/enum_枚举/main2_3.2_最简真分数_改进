@@ -1,0 +1,31 @@
+/*
+ *
+
+3.2 最简真分数
+统计分母在指定区间[a, b]的最简真分数的个数，正整数a, b从键盘上输入。
+输入：a = 1, b = 4
+输出：5
+输入：a = 2, b = 8
+输出：21
+ */
+#include <stdio.h>
+
+int gcd(int a, int b){
+    if (b == 0) return a;
+    return gcd(b, a % b);
+}
+
+int main(){
+    int a, b, i, j, cnt = 0;
+    scanf("%d %d", &a, &b);
+    for (i = a; i <= b; i++){
+        j = 1;
+        while (j < i){
+            if (gcd(i, j) == 1) cnt++;
+            j++;
+        }
+    }
+    printf("%d", cnt);
+    return 0;
+
+}

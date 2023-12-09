@@ -1,0 +1,41 @@
+/*
+ *
+
+3.2 最简真分数
+统计分母在指定区间[a, b]的最简真分数的个数，正整数a, b从键盘上输入。
+输入：a = 1, b = 4
+输出：5
+输入：a = 2, b = 8
+输出：21
+ */
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
+int isTrue(int down, int up){
+    // up分子，down分母
+    for (int i = 2; i <=up ; ++i) {
+        // i为因数，当为共同的因数时，就不是真分数
+        if (down % i == 0 && up % i == 0) return 0;
+    }
+    return 1;
+}
+
+int simpNum(int a, int b){
+    int res = 0;
+    for (int i = a; i <= b; ++i) {
+        for (int j = 1; j < i; ++j) {
+            if (isTrue(i, j)) res++;
+        }
+    }
+    return res;
+}
+
+int main(){
+    int a, b;
+    scanf("%d%d", &a, &b);
+    printf("%d", simpNum(a, b));
+    return 0;
+}

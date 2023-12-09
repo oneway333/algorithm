@@ -1,0 +1,42 @@
+/*
+ *
+ *
+ * 给你⼀个整数数组 nums ，你可以对他进⾏⼀些操作，每次操作中，选择任意⼀个 nums[i] ，删
+除它并获得 nums[i] 的点数，之后，你必须删除所有等于 nums[i]-1 和 num[i]+1 的元素。开始你拥有的点数为 0 ，返回你能通过这些操作获得的最⼤点数
+ *
+ *
+ *
+ */
+
+#include <stdio.h>
+
+#define N 50
+
+int max(int a, int b){
+    return a > b ? a : b;
+}
+
+int rod(int a[], int n){
+    int dp[N] = {0};
+    // 初始化dp
+    dp[0] = a[0];
+    dp[1] = max(a[0], a[1]);
+    for (int i = 2; i < n; i++)
+        dp[i] = max(dp[i - 1], dp[i - 2] + a[i]);
+    return max(dp[n - 1], dp[n - 2]);
+}
+
+int main(){
+    // 打家劫舍变种，构造a[max[nums[i]]]，相邻位置点数不能获取
+    // 假设nums[i]
+    int nums[] = {6, 7, 6, 3, 5, 4, 4}, n = 7, a[N] = {0};
+    int p = nums[0];
+    // 获取max(nums[i])作为a[]的长度-1
+    for (int i = 0; i < n; i++)
+        p = p > nums[i] ? p : nums[i];
+    // 初始化a，相同元素加在同一位置
+    for (int i = 0; i < n; i++)
+        a[nums[i]] += nums[i];
+    printf("max is %d\n", rod(a, p + 1));
+    return 0;
+}

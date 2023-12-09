@@ -1,0 +1,99 @@
+#include <stdio.h>
+
+#define MAXSIZE 1000
+#define OK 1
+#define ERROR 0
+
+typedef int Status;
+typedef int ElemType;
+
+typedef struct {
+    ElemType data;
+    int cur; // 表示下一个元素的下标位置，0的时候为结束
+}Component, StaticLinkList[MAXSIZE]; // [0]用来存储可以放置的下标，[MAXSIZE - 1]当作头节点，StaticLinkList声明的类型“已经”是一个数组了
+
+Status InitList(StaticLinkList space){ // 初始化静态链表
+    int i;
+    for (i = 0; i < MAXSIZE - 1; i++)
+        space[i].cur = i + 1;
+    space[MAXSIZE - 1].cur = 0; //
+    return OK;
+}
+
+// 插入操作：1.malloc_sll，给新插入的元素找一个地方,并返回这个地方的下标
+//         2.执行插入操作  需要判断插入的位置是否在链表的开头或中间或结尾
+int malloc_sll(StaticLinkList space){
+    int i = space[0].cur; // 向space[0]寻求可以放置的位置
+    if (i)  // 当i不为0，即表还没有被填满
+        space[0].cur = space[i].cur; // 更新可以放的位置为当前的下一个
+    return i; // 返回这个下标
+}
+
+int ListLength(StaticLinkList L){
+    int j = L[MAXSIZE - 1].cur, len = 0; // j为头指针的下标
+    while (j) {
+        len++;
+        j = L[j].cur;
+    }
+    return len;
+}
+
+Status ListInsert(StaticLinkList L, int i, ElemType e){
+    int j, k = MAXSIZE - 1, l; // k为头节点的下标
+    if (i < 1 || i > ListLength(L) + 1) return ERROR;
+    j = malloc_sll(L);
+    if (j) { // 链表还有位置
+        L[j].data = e;
+        for (l = 1; l <= i - 1; l++) // 这里l从1计数是因为链表的头下标定义为1，为什么定义为i - 1，是因为默认向“左边“插入，k应该在第i-1的位置
+            k = L[k].cur;
+        L[j].cur = L[k].cur;
+        L[k].cur = j;
+        return OK;
+    }
+    return ERROR;
+}
+
+void free_sll(StaticLinkList space, int k){
+    space[k].cur = space[0].cur; // 下下次malloc的时候，就给k->next
+    space[0].cur = k; // k位置释放掉了，他的next应该为本来space[0]的next，这样等下一次malloc的时候，就给k
+}
+
+Status ListDelete(StaticLinkList L, int i){
+    int j, k = MAXSIZE - 1, l;
+    if (i < 1 || i > ListLength(L)) return ERROR;
+    for (l = 1; l <= i - 1; l++) // 与insert异曲同工
+        k = L[k].cur;
+    j = L[k].cur; // j为要删除的位置
+    L[k].cur = L[j].cur; // 和链表一样p->next = p->next->next
+    free_sll(L, j);
+    return OK;
+}
+
+
+void show(StaticLinkList L){
+    int i = L[MAXSIZE - 1].cur;
+    while (i){
+        printf("%d\t", L[i].data);
+        i = L[i].cur;
+    }
+}
+
+
+
+int main(){
+    int i;
+    StaticLinkList sll;
+    InitList(sll);
+    for (i = 0; i < 10; i++)
+        ListInsert(sll, i + 1, i);
+    show(sll);
+    putchar('\n');
+    ListInsert(sll, 3, 20);
+    show(sll);
+    putchar('\n');
+    ListDelete(sll, 4);
+    show(sll);
+    putchar('\n');
+    return 0;
+}
+

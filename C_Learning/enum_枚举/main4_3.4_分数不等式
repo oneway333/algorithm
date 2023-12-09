@@ -1,0 +1,37 @@
+/*
+ *
+3.4 分数不等式
+求解关于正整数n的分数不等式：m1<1/2+sqrt(2)/3+...+sqrt(n)/(n + 1)<m2，其中m1、m2是键盘录入的正整数且满足m1 < m2。
+输入：m1 = 1, m2 = 7
+输出：[3, 24]
+输入：m1 = 4, m2 = 6
+输出：[11, 19]
+ */
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
+void farc(int m1, int m2){
+    int brac[2] = {0};
+    double s = 0.0;
+    int i = 1;
+    while (1){
+        s += 1.0 * sqrt(i) / (i + 1);
+        if (brac[0] == 0 && s > m1) brac[0] = i;
+        if (s > m2){
+            brac[1] = i - 1;
+            break;
+        }
+        i++;
+    }
+    printf("[%d, %d]", brac[0], brac[1]);
+}
+
+int main(){
+    int m1, m2;
+    scanf("%d%d", &m1, &m2);
+    farc(m1, m2);
+
+}

@@ -1,0 +1,20 @@
+/*
+ *
+小写转大写
+ */
+
+#include <stdio.h>
+#include <string.h>
+
+#define N 50
+
+
+
+int main(){
+    char s[N];
+    gets(s);
+    for (int i = 0; i < strlen(s); i++)
+        if (s[i] >= 'a' && s[i] <= 'z') s[i] += 'A' - 'a';
+    puts(s);
+    return 0;
+}

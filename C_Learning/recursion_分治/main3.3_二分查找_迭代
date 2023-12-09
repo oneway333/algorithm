@@ -1,0 +1,30 @@
+/*
+ *
+3.3 二分查找
+在有序数组里使用二分查找寻找元素，若元素存在于数组中返回其下标否则返回-1。
+输入：nums = [1,2,4,5,9,12,14], k = 4
+输出：2
+输入：nums = [1,2,4,5,9,12,14], k = 13
+输出：-1
+ */
+
+#include <stdio.h>
+
+int search(int nums[], int k, int n){
+    int left = 0, right = n - 1;
+    while (left <= right){
+        int mid = (left + right) / 2;
+        if (k == nums[mid]) return mid;
+        if (k > nums[mid]) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
+int main(){
+    int nums1[] = {1,2,4,5,9,12,14}, k1 = 4;
+    int nums2[] = {1,2,4,5,9,12,14}, k2 = 13;
+    printf("%d\n", search(nums1, k1, sizeof(nums1) / sizeof(int)));
+    printf("%d\n", search(nums2, k2, sizeof(nums1) / sizeof(int)));
+    return 0;
+}

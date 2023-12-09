@@ -1,0 +1,72 @@
+/*
+ *
+有一个班30个学生5门课的成绩
+1. 求第一门课的平均分
+2. 找出有2们以上不及格的学生，输出他们的学号、全部课程成绩和平均成绩
+3. 找出平均成绩在90分以上或全部课程成绩在85分以上的学生
+分别编写3个函数实现
+
+ */
+
+#include <stdio.h>
+
+typedef struct{
+    int num, grades[5];
+    double avg;
+} Student;
+
+double firstAvg(Student student[], int n){
+    double s = 0;
+    for (int i = 0; i < n; i++)
+        s += student[i].grades[0];
+    return s / n;
+}
+
+void everyAvg(Student student[], int n){
+    for (int i = 0; i < n; i++){
+        double s = 0;
+        for (int j = 0; j < 5; j++)
+            s += student[i].grades[j];
+        student[i].avg = s / 5;
+    }
+}
+
+void findFailed(Student student[], int n){
+    for (int i = 0; i < n; i++){
+        int f = 0;
+        for (int j = 0; j < 5; j++)
+            if (student[i].grades[j] < 60) f++;
+        if (f >= 2){
+            printf("num:%d, avg:%lf, grages:", student[i].num, student[i].avg);
+            for (int j = 0; j < 5; j++)
+                printf("%d ", student[i].grades[j]);
+            putchar('\n');
+        }
+    }
+}
+
+void findAbove(Student student[], int n){
+    for (int i = 0; i < n; i++){
+        if (student[i].avg > 90) printf("above 90: %d\n", student[i].num);
+        else {
+            int j;
+            for (j = 0; j < 5; j++)
+                if (student[i].grades[j] < 85) break;
+            if (j >= 5) printf("above 85: %d\n", student[i].num);
+        }
+    }
+}
+
+int main(){
+    Student student[4] = {{1, {80, 59, 70, 60, 57}, 0},
+                          {2, {80, 90, 99, 95, 100}, 0},
+                          {3, {85, 86, 87, 88, 86}, 0},
+                          {4, {99, 99, 87, 88, 99}, 0}};
+    int n = 4;
+    everyAvg(student, n);
+    printf("first course grade %lf\n", firstAvg(student, n));
+    findFailed(student, n);
+    findAbove(student, n);
+    return 0;
+}
+

@@ -1,0 +1,50 @@
+/*
+3.12 加油站
+在一条环路上有n个加油站，其中第i个加油站有汽油gas[i]升。
+你有一辆油箱容量无限的的汽车，从第i个加油站开往第i + 1个加油站需要消耗汽油cost[i]升。你从其中的一个加油站出发，开始时油箱为空。给定两个整数数组gas和cost，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回-1。
+输入: gas = [1,2,3,4,5], cost = [3,4,5,1,2]
+输出: 3
+输入: gas = [2,3,4], cost = [3,4,3]
+输出: -1
+ *+
+ */
+
+
+#include <stdio.h>
+#include "string.h"
+#include <stdlib.h>
+
+#define N 500
+#define M 3
+
+int find(int gas[], int cost[], int n){
+    // 记录可能为起点的加油站下标
+    int back[N] = {0}, backn = 0;
+    for (int i = 0; i < n; ++i) {
+        if (gas[i] - cost[i] >= 0) back[backn++] = i;
+    }
+    // 根据找到cost最小的那个加油站
+    int idx = 0;
+    for (int i = 0; i < backn; ++i) {
+        if (cost[back[idx]] > cost[back[i]]) idx = i;
+    }
+    return back[idx];
+}
+
+int output(int gas[],int cost[], int n){
+    int sgas = 0, scost = 0;
+    for (int i = 0; i < n; ++i) {
+        sgas += gas[i];
+        scost += cost[i];
+    }
+    if (scost > sgas) return -1;
+    // 一定能跑完，寻找汽油站
+    return find(gas, cost, n);
+}
+
+int main() {
+    int gas1[] = {1,2,3,4,5}, cost1[] = {3,4,5,1,2}, gas2[]={2, 3, 4}, cost2[] = {3, 4, 3}, n1 = 5, n2 = 3;
+    printf("%d\n", output(gas1, cost1, n1));
+    printf("%d\n", output(gas2, cost2, n2));
+    return 0;
+}

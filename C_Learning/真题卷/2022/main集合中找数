@@ -1,0 +1,40 @@
+/*
+ *
+ *
+ *
+ * 1. 有个集合M，满⾜下列条件：
+（1）k是集合M的⼀个元素，k是正整数，
+（2）如果x是M的元素，
+那么，5x+2, 7x+3,也是集合M的元素
+（3）
+除了这两种情况以外，没有其他的数是集合M的元素
+
+现输⼊整数k和x，判断x是否是集合的元素。是则输出Yes，否则输出No。
+ *
+ *
+ *
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int flag = 0;
+
+void dfs(int k, int x){
+    if (k == x)
+        flag = 1;
+    if (k > x)
+        return;
+    dfs(5 * k + 2, x);
+    dfs(7 * k + 3, x);
+}
+
+int main(){
+    int k, x;
+    scanf("%d %d", &k, &x);
+    dfs(k, x);
+    if (flag == 1) printf("Yes\n");
+    else printf("No\n");
+    return 0;
+}

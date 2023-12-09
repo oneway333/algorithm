@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+void sort(double avg[], int n){
+    for (int i = 0; i < n - 1; ++i) {
+        int k = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (avg[k] < avg[j]) k = j;
+        }
+        if (k != i){
+            double t = avg[k];
+            avg[k] = avg[i];
+            avg[i] = t;
+        }
+    }
+}
+
+void avgFun(int grad[][4], int n){
+    double avg[5] = {0};
+    for (int i = 0; i < n; ++i) {
+        double sum = 0.0;
+        for (int j = 0; j < 4; ++j)
+            sum += grad[i][j];
+        avg[i] = sum / 4.0;
+    }
+    for (int i = 0; i < n; ++i)
+        printf("%lf ",avg[i]);
+    putchar('\n');
+    sort(avg, n);
+
+    for (int i = 0; i < n; ++i)
+        printf("%lf ",avg[i]);
+    putchar('\n');
+}
+
+int main(){
+    int grad[5][4] = {0};
+    for (int i = 0; i < 5; ++i) {
+        scanf("%d%d%d%d", &grad[i][0], &grad[i][1], &grad[i][2], &grad[i][3]);
+    }
+    avgFun(grad, 5);
+    return 0;
+}

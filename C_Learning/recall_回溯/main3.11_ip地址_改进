@@ -1,0 +1,65 @@
+/*
+ *
+3.11 IP 地址
+有效 IP 地址正好由四个整数（每个整数位于0到255之间组成，且不能含有前导0），整数之间用'.'分隔。
+例如："0.1.2.201"和"192.168.1.1"是有效 IP 地址，但是"0.011.255.245"、"192.168.1.312"和"192.168@1.1"是无效 IP 地址。
+给定一个只包含数字的字符串s，用以表示一个 IP 地址，输出所有可能的有效 IP 地址，这些地址可以通过在s中插入'.'来形成。你不能重新排序或删除s中的任何数字。
+ 你可以按任何顺序输出答案。
+输入：s = "0000"
+输出：["0.0.0.0"]
+输入：s = "25525511135"
+输出：["255.255.11.135", "255.255.111.35"]
+
+ */
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define N 500
+
+char s[N];
+// 每一种ip的可能
+int path[N];
+int p = 0;
+
+int test(int l, int r){
+    char t[N];
+    int tmp = r - l + 1;
+    strncpy(t, s + l, tmp);
+    t[tmp] = 0;
+    // 首位是0，就必须只有一个0
+    if (t[0] == 0 && strlen(t) > 1) return -1;
+    int k = 0;
+    sscanf(t, "%d", &k);
+    if (k > 255) return -1;
+    return k;
+}
+
+// 这个total精髓了
+void dfs(int begin, int n, int total){
+    if (total == 0 || begin >= n){
+        if (total > 0) return;
+        if (begin != n) return;
+        for (int i = 0; i < p - 1; ++i)
+            printf("%d.", path[i]);
+        printf("%d\n", path[p - 1]);
+        return;
+    }
+    for (int i = begin; i < begin + 3; ++i) {
+        // k接收数字
+        int k;
+        k = test(begin, i);
+        if (k < 0) continue;
+        path[p++] = k;
+        dfs(i + 1, n, total - 1);
+        p--;
+    }
+}
+
+
+int main(){
+    gets(s);
+    dfs(0, strlen(s), 4);
+    return 0;
+}

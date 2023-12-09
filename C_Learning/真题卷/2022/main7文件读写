@@ -1,0 +1,94 @@
+/*
+ *
+ *
+ *
+ * 有七个⽂件，每个⽂件中都记录了农产品销售的情况，⽂件中每⾏包括商品名称，销售数量，销售时的总价。要求设计程序，计算每种产品的总销量，
+ * 总销售额并将结果保存到⽂件results.txt中。每个⽂件最多记录100条数据，注意⽂件中菜名可能重复，这表示多次销售的情况。
+3. 综合题
+ *
+ *
+ *
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define N 700
+
+typedef struct {
+    char name[20];
+    int num;
+    double price;
+} Products;
+
+// 记录读入result.txt的有效行数
+int n;
+
+void input(char s[]){
+    FILE *fp1, *fp2;
+    if ((fp1 = fopen(s, "r")) == NULL){
+        printf("file open failed\n");
+        exit(0);
+    }
+    if ((fp2 = fopen("tmp.txt", "a")) == NULL){
+        printf("file open failed\n");
+        exit(0);
+    }
+    Products product;
+    for (int i = 0; i < 100; i++){
+        if (fscanf(fp1, "%s %d %lf", product.name, &product.num, &product.price) == 3){
+            fprintf(fp2, "%s %d %lf\n", product.name, product.num, product.price);
+            n++;
+        }
+    }
+    fclose(fp1);
+    fclose(fp2);
+}
+
+void statistics(Products products[], int p) {
+    FILE *fp1, *fp2;
+    if ((fp1 = fopen("tmp.txt", "r")) == NULL) {
+        printf("file open failed\n");
+        exit(0);
+    }
+    if ((fp2 = fopen("result.txt", "w")) == NULL) {
+        printf("file open failed\n");
+        exit(0);
+    }
+    // 统计不重复的商品名称
+    Products pro;
+    for (int i = 0; i < n; i++){
+        fscanf(fp1, "%s %d %lf", pro.name, &pro.num, &pro.price);
+        int j;
+        for (j = 0; j < p; j++)
+            if (strcmp(products[j].name, pro.name) == 0) break;
+        if (j >= p) strcpy(products[p++].name, pro.name);
+    }
+    // 重置到开头
+    rewind(fp1);
+    for (int i = 0; i < p; i++){
+        for (int j = 0; j < n; j++) {
+            fscanf(fp1, "%s %d %lf", pro.name, &pro.num, &pro.price);
+            if (strcmp(products[i].name, pro.name) == 0){
+                products[i].num += pro.num;
+                products[i].price += pro.price;
+            }
+        }
+        fprintf(fp2, "%s %d %lf\n", products[i].name, products[i].num, products[i].price);
+        // 每次再次重置
+        rewind(fp1);
+    }
+    fclose(fp1);
+    fclose(fp2);
+
+}
+
+int main(){
+    char *s[] = {"file1.txt", "file2.txt", "file3.txt", "file4.txt", "file5.txt", "file6.txt", "file7.txt"};
+    Products products[N] = {0};
+    int p = 0; // 表示products的实际长度
+    for (int i = 0; i < 7; i++) input(s[i]);
+    statistics(products, p);
+    return 0;
+}

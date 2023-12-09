@@ -1,0 +1,24 @@
+/*
+ *
+ *
+ * 运算结果
+ *
+ *
+ *
+ *
+ */
+
+#include <stdio.h>
+
+int main(){
+    double a, b;
+    char ch;
+    scanf("%lf %lf %c", &a, &b, &ch);
+    if (ch == '+') printf("%lf %c %lf = %lf", a, ch, b, a + b);
+    if (ch == '-') printf("%lf %c %lf = %lf", a, ch, b, a - b);
+    if (ch == '*') printf("%lf %c %lf = %lf", a, ch, b, a * b);
+    if (ch == '/') printf("%lf %c %lf = %lf", a, ch, b, a / b);
+    //注意%的时候必须是两个整数
+    if (ch == '%') printf("%lf %c %lf = %d", a, ch, b, (int)a % (int)b);
+    return 0;
+}

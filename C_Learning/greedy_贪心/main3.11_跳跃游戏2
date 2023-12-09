@@ -1,0 +1,62 @@
+/*
+3.11 跳跃游戏Ⅱ
+给你一个非负整数数组nums，你最初位于数组的第一个下标 。数组中的每个元素代表你在该位置可以跳跃的最大长度，求跳到最后一个元素的最少步数，若无法跳到最后返回-1。
+输入: nums = [2,3,1,1,4]
+输出: 2
+输入: nums = [2,3,0,1,4]
+输出: 2
+ *
+ */
+
+
+#include <stdio.h>
+#include "string.h"
+#include <stdlib.h>
+
+#define N 500
+#define M 3
+
+int find(int nums[], int n, int idx){
+    //记录下一个能到达的最大下标, max为比较下一步的最大
+    int nextIdx = idx, max = 0;
+    // 如果能到达，直接退出
+    if (nums[idx] + idx >= n - 1) return n - 1;
+    for (int i = idx + 1; i <= nums[idx] + idx; ++i) {
+        // 找到下一步最远的下标
+        if (max < i + nums[i]){
+            max = i + nums[i];
+            nextIdx = i;
+        }
+    }
+    // 当nextid加上跳跃的步数直接大于了最大下标，直接退出
+    if (nums[nextIdx] + nextIdx >= n - 1) return n - 1;
+    // 当nextIdx没有变化，即跳不到终点了
+    else if (nextIdx == idx) return -1;
+    // 最后进行下一轮
+    else return nextIdx;
+}
+
+int output(int nums[], int n){
+    // 某一次跳跃的下标
+    int idx = 0;
+    // 默认先跳了一轮
+    int step = 1;
+    // 如果第一步为0，直接结束
+    if (nums[0] == 0) return -1;
+    // 当idx到达最终，或者idx再也达不到尾部的时候退出
+    while (idx != (n - 1) && idx != -1){
+        //找到下一次跳跃的最佳下标
+        idx = find(nums, n, idx);
+        step++;
+    }
+    return idx != -1 ? step : -1;
+
+}
+
+int main() {
+    int nums1[] = {2,3,1,1,4}, nums2[] = {3,2,1,0,4}, nums3[]={2,3,0,1,4}, n = 5;
+    printf("%d\n", output(nums1, n));
+    printf("%d\n", output(nums2, n));
+    printf("%d\n", output(nums3, n));
+    return 0;
+}

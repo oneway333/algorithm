@@ -1,0 +1,34 @@
+/*
+3.9 盛水最多的容器
+给定一个长度为n的整数数组height。有n条垂线，第i条线的两个端点是(i, 0)和(i, height[i])。找出其中的两条线，
+ 使得它们与x轴共同构成的容器可以容纳最多的水。返回容器可以储存的最大水量。
+
+ 输入：height = [1,8,6,2,5,4,8,3,7]
+输出：49
+ *
+ */
+
+
+#include <stdio.h>
+#include "string.h"
+#include <stdlib.h>
+
+#define N 500
+#define M 3
+
+int output(int height[], int n, int line[]){
+    int max = 0;
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            int s = (line[j] - line[i]) * (height[i] < height[j] ? height[i] : height[j]);
+            max = max < s ? s : max;
+        }
+    }
+    return max;
+}
+
+int main() {
+    int height[] = {1,8,6,2,5,4,8,3,7}, n = 9, line[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    printf("%d", output(height, n, line));
+    return 0;
+}
