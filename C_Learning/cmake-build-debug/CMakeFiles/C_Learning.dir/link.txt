@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.3.4\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\C_Learning.dir/objects.a
-C:\PROGRA~1\mingw64\bin\ar.exe cr CMakeFiles\C_Learning.dir/objects.a @CMakeFiles\C_Learning.dir\objects1.rsp
-C:\PROGRA~1\mingw64\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\C_Learning.dir/objects.a -Wl,--no-whole-archive  -o C_Learning.exe -Wl,--out-implib,libC_Learning.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\C_Learning.dir\linklibs.rsp
