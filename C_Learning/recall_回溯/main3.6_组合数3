@@ -1,0 +1,36 @@
+/*
+ *
+3.6 组合数Ⅲ
+给定两个整数n和m，输出范围[1, n]中所有可能的m个数的组合。你可以按任何顺序输出答案。
+输入：n = 1, m = 1
+输出：[[1]]
+输入：n = 4, m = 2
+输出： [[2,4], [3,4], [2,3], [1,2], [1,3], [1,4]]
+ */
+
+#include <stdio.h>
+
+#define N 500
+
+int path[N];
+
+void combine3(int n, int m, int k, int begin){
+    if (k == m){
+        for (int i = 0; i < m; i++) printf("%d ", path[i]);
+        putchar('\n');
+        return;
+    }
+    for (int i = begin; i <= n; ++i) {
+        path[k] = i;
+        combine3(n, m, k + 1, i + 1);
+    }
+}
+
+int main(){
+
+    int n, m;
+    scanf("%d%d", &n, &m);
+    combine3(n, m, 0, 1);
+    return 0;
+
+}

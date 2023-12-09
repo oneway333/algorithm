@@ -1,0 +1,33 @@
+/*
+ *
+打印
+  A
+ BBB
+  A
+
+   A
+  BBB
+ CCCCC
+DDDDDDD
+ CCCCC
+  BBB
+   A
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    int n = getchar() - 'A';
+    for (int i = 0; i <= 2 * n; i++){
+        // 这个关系，得自己推一下
+        int line = i <= n ? i : 2 * n - i;
+        int space = n - line;
+        int alp = 2 * line + 1;
+        char ch = 'A' + line;
+        for (int j = 0; j < space; j++) putchar(' ');
+        for (int j = 0; j < alp; j++) putchar(ch);
+        putchar('\n');
+    }
+    return 0;
+}

@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+#define MAXSIZE 50
+#define OK 1
+#define ERROR 0
+#define TRUE 1
+#define FALSE 0
+typedef int Status;
+typedef int ElemType;
+typedef struct {
+    ElemType data[MAXSIZE];
+    int length;
+} SqList;
+
+Status getElem(SqList L, int i, ElemType *e){ // i代表第几个元素(从1开始计数)
+    if (L.length == 0 || i < 1 || i > L.length)
+        return ERROR;
+    // 这里用 指针 的意义应该是，当要对某个变量进行修改原来数据操作的时候，就用指针
+    *e = L.data[i - 1]; // 哦，这样子搞，不是用e = &L.data[i - 1];
+    return OK;
+}
+
+Status ListInsert(SqList *L, int i , ElemType e){
+    int j; // 循环变量
+    if (L->length == MAXSIZE)
+        return ERROR;
+    if (i < 1 || i > L->length + 1) // 因为是要连续的插入元素，所以末尾是边界情况
+        return ERROR;
+    if (i <= L->length)// 不是在末尾插入，需要移动
+        for (j = L->length - 1; j >= i - 1; j--) // j定位到data数组的最后，i从1开始计数的，所以-1，j + 1表示要插入的元素的具体下标
+            L->data[j + 1] = L->data[j];
+    L->data[i - 1] = e; // 如果i = length + 1，那么就是在末尾了，和上面循环中结束的i属于同一种情况
+    L->length++; // 插入元素后长度要+1，不能忘记呀~~~
+    return OK;
+}
+
+Status ListDelete(SqList *L, int i, ElemType *e){
+    int j;
+    if (L->length == 0)
+        return ERROR;
+    if (i < 1 || i > L->length)
+        return ERROR;
+    *e = L->data[i - 1];
+    if (i < L->length)
+        for (j = i - 1; j < L->length - 1; j++) // j是元素的下标位置，j本来是要<L->length，但是因为是删除，所以L->length要-1，那就变成了L->length-1
+            L->data[j] = L->data[j + 1];
+    L->length--;
+    return OK;
+}
+
+void show(SqList *L){
+    int i;
+    for (i = 0; i < L->length; i++)
+        printf("%d\n", L->data[i]);
+}
+
+int main(){
+    SqList L = {{1, 2, 3, 4, 5}, 5};
+    int e, i;
+    getElem(L, 2, &e);
+    printf("get e: %d\n", e);
+    ListInsert(&L, 2, 6);
+    show(&L);
+    ListDelete(&L, 3, &e);
+    printf("deleted e: %d\n", e);
+    show(&L);
+    return 0;
+}

@@ -1,0 +1,36 @@
+/*
+ *
+ *
+ *输入 a,b,c,d 输出 a/b+c/d 的标准形式结果 w+u/v，u/v 是最简分数，若 w 为 0 则输出 u/v，
+若 u/v 为 0 则输出 w。
+ *
+ *
+ *
+ */
+
+#include <stdio.h>
+
+int gcd(int a, int b){
+    if (b == 0) return a;
+    return gcd(b, a % b);
+}
+
+void plus(int a, int b, int c, int d){
+    int up = a * d + b * c, down = b * d;
+    int g = gcd(up, down);
+    up /= g;
+    down /= g;
+    int w = up / down;
+    int v = down;
+    int u = up % down;
+    if (w == 0) printf("%d/%d\n", u, v);
+    else if (u == 0) printf("%d\n", w);
+    else printf("%d + %d/%d", w, u, v);
+}
+
+int main(){
+    int a, b, c, d;
+    scanf("%d%d%d%d", &a, &b, &c, &d);
+    plus(a, b, c, d);
+    return 0;
+}

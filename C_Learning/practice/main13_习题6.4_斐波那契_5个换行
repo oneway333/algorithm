@@ -1,0 +1,16 @@
+#include<stdio.h>
+#include<string.h>
+
+#define N 40
+
+int main(){
+    int a[N] = {1, 1};
+    for (int i = 2; i < 40; ++i) {
+        a[i] = a[i - 1] + a[i - 2];
+    }
+    for (int i = 0; i < 40; ++i) {
+        if (i && (i % 5 == 0)) putchar('\n');
+        printf("%-20d", a[i]);
+    }
+    return 0;
+}

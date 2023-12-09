@@ -1,0 +1,23 @@
+#include "stdio.h"
+#include "string.h"
+#include <stdlib.h>
+#include <math.h>
+
+void judge(int n){
+    int s = sqrt(n);
+    int i;
+    for (i = 2; i <= s; ++i) {
+        if (n % i == 0){
+            printf("%d is not 素数", n);
+            break;
+        }
+    }
+    if (i > s) printf("%d is 素数", n);
+}
+
+int main(){
+    int n = 0;
+    scanf("%d", &n);
+    judge(n);
+    return 0;
+}

@@ -1,0 +1,53 @@
+/*
+ *
+3.10 分割回文串
+给你一个字符串s，请你将s分割成一些子串，使每个子串都是回文串。输出s所有可能的分割方案。
+回文串是正着读和反着读都一样的字符串。
+输入：s = "a"
+输出：["a"]
+输入：s = "ababac
+ 输出：["a b a b a c", "a b aba c", "a bab a c", "aba b a c", "ababa c"]
+
+ */
+
+#include <stdio.h>
+#include <string.h>
+
+#define N 500
+
+char s[N];
+// 每一种回文串的可能
+char path[N][N];
+int p;
+
+int test(int l, int r){
+    while (l <= r){
+        if (s[l++] != s[r--]) return 0;
+    }
+    return 1;
+}
+
+// 变量多不一定是好。。。
+void dfs(int begin, int n){
+    if (begin > n - 1) {
+        for (int i = 0; i < p; ++i)
+            printf("%s ", path[i]);
+        putchar('\n');
+        return;
+    }
+    for (int i = begin; i < n; ++i) {
+        if (!test(begin, i)) continue;
+        int t = i - begin + 1;
+        // strncpy不会复制\0，需要手动补充
+        strncpy(path[p], s + begin, t);
+        path[p++][t] = 0;
+        dfs(i + 1, n);
+        p--;
+    }
+}
+
+int main(){
+    gets(s);
+    dfs(0, strlen(s));
+
+}

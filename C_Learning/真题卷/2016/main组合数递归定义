@@ -1,0 +1,23 @@
+/*
+ *
+ *
+ * 组合数递归定义
+ *
+ *
+ *
+ *
+ */
+
+#include <stdio.h>
+
+int c(int n, int k){
+    if (n == k || k == 0) return 1;
+    return c(n - 1, k - 1) + c(n - 1, k);
+}
+
+int main(){
+    int n, k;
+    scanf("%d%d", &n, &k);
+    printf("%d\n", c(n, k));
+    return 0;
+}

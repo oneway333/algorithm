@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "math.h"
+
+typedef struct {
+    char name[20];
+    int score;
+} Student;
+
+void write(Student students[], int n){
+    FILE *fp;
+    if((fp = fopen("data.txt", "wb")) == NULL){
+        printf("file open failed write");
+        exit(0);
+    }
+    fwrite(students, sizeof(Student), n, fp);
+    fclose(fp);
+}
+
+void read(int n){
+    FILE *fp;
+    if((fp = fopen("data.txt", "rb")) == NULL){
+        printf("file open failed read");
+        exit(0);
+    }
+    int i;
+    Student stu;
+    for(i = 0; i < n; i++){
+        fread(&stu, sizeof(Student), 1, fp);
+        printf("%s %d\n", stu.name, stu.score);
+    }
+    fclose(fp);
+}
+
+int main(){
+    int i, n;
+    scanf("%d", &n);
+    int sqn = sqrt(n);
+    for (i = 2; i <= sqn; i++) {
+        if (n % i == 0){
+            printf("%d not 素数", n);
+            break;
+        }
+    }
+    if (i > sqn) printf("%d is 素数", n);
+    return 0;
+}

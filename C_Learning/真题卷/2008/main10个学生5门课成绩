@@ -1,0 +1,85 @@
+/*
+ *
+ 10个学生5门课成绩
+ 1.每个学生平均分
+ 2.每门课平均分
+ 3.最高的分数对应的学生和课程
+ 4.平均分方差
+ */
+
+#include <stdio.h>
+#include <math.h>
+
+#define N 50
+
+typedef struct {
+    int num, grades[5];
+    char name[N];
+    double avg;
+} Student;
+
+void input(int n, Student student[]){
+    for (int i = 0; i < n; i++){
+        student[i].num = i + 1;
+        scanf("%s", student[i].name);
+        for (int j = 0; j < 5; j++)
+            scanf("%d", &student[i].grades[j]);
+    }
+}
+
+void everyAvg(int n, Student student[]){
+    for (int i = 0; i < n; i++) {
+        double s = 0;
+        for (int j = 0; j < 5; j++)
+            s += student[i].grades[j];
+        student[i].avg = s / 5;
+    }
+}
+
+void everyClassAvg(int n, Student student[], double classAvg[]){
+    for (int i = 0; i < 5; i++){
+        double s = 0;
+        for (int j = 0; j < n; j++)
+            s += student[j].grades[i];
+        classAvg[i] = s / n;
+    }
+}
+
+void findBest(int n, Student student[]){
+    // 最高分数所在的行列下标
+    int r = 0, c = 0;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < 5; j++)
+            if (student[i].grades[j] > student[r].grades[c]){
+                r = i;
+                c = j;
+            }
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < 5; j++)
+            if (student[i].grades[j] == student[r].grades[c])
+                printf("%s's No.%d is %d\n", student[i].name, j + 1, student[i].grades[j]);
+}
+
+double avgVary(int n, Student student[]){
+    double x = 0, s = 0;
+    for (int i = 0; i < n; i++)
+        x += student[i].avg;
+    x /= n;
+    for (int i = 0; i < n; i++)
+        s += pow(student[i].avg - x, 2);
+    return s / n;
+}
+
+int main(){
+    Student student[10];
+    int n = 10;
+    double classAvg[5] = {0};
+    input(n, student);
+    everyAvg(n, student);
+    everyClassAvg(n, student, classAvg);
+    findBest(n, student);
+    printf("the avg variance is %lf\n", avgVary(n, student));
+    return 0;
+
+
+}

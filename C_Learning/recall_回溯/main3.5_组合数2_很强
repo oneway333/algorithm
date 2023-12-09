@@ -1,0 +1,55 @@
+/*
+ *
+3.5 组合数Ⅱ
+给你一个整数数组nums和一个目标整数target，找出nums中可以使数字和为目标数target的所有不同组合 ，并将它们输出出来，每个元素最多使用一次，你可以按任意顺序输出这些组合。
+输入: nums = [2,5,2,1,2], target = 5
+输出: [[1,2,2], [5]]
+
+输入: nums = [10,1,2,7,6,1,5], target = 8
+输出: [[1,1,6], [1,2,5], [1,7], [2,6]]
+ */
+
+#include <stdio.h>
+
+#define N 500
+
+int path[N], p;
+
+void sort(int a[], int n){
+    for (int i = 0; i < n - 1; ++i)
+        for (int j = 0; j < n - i - 1; ++j)
+            if (a[j] > a[j + 1]){
+                int t = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = t;
+            }
+}
+
+
+void combine2(int nums[], int n, int target, int begin){
+    if (target == 0) {
+        for (int i = 0; i < p; ++i) printf("%d ", path[i]);
+        putchar('\n');
+        return;
+    }
+    for (int i = begin; i < n; ++i) {
+        if (target < 0) continue;
+        // 通过i > begin 可以控制同层的其他分支，可以的，有点东西
+        if (i > begin && nums[i] == nums[i - 1]) continue;
+        path[p++] = nums[i];
+        combine2(nums, n, target - nums[i], i + 1);
+        p--;
+    }
+}
+
+int main(){
+    int nums1[] = {2,5,2,1,2}, n1 = sizeof(nums1) / sizeof(int), target1 = 5;
+    int nums2[] = {10,1,2,7,6,1,5}, n2 = sizeof(nums2) / sizeof(int), target2 = 8;
+    sort(nums1, n1);
+    sort(nums2, n2);
+
+    combine2(nums1, n1, target1, 0);
+    combine2(nums2, n2, target2, 0);
+    return 0;
+
+}

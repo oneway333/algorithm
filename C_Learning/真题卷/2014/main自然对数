@@ -1,0 +1,22 @@
+/*
+ *
+  自然对数e
+ */
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+    int n = 1;
+    // s为两次e之差,
+    double e = pow(1.0 + 1.0 / n, n), s = e;
+    while(fabs(s) >= 1e-6){
+        double t = e;
+        n++;
+        e = pow(1.0 + 1.0 / n, n);
+        // 人傻了。。。
+        s = e - t;
+    }
+    printf("%lf %d\n", e ,n);
+    return 0;
+}

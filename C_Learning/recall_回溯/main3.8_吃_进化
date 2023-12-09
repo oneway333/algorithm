@@ -1,0 +1,46 @@
+/*
+ *
+3.8 吃
+给你一个m x n的矩阵board，由若干字符'X'和'O'组成，找到所有被'X'围绕的区域，并将这些区域里所有的'O'用'X'填充。
+ 输入：board = [["X","X","X","X"], ["X","O","O","X"], ["X","X","O","X"], ["X","O","X","X"]]
+输出：[["X","X","X","X"], ["X","X","X","X"], ["X","X","X","X"], ["X","O","X","X"]]
+ */
+
+#include <stdio.h>
+#include <string.h>
+
+#define N 500
+
+int path[N];
+char board[N][N] = {"XXXX", "XOOX", "XXOX", "XOXX"};
+int m = 4, n = 4;
+
+// 这一步是最重要的，其实核心逻辑就这一个
+void dfs(int r, int c){
+    if (r < 0 || r > m - 1) return;
+    if (c < 0 || c > n - 1) return;
+    if (board[r][c] == 'X') return;
+    board[r][c] = '#';
+    dfs(r - 1, c);
+    dfs(r + 1, c);
+    dfs(r, c - 1);
+    dfs(r, c + 1);
+}
+
+int main(){
+    // 这种东西其实还是熟练程度和技巧性
+    for (int i = 0; i < m; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (i == 0 || i == m - 1) dfs(i, j);
+        }
+        dfs(i, 0);
+        dfs(i, n - 1);
+    }
+    for (int i = 0; i < m; ++i) {
+        for (int j = 0; j < n; ++j)
+            putchar(board[i][j] == '#' ? 'O' : 'X');
+        putchar('\n');
+    }
+    return 0;
+
+}

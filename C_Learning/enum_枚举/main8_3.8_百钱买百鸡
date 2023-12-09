@@ -1,0 +1,29 @@
+/*
+ *
+3.8 百钱买百鸡
+鸡翁一，值钱五；鸡母一，值钱三；鸡雏三，值钱一；百钱买百鸡，则翁、母、雏各几何？返回买法的数量。
+输出：4
+ */
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
+int hundred(){
+    int res = 0;
+    // 根据公式推导，假设公鸡个数为x，母鸡个数为y，y = 25 - (7/4)*x，雏鸡个数为Z，z = 75 - (3 / 4) * x
+    // y,z要为整数，x必须是4的倍数
+    for (int x = 0; x <= 100; x+=4) {
+        int y = 25 - 7 * x / 4;
+        // 母鸡个数是个单调减小的函数，如果小于零，后面也小于0，就不用看了
+        if (y < 0) break;
+        res++;
+    }
+    return res;
+}
+
+int main(){
+    printf("%d", hundred());
+    return 0;
+}

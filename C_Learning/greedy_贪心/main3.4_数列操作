@@ -1,0 +1,47 @@
+/*
+ *
+3.4 数列操作
+给定一个由n个正整数组成的数列，对数列进行一次操作：去除其中任意两项a、b，然后添加一项a×b+1。每操作一次数列减少一项，经n − 1次操作后该数列只剩一个数。试求在n - 1次操作后最后得数的最大值。
+输入：nums = [6, 3, 5, 4, 6]
+输出：2450
+ */
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define N 50
+#define M 1000000
+
+void sort(int a[], int n){
+    for (int i = 0; i < n - 1; ++i) {
+        int k = i;
+        for (int j = i + 1; j < n; ++j)
+            if (a[k] > a[j]) k = j;
+        if (k != i){
+            int t = a[k];
+            a[k] = a[i];
+            a[i] = t;
+        }
+    }
+}
+
+int opera(int nums[], int n){
+    // 升序
+    sort(nums, n);
+    for (int i = 0; i < n - 1; ++i) {
+        nums[1] = nums[0] * nums[1] + 1;
+        // 将nums[0]定义为一个无穷大的数
+        nums[0] = M;
+        sort(nums, n);
+    }
+    return nums[0];
+
+}
+
+int main(){
+    int nums[] = {6, 3, 5, 4, 6}, n = 5;
+    printf("%d\n", opera(nums, n));
+    return 0;
+}

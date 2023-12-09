@@ -1,0 +1,56 @@
+/*
+ *
+ * 填充是指在输⼊的上下左右两侧填充元素（通常是0），再进⾏卷积运算。
+编程实现，要求输⼊m⾏n列的原始数据，（m，
+n由⽤户⾃⼰输⼊），经过填充，与输⼊
+的v⾏v列的卷
+积核进⾏运算，（步⻓为1），并输出结果。（要求⽤动态分配内存的⽅式存储数据）。
+ *
+ *
+ *
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N 50
+
+void input(int a[][N], int m, int n){
+    for (int i = 0; i < m; i++)
+        for(int j = 0; j < n; j++)
+            scanf("%d", &a[i][j]);
+}
+
+void output(int **a, int m, int n){
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < n; j++)
+            printf("%d ", a[i][j]);
+        putchar('\n');
+    }
+}
+
+int main(){
+    int m, n, v;
+    scanf("%d %d %d", &m, &n, &v);
+    int prim[N][N] = {0}, core[N][N] = {0};
+    input(prim, m, n);
+    input(core, v, v);
+    int t = m > n ? m : n;
+    // 因为步长为1，所以解的个数为v到t的个数
+    int **res = (int **)malloc(sizeof(int *) * (t - v + 1));
+    // 进行计算
+    for (int i = 0; i < t - v + 1; i++){
+        res[i] = (int *)malloc(sizeof(int) * t - v + 1);
+        for (int j = 0; j < t - v + 1; j++){
+            int s = 0;
+            // 卷积运算
+            // 这个高级了
+            for (int k = 0; k < v; ++k)
+                for (int l = 0; l < v; ++l)
+                    s += prim[k + i][l + j] * core[k][l];
+            res[i][j] = s;
+        }
+    }
+    output(res, t - v + 1, t - v + 1);
+    return 0;
+}

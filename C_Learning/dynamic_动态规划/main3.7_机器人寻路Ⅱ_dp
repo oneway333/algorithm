@@ -1,0 +1,46 @@
+/*
+ *
+3.7 机器人寻路Ⅱ
+一个机器人位于一个m x n网格的左上角，机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角，现在考虑网格中有障碍物，问从左上角到右下角将会有多少条不同的路径？注：网格中的障碍物和空位置分别用 1 和 0 来表示。
+ 输入：grid = [[0,0,0],[0,1,0],[0,0,0]]
+输出：2
+输入：grid = [[0,1],[0,0]]
+输出：1
+ */
+
+#include <stdio.h>
+
+#define N 50
+
+int path(int grid[][N], int m, int n){
+
+    int dp[N][N] = {0};
+    // 从下到上，从右到左，只要有石头，就都是0了
+    for (int i = n - 1, t = 0; i >= 0; i--){
+        if (grid[m - 1][i] == 1) t = 1;
+        dp[m - 1][i] = 1 - t;
+    }
+    for (int i = m - 1, t = 0; i >= 0; i--) {
+        if (grid[i][n - 1] == 1) t = 1;
+        dp[i][n - 1] = 1 - t;
+    }
+    for (int i = m - 2; i >= 0; i--)
+        for (int j = n - 2; j >= 0; j--) {
+            if (grid[i][j] == 1) dp[i][j] = 0;
+            else dp[i][j] = dp[i + 1][j] + dp[i][j + 1];
+        }
+    return dp[0][0];
+
+
+
+}
+
+int main(){
+
+    int grid1[N][N] = {{0, 0, 0},{0, 1, 0},{0, 0, 0}}, m1 = 3, n1 = 3;
+    int grid2[N][N] = {{0, 1}, {0, 0}}, m2 = 2, n2 = 2;
+    printf("%d\n", path(grid1, m1, n1));
+    printf("%d\n", path(grid2, m2, n2));
+    return 0;
+
+}

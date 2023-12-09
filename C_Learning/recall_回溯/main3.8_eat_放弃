@@ -1,0 +1,107 @@
+/*
+ *
+3.8 吃
+给你一个m x n的矩阵board，由若干字符'X'和'O'组成，找到所有被'X'围绕的区域，并将这些区域里所有的'O'用'X'填充。
+
+ 输入：board = [["X","X","X","X"], ["X","O","O","X"], ["X","X","O","X"], ["X","O","X","X"]]
+输出：[["X","X","X","X"], ["X","X","X","X"], ["X","X","X","X"], ["X","O","X","X"]]
+ */
+
+#include <stdio.h>
+
+#define N 500
+
+int path[N];
+
+typedef struct{
+    int x, y;
+} Coor;
+
+void eat2(char *board[], int m, int n, int x, int y){
+    if (m < 0 && n < 0) return;
+    if (x == m - 1)
+        if (board[x - 1][y] == 'O' && (y != 0 || y != n - 1)){
+            board[x - 1][y] = '#';
+            eat2(board, m - 1, n, x - 1, y);
+        }
+    if (x == 0 && x + 1 < m && (y != 0 || y != n - 1))
+        if (board[x + 1][y] == 'O'){
+            board[x + 1][y] = '#';
+            eat2(board, m - 1, n, x + 1, y);
+        }
+    if (y == 0 && x + 1 < n && (x != 0 || x != m - 1))
+        if (board[x][y + 1] == 'O'){
+            board[x][y + 1] = '#';
+            eat2(board, m, n - 1, x, y + 1);
+        }
+    if (y == n - 1 && (x != 0 || x != m - 1))
+        if (board[x][y - 1] == 'O'){
+            board[x][y - 1] = '#';
+            eat2(board, m, n - 1, x, y - 1);
+        }
+}
+
+void eat(char *board[], Coor *coor, int m, int n, int cn){
+    for (int i = 0; i < cn; ++i) {
+        int x = coor[i].x;
+        int y = coor[i].y;
+        eat2(board, m, n, x, y);
+    }
+}
+
+void modify(char *board[], int m, int n){
+
+//    for (int i = 1; i < m - 1; ++i) {
+//        for (int j = 1; j < n - 1; ++j) {
+//            if (board[i][j] == 'O') board[i][j] = 'X';
+////            if (board[i][j] == '#') board[i][j] = 'O';
+//        }
+//    }
+    for (int i = 0; i < m; ++i) {
+        puts(board[i]);
+    }
+}
+
+// 初始化边界，找到边界上'O'所在的坐标
+int init(char *board[], Coor coor[], int m, int n){
+    int idx = 0;
+    for (int i = 0; i < m; ++i) {
+        if (board[i][0] == 'O'){
+            coor[idx].x = i;
+            coor[idx].y = 0;
+            idx++;
+        }
+        if (board[i][n - 1] == 'O'){
+            coor[idx].x = i;
+            coor[idx].y = n - 1;
+            idx++;
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        if (board[0][i] == 'O'){
+            coor[idx].x = 0;
+            coor[idx].y = i;
+            idx++;
+        }
+        if (board[m - 1][i] == 'O'){
+            coor[idx].x = m - 1;
+            coor[idx].y = i;
+            idx++;
+        }
+    }
+    return idx;
+}
+
+
+int main(){
+    char *board[] = {"XXXX", "XOOX", "XXOX", "XOXX"};
+    int m = 4, n = 4;
+    Coor coor[N] = {0};
+    int cn = init(board, coor, m, n);
+//    for (int i = 0; i < cn; ++i) {
+//        printf("x:%d, y:%d\n", coor[i].x, coor[i].y);
+//    }
+    eat(board, coor, m, n, cn);
+    modify(board, m, n);
+    return 0;
+}

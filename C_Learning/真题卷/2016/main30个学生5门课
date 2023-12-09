@@ -1,0 +1,85 @@
+/*
+ *
+ *
+ * 30个学生5门课，总分前十，10名学生某个功课低于85，同排名并列输出
+ *
+ *
+ *
+ *
+ */
+
+#include <stdio.h>
+
+#define N 50
+
+typedef struct{
+    int num, grade[5], total, rank;
+    char name[N];
+}Student;
+
+// 排名
+void ranking(Student stu[], int n){
+    stu[0].rank = 1;
+    for (int i = 1; i < n; i++){
+        if (stu[i].total == stu[i - 1].total) stu[i].rank = stu[i - 1].rank;
+        else stu[i].rank = i + 1;
+    }
+}
+
+// 按照总分降序排序
+void sort(Student stu[], int n){
+    for (int i = 0; i < n - 1; i++){
+        int k = i;
+        for (int j = i + 1; j < n; j++)
+            if (stu[j].total > stu[k].total) k = j;
+        if (k != i){
+            Student t = stu[k];
+            stu[k] = stu[i];
+            stu[i] = t;
+        }
+    }
+}
+
+// 输入，并初始化排名和总分
+void input(Student stu[], int n){
+    for (int i = 0; i < n; i++){
+        stu[i].num = i + 1;
+        scanf("%s", stu[i].name);
+        for (int j = 0; j < 5; j++)
+            scanf("%d", &stu[i].grade[j]);
+    }
+    for (int i = 0; i < n; i++){
+        int s = 0;
+        for (int j = 0; j < 5; j++)
+            s += stu[i].grade[j];
+        stu[i].total = s;
+    }
+    sort(stu, n);
+    ranking(stu, n);
+}
+
+// 排名大于等于10的学生
+void top10(Student stu[], int n){
+    for (int i = 0; i < n && stu[i].rank <= 10; i++)
+        printf("top%d:%s, %d\n", stu[i].rank, stu[i].name, stu[i].num);
+}
+
+// 关心某门功课低于80的
+void careful(Student stu[], int n){
+    for (int i = 0; i < n && stu[i].rank <= 10; i++)
+        for (int j = 0; j < 5; j++)
+            if (stu[i].grade[j] < 80){
+                printf("care top%d:%s %d\n", stu[i].rank, stu[i].name, stu[i].num);
+                break;
+            }
+}
+
+int main(){
+    Student stu[30];
+    int n = 30;
+    input(stu, n);
+    top10(stu, n);
+    careful(stu, n);
+    return 0;
+
+}

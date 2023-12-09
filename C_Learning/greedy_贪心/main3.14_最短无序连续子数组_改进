@@ -1,0 +1,32 @@
+/*
+3.14 最短无序连续子数组
+给你一个整数数组nums，你需要找出一个连续子数组 ，如果对这个子数组进行升序排序，那么整个数组都会变为升序排序。请你找出符合题意的最短子数组，并输出它的长度。
+输入：nums = [2,6,4,8,10,9,15]
+输出：5
+输入：nums = [1,2,3,4]
+输出：0
+
+ *+
+ */
+
+#include <stdio.h>
+
+int seq(int nums[], int n){
+    int left = -1, right = -1;
+    int min = nums[n - 1], max = nums[0];
+    for (int i = 0; i < n; ++i) {
+        if (min >= nums[n - 1 - i]) min = nums[n - 1 - i];
+        else left = n - 1 - i;
+        if (max <= nums[i]) max = nums[i];
+        else right = i;
+    }
+    return left < 0 ? 0 : right - left + 1;
+}
+
+
+int main(){
+    int nums1[] = {2,6,4,8,10,9,15}, nums2[] = {1,2,3,4};
+    printf("%d\n", seq(nums1, sizeof(nums1) / sizeof(int)));
+    printf("%d\n", seq(nums2, sizeof(nums2) / sizeof(int)));
+    return 0;
+}

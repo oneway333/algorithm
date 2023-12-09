@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    FILE *fp;
+    if((fp = fopen("D:/C_Learning/temp/1.txt", "w")) == NULL){
+        printf("file open failed!");
+        exit(0);
+    }
+    char ch;
+    while((ch = getchar()) != '\n'){
+        fputc(ch, fp);
+    }
+    fclose(fp);
+    return 0;
+
+}

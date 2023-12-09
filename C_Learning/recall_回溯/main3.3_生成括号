@@ -1,0 +1,50 @@
+/*
+ *
+3.3 生成括号
+数字n代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且有效的括号组合。
+输入：n = 1
+输出：["()"]
+输入：n = 3
+输出：["((()))", "(()())", "(())()", "()(())", "()()()"]
+
+
+ */
+
+#include <stdio.h>
+#include <string.h>
+
+#define N 500
+
+char path[N];
+int left, right;
+
+// 很神奇，不能怎么理解
+void finite(int n, int k){
+    if (k == 2 * n) {
+//    if (left == n && right == n && k == 2 * n) {
+        puts(path);
+        return;
+    }
+    // 竟然是小于n，小于等于会使得left为4
+    if (left < n){
+        path[k] = '(';
+        left++;
+        finite(n, k + 1);
+        left--;
+    }
+//    if (right < left && right < n){
+    if (right < left){
+        path[k] = ')';
+        right++;
+        finite(n, k + 1);
+        right--;
+    }
+}
+
+int main(){
+
+    int n;
+    scanf("%d", &n);
+    finite(n, 0);
+    return 0;
+}
