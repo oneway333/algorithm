@@ -36,6 +36,7 @@ Status Push(LinkStack *LS, SElemType e){
 Status Pop(LinkStack *LS, SElemType *e){
     if (LS->count <= 0) return ERROR;
     LinkStackPtr p = LS->top;
+    *e = LS->top->data;
     LS->top = LS->top->next;
     free(p);
     LS->count--;
@@ -53,8 +54,10 @@ int main(){
     int i, e;
     for (i = 0; i < 10; i++) Push(&LS, i + 1);
     show(LS.top);
+
     putchar('\n');
     Pop(&LS, &e);
+
     printf("%d\n", e);
     show(LS.top);
 }
