@@ -36,8 +36,7 @@ public class Test01 {
         int s = (int) Math.sqrt(n), i;
         for (i = 2; i <= s; i++)
             if (n % i == 0) break;
-        if (i > s) return 1;
-        return 0;
+        return i > s ? 1 : -1;
         // 代码帮我优化了代码了，帅气！！！
 //        int s = (int)Math.sqrt((double)n);
 //
