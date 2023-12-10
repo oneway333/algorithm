@@ -42,15 +42,35 @@ void show(Node *head){
     }
 }
 
-void swap(Node *head){
+Node *swap(Node *head) {
+    if (head == NULL) return NULL;
+    if (head->next == NULL) return head;
+    Node *p = head->next;
+    head->next = swap(p->next);
+    p->next = head;
+    return p;
+}
 
+Node *delete(Node *head, int k){
+    if (head == NULL) return NULL;
+    head->next = delete(head->next, k);
+    return head->n == k ? head->next : head;
+}
+
+Node *delete2(Node *head){
+    if (head == NULL) return NULL;
+    if (head->next == NULL) return head;
+    head->next = delete2(head->next);
+    return head->next->n > head->n ? head->next : head;
 }
 
 int main(){
-    int nums[] = {1,2,3,4};
+    int nums[] = {5,2,13,3,8};
     Node *head = createList(nums, sizeof(nums) / sizeof(int));
 
-//    show(head);
+//    show(swap(head));
+//    show(delete(head, 7));
+    show(delete2(head));
     return 0;
 
 }
