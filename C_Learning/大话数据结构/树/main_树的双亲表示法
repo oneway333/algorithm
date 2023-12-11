@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+#define MAX_TREE_SIZE 100
+
+typedef int TElemType;
+
+// 树的双亲表示法
+
+// 单个结点
+typedef struct {
+    TElemType data;
+    int pareht;
+}PTNode;
+
+// 树
+typedef struct {
+    int r, n; // r表示根结点位置，n表示结点数量
+    PTNode nodes[MAX_TREE_SIZE]; // 节点数组
+}PTree;
+
+// ADT 最好有空实现实现，增强代码实现能力

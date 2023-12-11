@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+#define MAX_TREE_SIZE 100
+
+typedef int TElemType;
+
+// 树的孩子表示法
+
+// 孩子结点，链表，使用尾插法，头指针，开头的就是第一个孩子
+typedef struct cTNode{
+    int child; // 孩子结点的位置
+    struct cTNode *next;
+} *CTNodePtr;
+
+// 所有的结点，数组，包含内容和指向"第一个孩子"的头指针，还有双亲结点
+typedef struct {
+    TElemType data;
+    CTNodePtr firstChild;
+    int parent;
+} TNode;
+
+// 树
+typedef struct {
+    TNode nodes[MAX_TREE_SIZE]; // 所有的结点
+    int r, n; // 表示根节点的位置，n表示结点的数量
+}CTree;
