@@ -15,7 +15,7 @@ public class Test01 {
 //        void inner(int i){
 //            System.out.println("fuck");
 //        }
-        System.out.println(Arrays.toString(args));
+        System.out.println(Arrays.toString(args)); //
         // 数组最大元素
         for (i = 0; i < n; i++) max = max > arr[i] ? max : arr[i];
         System.out.println("max=" + max);
