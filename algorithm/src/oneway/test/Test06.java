@@ -17,8 +17,7 @@ public class Test06 {
         counted[0] = 0;
         counted[1] = 1;
         for (i = 0; i < 100; i++){ // 不用优化几乎计算不出来，优化了之后几乎就是一瞬间的事情，long仍然越界了
-            counted[i] = fun(i);
-            System.out.println(i + ": " + counted[i]);
+            System.out.println(i + ": " + fun(i));
         }
 
     }
@@ -26,7 +25,8 @@ public class Test06 {
     private static double fun(int i) {
         if (i == 0) return 0;
         if (i == 1) return 1;
-        if (counted[i] != -1) return counted[i];
-        return fun(i - 1) + fun(i - 2);
+        if (counted[i] != -1) return counted[i]; // 这么写不就可以了
+        counted[i] = fun(i - 1) + fun(i - 2);
+        return counted[i];
     }
 }

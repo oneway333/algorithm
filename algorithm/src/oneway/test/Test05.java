@@ -10,6 +10,7 @@ public class Test05 {
         System.out.println("" + 1 + 3);
         System.out.println(1 + 3 + "");
         System.out.println(1 + " " + 3);
+
     }
 
     public static int[] histogram(int a[], int M){
