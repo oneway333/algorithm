@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// 二叉树
+
+#define OK 1
+#define ERROR 0
+#define OVERFLOW 0
+
+typedef char TElemType;
+
+typedef struct tNode {
+    TElemType data;
+    struct tNode *left, *right;
+}TNode, *BTree;
+
+// 前序遍历，如果结点为NULL，返回，否则遍历左子树，再遍历右子树，就是一个递归操作
+// 果然敲代码不能隔太久，会记不起来的，特别是对我这种小垃圾来说（说垃圾都侮辱了垃圾这个词）
+void preOrderTraverse(BTree tree) { // 根左右
+    if (tree == NULL) return;
+    printf("%c", tree->data); // 属于访问根节点了
+    preOrderTraverse(tree->left);
+    preOrderTraverse(tree->right);
+}
+
+// 中序遍历
+// 如果结点为NULL，返回，否则从最左边结点开始找，找不到再找右边
+void inOrderTraverse(BTree tree){ // 左根右
+    if (tree == NULL) return;
+    inOrderTraverse(tree->left); // 一直找，到最左边再停下来
+    printf("%c", tree->data);
+    inOrderTraverse(tree->right);
+}
+
+// 后序遍历
+// 如果节点为NULL，返回，否则从左到右，先叶子，后结点
+void postOrderTraverse(BTree tree){ // 左右根
+    if (tree == NULL) return;
+    postOrderTraverse(tree->left);
+    postOrderTraverse(tree->right); // 递归的神奇之处
+    printf("%c", tree->data);
+}
+
+// 前序创建二叉树
+// 应该说下面这种写法，只能通过前序来创建二叉树
+// 而且因为这是一个完全二叉树，所以才只需要一个前序遍历就能出来
+void preOrderCreateBTree(BTree *tree){ // 操作链表的指针。。。
+    TElemType ch;
+    scanf("%c", &ch);
+    if (ch == '#') *tree = NULL; // 表示虚拟的尾部
+    else {
+        *tree = (BTree)malloc(sizeof(TNode));
+        if (!*tree) exit(OVERFLOW);
+        (*tree)->data = ch;
+        createBTree(&(*tree)->left); // 很强的写法，第一次看到，但是合乎逻辑
+        createBTree(&(*tree)->right); // 所以写代码要有强逻辑性，不是想到哪里写哪里，或者根据经验记忆，当然我这种就只能靠经验和记忆了
+        // 在改BUG的时候，依靠强逻辑性和各种工具
+        // 强逻辑性体现在平时的积累和对细节的把控上，不容易的
+    }
+}
+
+int main(){
+    BTree tree;
+    preOrderCreateBTree(&tree); // 通过指针操作，很神奇的写法，要时刻注意呢。。。。
+    preOrderTraverse(tree);
+    putchar('\n');
+    inOrderTraverse(tree);
+    putchar('\n');
+    postOrderTraverse(tree);
+    putchar('\n');
+    return 0;
+}
