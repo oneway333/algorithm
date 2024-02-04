@@ -24,8 +24,13 @@ void CreateMGraph(MGraph *G){
     // 输入图的顶点数量和边数
     scanf("%d %d", &G->numVertexes, &G->numEdges);
     // 初始化图
-    for (i = 0; i < G->numVertexes; i++){
+    i = 0;
+    while (i != 3){
         scanf("%c", &G->vexs[i]); // 每个顶点的名字
+        if (G->vexs[i] == '\n') continue;
+        i++;
+    }
+    for (i = 0; i < G->numVertexes; i++){
         for (j = 0; j < G->numVertexes; j++)
             G->arc[i][j] = INFINITY;
     }
@@ -40,17 +45,27 @@ void CreateMGraph(MGraph *G){
 
 // 深度优先搜索
 // 分了两步，主要怕非完全图，可能会有没有出度的结点
-void DFS(MGraph G, int i){
+void DFS(MGraph *G, int i){
     int j;
     visited[i] = TRUE;
-    printf("%c ", G.vexs[i]);
-    for (j = 0; j < G.numVertexes; j++)
-        if (!visited[j] && G.arc[i][j] == 1) DFS(G, j); // 当结点没有被访问，并且边不为0或INFINITY时，进入
+    printf("%c ", G->vexs[i]);
+    for (j = 0; j < G->numVertexes; j++)
+        if (!visited[j] && G->arc[i][j] == 1) DFS(G, j); // 当结点没有被访问，并且边不为0或INFINITY时，进入
 }
 
-void DFSTraverse(MGraph G){
+void DFSTraverse(MGraph *G){
     int i;
-    for (i = 0; i < G.numVertexes; i++)
+    for (i = 0; i < G->numVertexes; i++)
         if (!visited[i]) DFS(G, i);
 }
 
+void BFSTraverse(MGraph *G){
+
+}
+
+int main(){
+    MGraph G;
+    CreateMGraph(&G);
+    DFSTraverse(&G);
+    return 1;
+}
