@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "queue.h"
 
 // 邻接矩阵
 
@@ -25,7 +26,7 @@ void CreateMGraph(MGraph *G){
     scanf("%d %d", &G->numVertexes, &G->numEdges);
     // 初始化图
     i = 0;
-    while (i != 3){
+    while (i != G->numVertexes){
         scanf("%c", &G->vexs[i]); // 每个顶点的名字
         if (G->vexs[i] == '\n') continue;
         i++;
@@ -60,6 +61,7 @@ void DFSTraverse(MGraph *G){
 }
 
 void BFSTraverse(MGraph *G){
+    SqQueue Q;
 
 }
 
@@ -67,5 +69,6 @@ int main(){
     MGraph G;
     CreateMGraph(&G);
     DFSTraverse(&G);
+    BFSTraverse(&G);
     return 1;
 }

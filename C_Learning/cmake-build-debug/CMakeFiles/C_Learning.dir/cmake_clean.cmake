@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/C_Learning.dir/main.c.obj"
+  "CMakeFiles/C_Learning.dir/queue.c.obj"
   "C_Learning.exe"
   "C_Learning.exe.manifest"
   "C_Learning.pdb"

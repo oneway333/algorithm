@@ -77,6 +77,12 @@
 		<Unit filename="D:/git_C/algorithm/C_Learning/main.c">
 			<Option target="C_Learning"/>
 		</Unit>
+		<Unit filename="D:/git_C/algorithm/C_Learning/queue.c">
+			<Option target="C_Learning"/>
+		</Unit>
+		<Unit filename="D:/git_C/algorithm/C_Learning/queue.h">
+			<Option target="C_Learning"/>
+		</Unit>
 		<Unit filename="D:/git_C/algorithm/C_Learning/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
