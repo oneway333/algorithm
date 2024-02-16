@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>框架标签</title>
+</head>
+<body>
+
+    <!-- 与表单的target属性配合使用 -->
+    <form action="https://so.toutiao.com/search" target="container">
+        <input type="text" name="keyword" id="">
+        <input type="submit" value="search">
+        <button>search</button>
+    </form>
+    <!-- 与超链接的target属性配合使用 -->
+    <a href="https://www.taobao.com" target="container">taobao</a>
+    <a href="https://www.bilibili.com" target="container">blibili</a>
+    <br>
+    <iframe name="container" frameborder="0" width="900" height="900"></iframe>
+    <br>
+    <!-- 利用iframe嵌入一个普通网页 -->
+    <iframe frameborder="0" src="https://www.bilibili.com" height="600" width="600"></iframe>
+    <br>
+    <!-- 利用iframe嵌入一个广告网页 -->
+    <iframe frameborder="1" width="900" height="900" src="https://pos.baidu.com/vctm?conwid=368&conhei=24&rdid=6924089&dc=3&di=u6924089&s1=2774005352&s2=2060309122&dri=1&dis=0&dai=163&ps=1100x0&enu=encoding&exps=110279,110275,110261,110252,110011&ant=0&psi=bb47c92747ddcc69&dcb=___adblockplus_&dtm=HTML_POST&dvi=0.0&dci=-1&dpt=none&tpr=1708062783857&ti=%E7%BD%91%E6%98%93&ari=2&ver=0830&dbv=2&drs=4&pcs=1901x959&pss=1901x11270&cfv=0&cpl=5&chi=1&cce=true&cec=UTF-8&tlm=1708062784&prot=2&rw=959&ltu=https%3A%2F%2Fwww.163.com%2F&ltr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DzrighE42TTpGFGE5ASmwnKLFd9ym2FtpScmH7qQzm0S%26wd%3D%26eqid%3Df34707dc03a9481a0000000565cef83d&lcr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DzrighE42TTpGFGE5ASmwnKLFd9ym2FtpScmH7qQzm0S%26wd%3D%26eqid%3Df34707dc03a9481a0000000565cef83d&eqid=f34707dc03a9481a0000000565cef83d&ecd=1&dft=2&uc=1920x1080&pis=-1x-1&sr=1920x1080&tcn=1708062785&qn=5128a41dddff6bb4&ft=1" frameborder="0"></iframe>
+    <!-- 利用iframe嵌入其他内容 -->
+    <br>
+    <!-- <iframe src="./resource/1.mp3" frameborder="0"></iframe> -->
+    <iframe src="./resource/2.jpg" frameborder="0"></iframe>
+    <br>
+    <iframe src="./resource/3.pdf" frameborder="0"></iframe>
+    <br>
+    <iframe src="./resource/kms.zip" frameborder="0"></iframe>
+    <br>
+</body>
+</html>

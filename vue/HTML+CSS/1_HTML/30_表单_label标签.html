@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>表单_label标签</title>
+</head>
+<body>
+    <form action="https://search.jd.com/search" target="_blank">
+        <label for="zhanghu">账号：</label>
+        <input id="zhanghu" maxlength="" type="text" name="account" id=""><br>
+        <label>
+            密码：
+            <input id="pwd" maxlength="" type="password" name="pwd" id=""><br>
+        </label>        
+        性别：        
+        <label>
+            <input type="radio" name="gender" value="male" checked> 男
+        </label>
+        <label>
+            <input type="radio" name="gender" value="female"> 女
+        </label>        
+        <br>
+        爱好：
+        <label>
+            <input type="checkbox" name="hobby" id="" value="抽烟"> 抽烟
+        </label>
+        <label>
+            <input type="checkbox" name="hobby" id="" value="喝酒"> 喝酒
+        </label>        
+        <label>
+            <input type="checkbox" name="hobby" id="" value="烫头" checked> 烫头
+        </label>                        
+        <br>
+        <label>
+            其他：
+            <textarea name="other" cols="22" rows="5"></textarea>
+        </label>        
+        <br>
+        <label>
+            籍贯：
+            <select name="place">
+                <option value="one">1</option>
+                <option value="two">2</option>
+                <option value="three" selected>3</option>
+                <option value="four">4</option>
+            </select>
+        </label>        
+        <br>
+        <input type="hidden" name="from" value="baidu">
+        <br>
+
+        <button type="submit">submit</button>
+        <button type="reset">reset</button>
+        <!-- 普通按钮 第一种写法-->
+        <button type="button">whether account registered</button>
+    </form>
+</body>
+</html>
