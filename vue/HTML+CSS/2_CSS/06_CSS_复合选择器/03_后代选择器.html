@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>后代选择器</title>
+    <style>
+        /* 后代 */
+        ul li {
+            color: red;
+        }
+        ol li {
+            color: green;
+        }
+        ul li a {
+            color: orange;
+        }
+        ol li a {
+            color: gold;
+        }
+        .langu #front-end {
+            color: blue;
+        }
+        .langu div.front-end {
+            color: pink
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>one</li>
+        <li>two</li>
+        <li>
+            <a href="#">three</a>
+        </li>
+        <div>
+            <li>fuck</li>
+            <li>that</li>
+            <li>shit</li>
+        </div>
+    </ul>
+    <hr>
+    <ol>
+        <li>1</li>
+        <li>2</li>
+        <li>
+            <a href="#">3</a>
+        </li>
+    </ol>
+    <hr>
+    <ol class="langu">
+        <li>java</li>
+        <li>python</li>
+        <li>c</li>
+        <li id="front-end">js</li>
+        <div class="front-end">fuck you</div>
+    </ol>
+    <!-- p里面不能有h1~h6, 样式会有问题 -->
+    <p>
+        <h2>fuck</h2>
+    </p>
+</body>
+</html>

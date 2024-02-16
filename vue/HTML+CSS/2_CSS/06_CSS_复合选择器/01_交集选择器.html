@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>交集选择器</title>
+    <style>
+        .rich {
+            color: gold;
+        }
+        .beau {
+            color: pink;
+        }
+        /* 
+            交集选择器：
+            1. 元素必须在开头
+            2. 可以多级/平级嵌套
+                选择器1选择器2选择器3
+         */
+        /* p.beau#one {
+            color: green;
+        } */
+        p.beau {
+            color: green;
+        }
+        .rich.beau{
+            color: goldenrod;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="rich">zhangsan</h2>
+    <h2 class="beau">lisi</h2>
+    <h2 class="rich beau">sunqi</h2>
+    <hr>
+    <p class="beau" id="one">wangwu</p>
+    <p class="beau">zhaoliu</p>
+</body>
+</html>

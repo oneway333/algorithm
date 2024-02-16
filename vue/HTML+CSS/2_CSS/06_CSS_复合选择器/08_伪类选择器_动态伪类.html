@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>伪类选择器_动态伪类</title>
+    <style>
+        /* 标准顺序 */
+        a:link {
+            color: red;
+        }
+
+        a:visited {
+            color: gray;
+        }
+
+        /* 选中的是鼠标悬浮状态的a元素 */
+        a:hover {
+            color: skyblue;
+        }
+
+        /* 选中的是鼠标激活状态的a元素 */
+        a:active {
+            color: green;
+        }
+
+        span:hover {
+            color: green;
+        }
+
+        span:active {
+            color: red;
+        }
+
+        /* 表单类元素可focus */
+        input:focus,select:focus {
+            color: orange;
+            background-color: green;
+        }
+
+    </style>
+</head>
+
+<body>
+    <a href="https://www.baidu.com">baidu1</a>
+    <a href="https://www.jd.com">jd2</a>
+    <span>fuck</span>
+    <br>
+    <input type="text" value="1">
+    <br>
+    <input type="text" value="2">
+    <br>
+    <input type="text" value="3">
+    <select name="" id="">
+        <option value="one">1</option>
+        <option value="two">2</option>
+    </select>
+</body>
+
+</html>

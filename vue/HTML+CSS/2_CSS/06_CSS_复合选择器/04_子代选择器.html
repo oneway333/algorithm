@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>子代选择器</title>
+    <style>
+        /* 子代选择器 */
+        div>a {
+            color: red;
+        }
+        div>p>a{
+            color: skyblue;
+        }
+        .foot>a {
+            color: green;
+        }
+        #feet>a {
+            color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a href="#">zhangsan</a>
+        <a href="#">lisi</a>
+        <a href="#">wangwu</a>
+        <p>
+            <a href="#">zhaoliu</a>
+            <div class="foot" id="feet">
+                <a href="#">sunqi</a>
+            </div>
+        </p>        
+    </div>
+</body>
+</html>

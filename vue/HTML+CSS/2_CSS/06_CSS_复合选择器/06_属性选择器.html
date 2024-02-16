@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>属性选择器</title>
+    <style>
+        /* 第一种写法,选中具有title属性的元素 */
+        /* [title] {
+            color: red;
+        } */
+
+        /* 第二种写法,属性的属性值等于XXX */
+        /* [title="fuck"] {
+            color: red;
+        } */
+
+        /* 第三种写法,属性的属性值以XXX开头的 */
+        /* [title^="f"] {
+            color: red;
+        } */
+
+        /* 第四种写法,属性的属性值以XXX结尾的 */
+        /* [title$="t"] {
+            color: red;
+        } */
+
+        /* 第五种写法,属性的属性值包含XXX的 */
+        /* [title*="c"] {
+            color: red;
+        } */
+
+        .school {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <div title="fuck" class="one">one</div>
+    <div title="shit">two</div>
+    <div title="dcmn">three</div>
+    <div title="fhct" class="school">four</div>
+</body>
+</html>

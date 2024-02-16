@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>并集选择器</title>
+    <style>
+        .rich {
+            color: gold;
+        }
+        .beau {
+            color: pink;
+        }
+        .dog {
+            color: red;
+        }
+        .cat {
+            color: blue;
+        }
+        
+        /* 并集选择器 */
+        .rich,
+        .beau,
+        .dog,
+        .cat,
+        #liu {
+            font-size: 40px;
+            background-color: brown;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="rich">zhangsan</h2>
+    <h2 class="beau">lisi</h2>
+    <h2 class="beau">sunqi</h2>
+    <hr>
+    <p class="dog" id="one">wangwu</p>
+    <p class="cat">zhaoliu</p>
+    <p id="liu">liuyi</p>
+</body>
+</html>

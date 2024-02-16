@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>兄弟选择器</title>
+    <style>
+        /* 紧紧相邻的兄弟,下方第一个 */
+        /* div+p {
+            color: red;
+        } */
+
+        /* 所有的兄弟 */
+        div~p {
+            color: red;
+        }
+
+        li+li {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div>fuck</div>        
+    <p>one</p>
+    <h1>damn</h1>    
+    <p>shit</p>
+    <p>that</p>
+    <p>what</p>
+    <ul>
+        <li>home</li>
+        <li>kill</li>
+        <li>order</li>
+        <li>mine</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>伪类选择器_结构伪类_1</title>
+    <style>
+        /* 选中的是div的第一个儿子p元素--结构1 */
+        /* div>p:first-child {
+            color: red;
+        } */
+        /* 选中的是div的第一个儿子p元素--结构2 */
+        /* div>p:first-child {
+            color: red;
+        } */
+        /* 选中的是div的后代p元素,p的父元素无所谓,但必须是第一个儿子--结构3 */
+        /* div p:first-child {
+            color: red;
+        } */
+        /* 选中的是div的后代p元素,p的父元素无所谓,但必须是第一个儿子--结构3 */
+        p:first-child {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 结构1 -->
+    <div>
+        <p>zhaoliu:85</p>
+        <p>zhangsan:12</p>
+        <p>lisi:31</p>
+        <p>wangwu:33</p>
+    </div>
+    <hr>
+    <!-- 结构2 -->
+    <div>
+        <span>zhaoliu:85</span>
+        <p>zhangsan:12</p>
+        <p>lisi:31</p>
+        <p>wangwu:33</p>
+    </div>
+    <hr>
+    <!-- 结构3 -->
+    <p>test1</p>
+    <div>
+        <p>test2</p>
+        <marquee>
+            <p>test3</p>
+            <p>zhaoliu:85</p>
+        </marquee>        
+        <p>zhangsan:12</p>
+        <p>lisi:31</p>
+        <p>wangwu:33</p>
+    </div>
+
+</body>
+</html>
