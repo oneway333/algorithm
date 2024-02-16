@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>伪类选择器_目标伪类</title>
+    <style>
+        div {
+            background-color: gray;
+            height: 300px;
+        }
+
+        div:target {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <a href="#one">1</a>
+    <a href="#two">2</a>
+    <a href="#three">3</a>
+    <a href="#four">4</a>
+    <a href="#five">5</a>
+    <a href="#six">6</a>
+    <div id="one">1</div>
+    <br>
+    <div id="two">2</div>
+    <br>
+    <div id="three">3</div>
+    <br>
+    <div id="four">4</div>
+    <br>
+    <div id="five">5</div>
+    <br>
+    <div id="six">6</div>
+</body>
+</html>

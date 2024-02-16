@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>伪类选择器_UI伪类</title>
+    <style>
+        /* 选中勾选的复选框或者单选框 */
+        input:checked {
+            width: 50px;
+            height: 50px;
+        }
+
+        /* 选中的是被禁用的input元素 */
+        input:disabled {
+            background-color: gray;
+        }
+
+        /* 选中的是可用的input元素 */
+        input:enabled {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <input type="checkbox">
+    <input type="radio" name="fuck">
+    <input type="radio" name="fuck">
+    <input type="text">
+    <input type="text" disabled>
+</body>
+</html>

@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <title>伪类选择器_否定伪类</title>
     <style>
-        
+        /* 选中div的儿子p里面的不是某个选择器的元素 */
+        /* div>p:not(.failed) {
+            color: red;
+        } */
+
+        /* 选中div的儿子p里面的不是某个属性的属性值的元素 */
+        /* div>p:not([title^="fu"]) {
+            color: red;
+        } */
+
+        /* 选中div的儿子p元素,但是排除第一个儿子 */
+        div>p:not(:first-child) {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -13,8 +26,8 @@
         <p>zhangsan:12</p>
         <p>lisi:31</p>
         <p>wangwu:33</p>
-        <p class="failed">sunqi:55</p>
-        <p class="failed">zhouba:65</p>
+        <p class="failed" title="fuck1">sunqi:55</p>
+        <p class="failed" title="fuck2">zhouba:65</p>
     </div>
 
 </body>

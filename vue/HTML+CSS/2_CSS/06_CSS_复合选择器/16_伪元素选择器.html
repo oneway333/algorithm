@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>伪元素选择器</title>
+    <style>
+        /* 伪元素是元素中一些特殊位置 */
+        /* 选中的是div中的第一个文字 */
+        div::first-letter {
+            color: red;
+            font-size: 40px;
+        }
+
+        /* 选中div中第一行文字 */
+        div::first-line {
+            background-color: yellow;
+        }
+
+        /* 选中div中被鼠标选中的文字 */
+        div::selection {
+            background-color: green;
+            color: orange;
+        }
+
+        /* 选中input中的提示元素 */
+        input::placeholder {
+            color: skyblue;
+        }
+
+        /* 选中p元素最开始的位置,随后创建一个子元素 */
+        p::before {
+            content: "$"; 
+        }
+        /* 选中p元素最后的位置,随后创建一个子元素 */
+        p::after {
+            content: ".00";
+        }
+    </style>
+</head>
+<body>
+    <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis aperiam quisquam voluptatum architecto tempora similique illum vero deserunt laboriosam doloremque animi veritatis reprehenderit at perferendis corrupti cupiditate maiores a, ipsam et, autem quas veniam cum minus! Exercitationem voluptatibus commodi ea expedita assumenda totam? Molestiae sapiente explicabo blanditiis officia assumenda quos optio eius temporibus. Vel amet impedit autem asperiores aliquid et nesciunt suscipit doloremque fuga vero illo id laborum, dolore natus quidem inventore accusantium fugiat fugit aliquam reiciendis obcaecati deleniti minima delectus. Nulla, suscipit eveniet. Fugit ipsum recusandae necessitatibus consectetur dolores quis harum repudiandae veritatis eveniet labore mollitia laborum, magni minima?</div>
+    <input type="text" placeholder="fuckyou">
+    <p>321</p>
+    <p>321</p>
+    <p>321</p>
+    <p>321</p>
+</body>
+</html>
