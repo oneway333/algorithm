@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>块级元素与行内元素</title>
+</head>
+<body>
+    <!-- 块级元素，特点：独占一行 -->
+    <marquee behavior="" direction="">fuck</marquee>
+
+    <!-- 行内元素，特点：不独占一行 -->
+    <input type="text" name="" id="">
+
+    <!-- 规则1：块级元素中能写：行内元素、块级元素（几乎什么都能写） -->
+    <div>
+        <div></div>
+        <input type="text">
+    </div>
+
+    <!-- 规则2：行内元素中能写：行内元素，但不能写：块级元素 -->
+    <span>
+        lkasdjf
+        <input type="text" name="" id="">
+    </span>
+
+    <!-- 特殊规则：h1-h6不能相互嵌套 -->
+    <h1>
+        lakdjf
+        <h2>lkjasdf</h2>
+    </h1>
+
+    <!-- 特殊规则：p标签中不能写块元素 -->
+    <p>
+        <marquee behavior="" direction="">fuck</marquee>
+    </p>
+</body>
+</html>
