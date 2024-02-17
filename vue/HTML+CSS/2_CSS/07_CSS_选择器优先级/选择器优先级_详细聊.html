@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>选择器优先级_详细聊</title>
+    <style>
+        /* 
+            权重：
+            (a,b,c)
+            a: ID选择器的个数
+            b: 类 伪类 属性选择器的个数
+            c: 元素 伪元素选择器的个数
+
+            vscode帮忙计算了
+         */
+         /* (0, 2, 1) */
+        /* .container span.slogan {
+            color: red;
+        } */
+
+        #test #fuck {
+            color: purple;
+            font-size: 80px;
+        }
+
+        #fuck {
+            color: pink;
+        }
+
+        /* (0, 1, 3) */
+        div>p>span:nth-child(1) {
+            color: green;
+        }
+
+        div>p>span:first-child {
+            color: orange;
+        }
+
+        .slogan {
+            color: skyblue !important;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="test">
+        <p>
+            <span class="slogan" id="fuck" style="color: blue;">fuck you</span>
+            <span>fuck that shit</span>
+        </p>
+    </div>    
+</body>
+</html>
