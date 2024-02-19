@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>元素的默认样式</title>
+    <style>
+        a:link {
+            color: blue;
+        }
+        a:visited {
+            color: green;
+        }
+        a:hover {
+            color: yellow;
+        }
+        a:active {
+            color: red;
+        }
+        #d1 {
+            font-size: 50px;
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <!-- user agent stylesheet 用户代理样式表 里面的就是浏览器提供的默认样式 -->
+    <div id="d1">
+        <a href="https://www.baidu.com">baidu</a>
+        <span>fuck you</span>
+    </div>
+    <hr>
+    <h1>1</h1>
+    <h2>2</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, rem.</p>
+    <ul>
+        <li>fuck1</li>
+        <li>fuck2</li>
+    </ul>
+</body>
+</html>

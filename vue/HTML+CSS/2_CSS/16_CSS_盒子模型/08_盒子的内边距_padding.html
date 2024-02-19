@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>盒子的内边距_padding</title>
+    <style>
+        #d1 {
+            width: 400px;
+            height: 400px;
+            /* 左侧内边距 */
+            /* padding-left: 20px; */
+            /* 上侧内边距 */
+            /* padding-top: 30px; */
+            /* 底部内边距 */
+            /* padding-bottom: 40px; */
+            /* 右侧内边距 */
+            /* padding-right: 50px; */
+
+            /* 复合属性 四个方向都是20px */
+            /* padding: 20px; */
+
+            /* 复合属性 上下 左右 */
+            /* padding: 10px 20px; */
+
+            /* 复合属性 上 左右 下 */
+            /* padding: 10px 20px 30px; */
+
+            /* 复合属性 上 右 下 左 */
+            padding: 10px 20px 30px 40px;
+
+            background-color: skyblue;
+            font-size: 20px;
+        }
+
+        span {
+            background-color: orange;
+            font-size: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            /* 行内元素上下边距有可能有问题 */
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        img {
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="d1">fuck1</div>
+    <hr>
+    <span>fuck you 1</span>
+    <div>fuck you 2 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, reiciendis.</div>
+    <hr>
+    <img src="../14_CSS_背景相关属性/1.png" alt="">
+    <div>fuck you</div>
+</body>
+</html>

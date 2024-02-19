@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>margin合并问题</title>
+    <style>
+        .box {
+            width: 400px;
+            height: 400px;
+        }
+        .box1 {
+            background-color: deepskyblue;
+            margin-bottom: 50px;
+            
+        }
+        .box2 {
+            background-color: orange;
+            margin-top: 60px;
+            /* float: left; */
+        }
+        .test {
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+        }
+        .testa {
+            background-color: deepskyblue;
+            margin-right: 50px;
+        }
+        .testb {
+            background-color: orange;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 上下margin存在合并的情况 -->
+    <div class="box box1">1</div>
+    <div class="box box2">2</div>
+    <hr>
+    <!-- 左右margin不会有合并的情况 -->
+    <div class="test testa">a</div><div class="test testb">b</div>
+</body>
+</html>

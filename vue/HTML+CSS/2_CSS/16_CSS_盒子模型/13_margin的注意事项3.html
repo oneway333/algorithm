@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>margin的注意事项3</title>
+    <style>
+        #d1 {
+            width: 400px;
+            height: 400px;
+            margin: 50px;
+            background-color: deepskyblue;
+        }
+        img {
+            margin: 50px;
+        }
+        .one {
+            background-color: deepskyblue;
+        }
+        .two {
+            background-color: orange;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 300px;
+            margin-bottom: 300px;
+        }
+        .three {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <!-- 对于行内元素，左右margin可以完美，上下margin无效 -->
+    <div id="d1">fuck div</div>
+    <div>fuck your shit</div>
+    <hr>
+    <img src="../14_CSS_背景相关属性/1.png" alt="">
+    <div>fuck</div>
+    <hr>
+    <span class="one">fuck shit</span><span class="two">fuck shit</span><span class="three">fuck shit</span>
+    <div>fuck 1</div>
+</body>
+</html>

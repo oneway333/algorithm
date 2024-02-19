@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>margin塌陷问题</title>
+    <style>
+        .outer {
+            width: 400px;
+            /* height: 400px; */
+            background-color: deepskyblue;
+            /* 解决margin塌陷第一种方案 */
+            /* border: 1px solid transparent; */
+            /* 解决margin塌陷第二种方案 */
+            /* padding: 1px; */
+            /* 解决margin塌陷第三种方案 */
+            overflow: hidden;
+        }
+        .inner1 {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            /* margin-bottom: 50px; */
+            /* margin塌陷了，父元素一起动了，有问题 */
+            margin-top: 50px;
+        }
+        .inner2 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /* margin-top: 50px; */
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner1">inner1</div>
+        <div class="inner2">inner2</div>
+    </div>
+    <div>test1</div>
+</body>
+</html>
