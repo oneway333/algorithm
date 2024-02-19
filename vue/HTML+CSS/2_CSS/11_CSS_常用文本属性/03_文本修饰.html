@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>文本修饰</title>
+    <style>
+        div {
+            font-size: 40px;
+        }
+        .fuck1 {
+            /* 不讲顺序，上划绿色虚线 */
+            text-decoration: overline dotted green;
+        }
+        .fuck2 {
+            /* 下滑红色波浪线 */
+            text-decoration: underline wavy red;
+        }
+        .fuck3 {
+            text-decoration: line-through;
+        }
+        .fuck4,ins,del {
+            /* 干掉上划、中间、下划线 */
+            text-decoration: none;
+        }
+        .fuck5 {
+            text-decoration: line-through;
+        }
+        .fuck6 {
+            text-decoration: line-through;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="fuck1">fuck1</div>
+    <div class="fuck2">fuck2</div>
+    <div class="fuck3">fuck3</div>
+    <a class="fuck4" href="https://www.baidu.com">fuck4</a>
+    <div class="fuck5">fuck5</div>
+    <div class="fuck6">fuck6</div>
+    <ins>test1</ins>
+    <del>test2</del>
+</body>
+</html>

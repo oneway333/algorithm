@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>10_vertical-align</title>
+    <style>
+        div {
+            font-size: 100px;
+            height: 300px;
+            background-color: skyblue;
+        }
+
+        span {
+            font-size: 40px;
+            background-color: orange;
+            vertical-align: middle;
+        }
+
+        img {
+            height: 150px;
+            vertical-align: bottom;
+        }
+
+        .zs {
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        fuck x <span>x fuck </span>
+    </div>
+    <hr>
+    <div>
+        fuck x <img src="../../1_HTML/one_way.png" alt="">
+    </div>
+    <hr>
+    <table border="1" cellspacing="0">
+        <caption>fuck</caption>
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>gender</th>   
+            </tr>
+        </thead>
+        <tbody>
+            <tr height="100px">
+                <td class="zs">zhangsan</td>
+                <td>18</td>
+                <td>male</td>
+            </tr>
+            <tr>
+                <td>lisi</td>
+                <td>19</td>
+                <td>female</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

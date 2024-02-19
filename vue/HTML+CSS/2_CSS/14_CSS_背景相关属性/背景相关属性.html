@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>背景相关属性</title>
+    <style>
+        body {
+            background-color: grey;
+        }
+        
+        div {
+            width: 400px;
+            height: 400px;
+            border: 3px black solid;
+            font-size: 40px;
+            /* 设置背景颜色，默认值是transparent */
+            background-color: skyblue;
+            /* 设置背景图片 */
+            background-image: url("./1.png");
+            /* 设置背景图片重复方式 */
+            background-repeat: no-repeat;
+            /* 控制背景图片位置，第一种写法：用关键词 */
+            /* background-position: center center; */
+            /* 控制背景图片位置，第二种写法：用具体的像素值 */
+            background-position: 60px 70px;
+            background: green url("1.png") no-repeat 300px;
+        }
+    </style>
+</head>
+<body>
+    <div>fuck you</div>
+</body>
+</html>
