@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>布局技巧3</title>
+    <style>
+        .outer{
+            width: 400px;
+            height: 400px;
+            background-color: gray;
+            text-align: center;
+            line-height: 400px;
+            /* vertical-align是相对于父元素字体大小来的，字体越小，对定位的影响就越小 */
+            font-size: 0px;
+        }
+        .inner {
+            width: 100px;
+            height: 50px;
+            font-size: 20px;
+            background-color: orange;
+            vertical-align: middle;
+        }
+        img {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <span class="inner">fuck</span>
+        <img src="../14_CSS_背景相关属性/1.png" alt="">
+    </div>
+</body>
+</html>

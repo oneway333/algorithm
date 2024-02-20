@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>布局技巧2</title>
+    <style>
+        .outer {
+            width: 400px;
+            height: 400px;
+            background-color: gray;
+            /* 行内元素&行内块元素可以当作文本来定位 */
+            text-align: center;
+            line-height: 400px;
+        }
+        .inner {
+            font-size: 20px;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <span class="inner">fuck you</span>
+    </div>
+</body>
+</html>

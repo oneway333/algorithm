@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>06_浮动布局小练习-test</title>
+    <!-- 写的真是一坨呀，太直观了，不像是经常敲代码的人写出来的东西 -->
+    <style>
+        .outer {
+            width: 970px;
+        }
+        .menu,.foot {
+            background-color: gray;
+            text-align: center;
+            margin: 5px 5px;
+        }
+        .foot {
+            height: 60px;
+            line-height: 60px;
+            margin-top: 10px;
+        }
+        .menu {
+            height: 30px;
+            line-height: 30px;
+        }
+        .head {
+            /* 通过设置高度解决float问题 */
+            height: 90px;
+        }
+        .head div {
+            float: left;
+            height: 80px;
+            text-align: center;
+            line-height: 80px;
+            margin: 5px 5px;
+            background-color: gray;
+
+        }
+        .logo,.b2 {
+            width: 200px;
+        }
+        .b1 {
+            width: 540px;
+        }
+        /* 中间整体的样式 */
+        .main div {
+            float: left;
+            text-align: center;
+        }
+        .main.left div,.main.right div {
+            /* background-color: gray; */
+            border: 1px solid black;
+            margin: 5px;;
+        }
+        /* 左边的样式 */
+        .main.left {
+            width: 760px;
+        }
+        .top {
+            width: 368px;
+            height: 200px;
+        }
+        .bot {
+            width: 178px;
+            height: 200px;
+        }
+        /* 右边的样式 */
+        .main.right {
+            width: 210px;
+        }
+        .main.right div {
+            width: 198px;
+            height: 130px;
+            margin: 5px;;
+        }
+        /* 消除float的影响 */
+        .main::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        /* .clear {
+            clear: both;
+        } */
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="head">
+            <div class="logo">
+                logo
+            </div>
+            <div class="b1">
+                banner1
+            </div>
+            <div class="b2">
+                banner2
+            </div>
+        </div>
+        <div class="menu">menu</div>
+        <div class="main">
+            <div class="main left">
+                    <div class="top">fuck1</div>
+                    <div class="top">fuck2</div>
+                    <div class="bot">fuck3</div>
+                    <div class="bot">fuck4</div>
+                    <div class="bot">fuck5</div>
+                    <div class="bot">fuck6</div>
+                </div>
+            <div class="main right">
+                <div>fuck7</div>
+                <div>fuck8</div>
+                <div>fuck9</div>
+            </div>
+        </div>
+        <!-- 放在这儿着实感觉有问题 -->
+        <!-- <div class="clear"></div> -->
+        <div class="foot">footer</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>01_浮动_简介</title>
+    <style>
+        div {
+            width: 600px;
+            height: 400px;
+            background-color: deepskyblue;
+        }
+        .test::first-letter{
+            font-size: 40px;
+            color: red;
+            float: left;
+        }
+        img {
+            float: right;
+            /* 设置图片的外边距 */
+            margin-right: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <!-- 文字环绕图片 -->
+        <img class="image" src="../14_CSS_背景相关属性/1.png" alt="">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea dolorum fugiat officia nam ducimus, deserunt porro blanditiis quasi quia saepe, atque sequi enim corporis dolorem cupiditate placeat eius earum culpa eaque nulla fuga ut delectus ad! Molestias, totam recusandae! Possimus voluptate est impedit nam reiciendis vel quae aut totam tempore soluta veniam eligendi, ullam rerum! Hic, fugit reprehenderit fuga eligendi magni eos voluptates! Nisi accusantium, itaque perferendis fugit sunt ad laborum natus esse veritatis suscipit eligendi similique atque hic dolores soluta tempore corporis quae minus magni at distinctio ipsum vitae. Facere eos consequuntur nesciunt eaque deleniti magnam. Repellat, totam doloremque.
+    </div>
+    <hr>
+    <!-- 文字环绕文字 -->
+    <div class="test">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et quia rem eveniet molestiae libero nihil rerum voluptatum minima nam alias! Quasi dolor deserunt assumenda facere quisquam ducimus! Error consequatur expedita quam ducimus, saepe magnam. Repellat eos vel voluptate consequatur, corrupti amet natus pariatur labore laborum corporis eveniet blanditiis doloribus illo maxime fugit id repudiandae? Quo porro nihil, unde rem quidem beatae adipisci inventore placeat enim, vero excepturi neque laudantium minima vitae harum praesentium magni tempora dolorum asperiores nulla vel magnam illo debitis ullam. Fugiat et natus ut expedita. Accusamus maiores accusantium earum id? Reiciendis laboriosam dolorum assumenda optio, culpa ab.
+    </div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>06_浮动布局小练习</title>
+    <!-- css编写原则，提取逻辑，进行class内的组合，而不是提取不同的class -->
+
+    <style>
+        /* 清除默认样式 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 左浮动 */
+        .leftfix {
+            float: left;
+        }
+
+        /* 右浮动 */
+        .rightfix {
+            float: right;
+        }
+
+        /* 清除浮动 */
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .container {
+            width: 960px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .logo {
+            width: 200px;
+        }
+
+        /* 对哦，只要给中间加margin就行了 */
+        .banner1 {
+            width: 540px;
+            margin: 0 10px;
+        }
+
+        .banner2 {
+            width: 200px;
+        }
+
+        .logo,.banner1,.banner2 {
+            height: 80px;
+            background-color: #ccc;
+            line-height: 80px;
+        }
+
+        .menu {
+            height: 30px;
+            background-color: #ccc;
+            margin-top: 10px;
+            line-height: 30px;
+        }
+        .item1,.item2 {
+            width: 368px;
+            height: 198px;
+            border: 1px solid black;
+            margin-right: 10px;
+            line-height: 198px;
+        }
+        .content {
+            margin-top: 10px;
+        }
+        .bottom {
+            margin-top: 10px;
+        }
+        .bottom div {
+            width: 178px;
+            height: 198px;
+            border: 1px solid black;
+            margin-right: 10px;
+            line-height: 198px;
+        }
+        .right div {
+            width: 198px;
+            height: 128px;
+            border: 1px solid black;
+            line-height: 128px;
+        }
+        .item8 {
+            margin: 10px 0;
+        }
+        .footer {
+            height: 60px;
+            background-color: #ccc;
+            margin-top: 10px;
+            line-height: 60px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="page-header clearfix">
+            <div class="logo leftfix">logo</div>
+            <div class="banner1 leftfix">banner1</div>
+            <div class="banner2 leftfix">banner2</div>
+        </div>
+        <!-- 菜单 -->
+        <div class="menu">menu</div>
+        <!-- 内容 -->
+        <div class="content clearfix">
+            <!-- 左侧 -->
+            <div class="left leftfix">
+                <!-- 上 -->
+                <div class="top clearfix">
+                    <div class="item1 leftfix">item1</div>
+                    <div class="item2 leftfix">item2</div>
+                </div>
+                <!-- 下 -->
+                <div class="bottom clearfix">
+                    <div class="item3 leftfix">item3</div>
+                    <div class="item4 leftfix">item4</div>
+                    <div class="item5 leftfix">item5</div>
+                    <div class="item6 leftfix">item6</div>
+                </div>
+            </div>
+            <!-- 右侧 -->
+            <div class="right leftfix">
+                <div class="item7">item7</div>
+                <div class="item8">item8</div>
+                <div class="item9">item9</div>
+            </div>
+        </div>
+        <!-- 页脚 -->
+        <div class="footer">footer</div>
+    </div>
+    
+</body>
+</html>

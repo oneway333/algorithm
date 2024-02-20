@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>元素之间的空白问题</title>
+    <style>
+        /* 行内元素、行内块元素，彼此之间的换行会被浏览器解析为一个空白字符，所以会有空白的问题 */
+        /* 
+            解决方案：
+            1. 去掉换行和空格
+            2. 给父元素设置font-size: 0，再给需要显示文字的元素，单独设置字体大小
+         */
+        div {
+            height: 500px;
+            background-color: gray;
+            font-size: 0px;
+        }
+        span {
+            font-size: 20px;
+        }
+        .s1 {
+            background-color: deepskyblue;
+        }
+        .s2 {
+            background-color: orange;
+        }
+        .s3 {
+            background-color: green;
+        }
+        img {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span class="s1">fuck1</span>
+        <span class="s2">fuck2</span>
+        <span class="s3">fuck3</span>
+        <hr>
+        <img src="../14_CSS_背景相关属性/1.png" alt="">
+        <img src="../14_CSS_背景相关属性/1.png" alt="">
+        <img src="../14_CSS_背景相关属性/1.png" alt="">
+    </div>
+</body>
+</html>

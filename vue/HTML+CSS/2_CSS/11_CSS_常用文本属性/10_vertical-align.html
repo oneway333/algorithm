@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <title>10_vertical-align</title>
@@ -13,6 +14,7 @@
         span {
             font-size: 40px;
             background-color: orange;
+            /* 相对于父元素的X基线加上X的一半的中间 */
             vertical-align: middle;
         }
 
@@ -26,13 +28,15 @@
         }
     </style>
 </head>
+
 <body>
     <div>
         fuck x <span>x fuck </span>
     </div>
     <hr>
     <div>
-        fuck x <img src="../../1_HTML/one_way.png" alt="">
+        fuck x Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, deserunt.x 
+        <img src="../../1_HTML/one_way.png" alt="">
     </div>
     <hr>
     <table border="1" cellspacing="0">
@@ -41,7 +45,7 @@
             <tr>
                 <th>name</th>
                 <th>age</th>
-                <th>gender</th>   
+                <th>gender</th>
             </tr>
         </thead>
         <tbody>
@@ -58,4 +62,5 @@
         </tbody>
     </table>
 </body>
+
 </html>

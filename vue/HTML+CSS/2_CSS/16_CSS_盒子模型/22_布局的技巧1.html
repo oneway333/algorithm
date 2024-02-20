@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>布局的技巧1</title>
+    <style>
+        .outer {
+            width: 400px;
+            height: 400px;
+            background-color: gray;
+            /* 上下是0 左右是auto */
+            margin: 150px auto;
+            overflow: hidden;
+        }
+        .inner {
+            width: 100px;
+            height: 50px;
+            padding: 5px;
+            border: 5px solid red;
+            background-color: orange;
+            text-align: center;
+            vertical-align: middle;
+            /* 上下是0 左右是auto */
+            margin: 165px auto;
+            /* line-height = height 可以实现文字的居中 */
+            line-height: 50px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">fuck</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>03_浮动的小练习</title>
+    <style>
+        .outer {
+            width: 250px;
+            background-color: gray;
+            /* 这样设置不会造成margin塌陷 */
+            border: 1px solid black;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: deepskyblue;
+            border: 1px solid black;
+            margin: 10px;
+            float: left;
+        }
+        .box1 {
+            /* float: left; */
+            height: 120px;
+        }
+        .box2 {
+            /* box2浮动，不会有margin合并问题 */
+            /* float: left; */
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+    </div>
+    <div style="background-color: blue;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloremque beatae numquam id libero doloribus alias consectetur. Voluptatem possimus dolorum, aliquid iusto, minus qui assumenda soluta rerum explicabo quia velit totam esse recusandae odio, beatae accusantium voluptate nostrum quis doloremque suscipit autem atque sit. Cumque possimus maiores consequuntur sapiente quo quaerat commodi autem nulla fuga quibusdam quas dolore corrupti iste, voluptatum, tempora quod sed consectetur excepturi deleniti nobis temporibus distinctio. Sapiente sunt dolores ipsum labore esse neque illum magnam, fugit magni. Totam labore quisquam sit cumque facere hic dignissimos consequatur quae. Corporis, sequi. Possimus enim ex ut laudantium repellat id?</div>
+</body>
+</html>

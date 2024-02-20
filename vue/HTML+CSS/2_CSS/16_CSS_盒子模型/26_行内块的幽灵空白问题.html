@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>26_行内块的幽灵空白问题</title>
+    <style>
+        div {
+            width: 600px;
+            background-color: deepskyblue;
+            /* 第三种解决方案 */
+            font-size: 0;
+        }
+        .image {
+            border: 1px solid red;
+            /* 第一种解决方式 */
+            /* vertical-align:bottom; */
+            /* 第二种解决方式 */
+            /* display: block; */            
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img class="image" src="../14_CSS_背景相关属性/1.png" alt="">x
+    </div>
+</body>
+</html>
