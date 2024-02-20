@@ -1,0 +1,224 @@
+/* 基础设置 */
+.container {
+    width: 1190px;
+    /* height: 30px; */
+    margin: 0 auto;
+    /* background-color: orange; */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.leftfix {
+    float: left;
+}
+
+.rightfix {
+    float: right;
+}
+
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: red;
+}
+
+li {
+    list-style-type: none;
+}
+
+/* #region顶部导航条start */
+.topbar {
+    height: 30px;
+    background-color: #ECECEC;
+}
+
+.welcom {
+    line-height: 30px;
+    /* 解决行内元素居中问题 */
+    font-size: 0;
+    color: #666;
+}
+
+.welcom span,.welcom a {
+    font-size: 12px;
+}
+
+.welcom .hello {
+    margin-right: 28px;
+}
+
+.welcom .login {
+    padding-right: 10px;
+    border-right: 1px solid #666;
+}
+
+.welcom .register {
+    padding-left: 10px;
+}
+
+.topbar-navy {
+    font-size: 0;
+}
+
+.topbar-navy .list li {
+    float: left;
+    font-size: 12px;
+    line-height: 30px;
+}
+
+.topbar-navy .list a {
+    border-right: 1px solid #666;
+    /* 上下0 左右15px */
+    padding: 0 15px;
+}
+
+.topbar-navy .list li:first-child>a {
+    padding-left: 0;
+}
+
+.topbar-navy .list li:last-child>a {
+    padding-right: 0;
+    border-right: 0;
+}
+
+/* #endregion顶部导航条end */
+
+/* #region头部start */
+.header {
+    height: 120px;
+    background-color: deepskyblue;
+    position: relative;
+}
+
+.header .logo {
+    position: absolute;
+}
+
+.header img {
+    height: 120px;
+}
+
+.header form {
+    font-size: 0;
+    margin-top: 42px;
+}
+
+.header input {
+    width: 510px;
+    height: 32.4px;
+    font-size: 12px;
+    border: 1px solid #DD302D;
+}
+
+.header button {
+    width: 80px;
+    height: 36px;
+    font-size: 12px;
+    background-color: #DD302D;
+    /* 解决因为基线造成的组件、图片文字之间无法对其 */
+    vertical-align: top;
+    background-image: url("../images/search.jpg") ;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+
+/* #endregion头部end */
+
+
+/* #region主导航start */
+
+.main-nav {
+    height: 48px;
+    border-bottom: 1px solid #DD302D;
+}
+
+.main-nav .all-types {
+    width: 190px;
+    text-align: center;
+    line-height: 48px;
+    background-color: #DD302D;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.main-nav-list {
+    line-height: 48px;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav-list li {
+    float: left;
+    margin: 0 10px;
+}
+
+.main-nav-list li:first-child {
+    margin-left: 0;
+}
+
+/* #endregion主导航end */
+
+
+/* #region内容区start */
+.main-content {
+    margin-top: 10px;
+}
+
+.main-content .slide-nav {
+    width: 190px;
+    height: 458px;
+    background-color: #ECECEC;
+}
+
+.main-content .slide-nav li {
+    font-size: 14px;
+    /* 通过调整一整个的高度来简化操作 */
+    height: 28px;
+    line-height: 28px;
+    /* 使用margin的话是不填充颜色的 */
+    padding-left: 16px;
+}
+
+.main-content .slide-nav li:hover {
+    background-color: #DD302D;
+}
+
+.main-content .slide-nav li a:hover {
+    color: white;
+}
+
+
+.main-content .banner {
+    width: 690px;
+    height: 458px;
+    background-color: green;
+    margin: 0 10px;
+}
+
+.main-content .slide-other {
+    width: 290px;
+    height: 458px;
+    background-color: orange;
+}
+
+
+
+/* #endregion内容区end */
+
+
+
+

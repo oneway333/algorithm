@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>08_定位的特殊应用2</title>
+    <style>
+        .outer {
+            width: 800px;
+            height: 400px;
+            background-color: #888;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .inner {
+            width: 400px;
+            height: 100px;
+            background-color: orange;
+            font-size: 20px;
+            /* margin: 0 auto; */
+            /* margin-top: 150px; */            
+            position: absolute;
+            /* 块元素的居中 */
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            /* 不推荐使用 */
+            /* left: 50%;
+            top: 50%;
+            margin-left: -200px;
+            margin-top: -50px; */
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">fuck you</div>
+    </div>
+</body>
+</html>
