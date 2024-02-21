@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>03_音频案例</title>
+    <style>
+        .mask {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.377);
+        }
+
+        .dialog {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background-color: green;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            font-size: 40px;
+            text-align: center;
+            line-height: 400px;
+        }
+
+        span {
+            border: 1px solid black
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="music" src="./music.mp3" controls muted></audio>
+    <div class="mask" id="mask">
+        <div class="dialog">
+            <span>login</span>
+            <span onclick="go()">listen</span>
+        </div>
+    </div>
+</body>
+
+<script>
+    function go(){
+        music.play();
+        mask.style.display = 'none';
+    }
+</script>
+
+</html>

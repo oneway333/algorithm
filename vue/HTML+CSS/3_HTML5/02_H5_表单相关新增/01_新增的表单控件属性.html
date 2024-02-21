@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>01_新增的表单控件属性</title>
+</head>
+
+<body>
+    <form action="#">
+        <!-- H5新增placeholder -->
+        <!-- required 必填项-->
+        <!-- autofocus 自动获取焦点 -->
+        <!-- autocomplete 自动完成 记录所有输入过的值 -->
+        <!-- pattern 正则表达式，看输出内容是否和正则相匹配，如果输入为空则不其效果，所以需要有required一起修饰 -->
+        account: <input 
+                    type="text" 
+                    name="account" 
+                    placeholder="fuck" 
+                    required 
+                    autofocus 
+                    autocomplete="on"
+                    pattern="\w{6}"
+                 >
+        <br>
+        password: <input 
+                    type="password" 
+                    name="pwd" 
+                    placeholder="fuck" 
+                    pattern="\w{6}"
+                  >
+        <br>
+        gender:
+        <input type="radio" name="gender" id="" value="male"> male
+        <input type="radio" name="gender" id="" value="female"> female
+        <br>
+        hobby:
+        <input type="checkbox" name="hobby" id="" value="fuck"> fuck
+        <input type="checkbox" name="hobby" id="" value="shit"> shit
+        <input type="checkbox" name="hobby" id="" value="that"> that
+        <br>
+        other:
+        <textarea name="" id="" cols="30" rows="10" placeholder="fuck"></textarea>
+        <br>
+        <button type="submit">submit</button>
+        <button type="reset">reset</button>
+    </form>
+</body>
+
+</html>

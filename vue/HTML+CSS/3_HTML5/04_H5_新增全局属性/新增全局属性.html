@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>新增全局属性</title>
+    <style>
+        div {
+            width: 600px;
+            height: 200px;
+            border: 1px solid black;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .box1 {
+            background-color: deepskyblue;
+        }
+        .box2 {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- hidden 隐藏，不占位 -->
+    <!-- spellcheck -->
+    <div spellcheck="true" class="box1" contenteditable="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, voluptatibus?</div>
+    <div  ondragend="go(event)" class="box2" draggable="true">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, voluptatibus?</div>
+    <h2 spellcheck="true">fuok</h2>
+</body>
+<script>
+    function go(e) {
+        alert(e.x)
+    }
+</script>
+</html>
