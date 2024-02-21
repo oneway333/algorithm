@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>03_background-size</title>
+    <style>
+        .box1 {
+            width: 400px;
+            height: 400px;
+            background-color: gray;
+            margin: 0 auto;
+            border: 1px solid black;
+            background-image: url('../../2_CSS/28_尚品汇_页脚/images/keyboard.png');
+            background-repeat: no-repeat;
+            /* 宽 高 */
+            background-size: 200px 200px;
+            /* 参考元素的宽高 */
+            background-size: 100% 100%;
+            /* 填满 */
+            background-size: contain;
+            /* 等比例 */
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        fuck
+    </div>
+</body>
+</html>

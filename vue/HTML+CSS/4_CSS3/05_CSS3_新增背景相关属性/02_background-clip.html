@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">    
+    <title>02_background-clip</title>
+    <style>
+        .box1 {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            background-color: gray;
+            font-size: 80px;
+            font-weight: bold;
+            color: rgba(255, 0, 0, 0);
+            padding: 50px;
+            border: 50px dashed black;
+            background-image: url('../../2_CSS/28_尚品汇_页脚/images/keyboard.png'); 
+            background-repeat: no-repeat;
+            background-origin: border-box;
+            /* 范围外的背景、样式不可见 */
+            /* background-clip: padding-box; */
+            /* 字体剪切图片，当字体为透明的时候生效 */
+            background-clip: text;
+
+        }        
+    </style>
+</head>
+<body>
+    <div class="box1">
+        fuck
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>01_box-sizing</title>
+    <style>
+        .box1 {
+            /* 标准盒模型 */
+            width: 200px;
+            height: 200px;
+            background-color: deepskyblue;
+            padding: 5px;
+            border: 5px solid black;
+            margin-bottom: 10px;
+            /* 默认值 */
+            box-sizing: content-box;
+        }
+
+        .box2 {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            padding: 5px;
+            border: 5px solid black;
+            /* 怪异盒模型 */
+            /* 盒子的总宽高 */
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

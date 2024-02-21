@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">    
+    <title>01_background-origin</title>
+    <style>
+        .box1 {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            background-color: gray;
+            font-size: 40px;
+            color: black;
+            padding: 50px;
+            border: 50px dashed black;
+            /* 背景图默认padding的左上角为起始点 */
+            background-image: url('../../2_CSS/28_尚品汇_页脚/images/keyboard.png'); 
+            background-repeat: no-repeat;
+            /* 背景图的起始位置 */
+            background-origin: border-box;
+
+        }        
+    </style>
+</head>
+<body>
+    <div class="box1">
+        fuck
+    </div>
+</body>
+</html>

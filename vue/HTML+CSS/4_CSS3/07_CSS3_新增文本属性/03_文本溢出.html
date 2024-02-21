@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>03_文本溢出</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;            
+        }
+        ul {
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            list-style-type: none;
+            padding: 10px;
+        }
+        li {
+            margin-bottom: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: clip;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad nihil incidunt iusto est ex, tempore nulla delectus officia explicabo doloremque, facere quod reiciendis non quaerat fuga, quia dicta eius aliquam! Harum necessitatibus sunt asperiores possimus laudantium nisi, et consequatur sequi reprehenderit error esse dolore, quibusdam eveniet accusamus quas quam aliquam.</li>
+        <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, dicta odio inventore ad mollitia optio quis molestiae excepturi asperiores odit quisquam facilis sunt deserunt nobis iure rem eos illum maiores praesentium doloremque eum incidunt soluta eius quae. Soluta, deleniti labore atque corrupti sed voluptatum facere dolorem assumenda? Ipsam, vero impedit?</li>
+        <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, dicta odio inventore ad mollitia optio quis molestiae excepturi asperiores odit quisquam facilis sunt deserunt nobis iure rem eos illum maiores praesentium doloremque eum incidunt soluta eius quae. Soluta, deleniti labore atque corrupti sed voluptatum facere dolorem assumenda? Ipsam, vero impedit?</li>
+        <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, dicta odio inventore ad mollitia optio quis molestiae excepturi asperiores odit quisquam facilis sunt deserunt nobis iure rem eos illum maiores praesentium doloremque eum incidunt soluta eius quae. Soluta, deleniti labore atque corrupti sed voluptatum facere dolorem assumenda? Ipsam, vero impedit?</li>
+    </ul>
+</body>
+</html>

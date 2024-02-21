@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>01_线性渐变</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+            float: left;
+            margin-left: 50px;
+            font-size: 40px;
+            font-weight: bold;
+            line-height: 200px;
+        }
+        .box1 {
+            background-image: linear-gradient(red, yellow, green);
+        }
+        .box2 {
+            background-image: linear-gradient(to left top, red, yellow, green);
+        }
+        .box3 {
+            background-image: linear-gradient(30deg, red, yellow, green);
+        }
+        .box4 {
+            background-image: linear-gradient(red 50px, yellow 100px, green 150px);
+        }
+        .box5 {
+            background-image: linear-gradient(20deg, red 50px, yellow 100px, green 110px);
+            color: transparent;
+            background-clip: text;
+            text-align: left;
+            font-size: 100px;
+            line-height: 210px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box box1">默认 从上到下</div>
+    <div class="box box2">box2</div>
+    <div class="box box3">box3</div>
+    <div class="box box4">box4</div>
+    <div class="box box5">box5</div>
+</body>
+</html>

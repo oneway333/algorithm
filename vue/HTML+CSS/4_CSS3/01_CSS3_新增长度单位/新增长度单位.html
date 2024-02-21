@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>新增长度单位</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;            
+        }
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: deepskyblue;
+        }
+        .box2 {
+            /* viewport width 视口宽的20% */
+            width: 20vw;
+            /* viewport height 视口高度的20% */
+            height: 20vh;
+            background-color: orange;
+            /* margin: 0 auto; */
+        }
+        .box3 {
+            /* 视口宽或者高的最大值 */
+            width: 20vmax;
+            /* 视口宽或者高的最小值 */
+            height: 20vmin;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">px</div>
+    <div class="box2">vw+vh</div>
+    <div class="box3">vmax+vmin</div>
+</body>
+</html>

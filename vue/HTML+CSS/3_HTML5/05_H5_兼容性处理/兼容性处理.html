@@ -2,7 +2,28 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对一些国产”双核“浏览器设置，让浏览器优先使用webkit内核渲染网页 -->
+    <meta name="render" content="webkit">
     <title>兼容性处理</title>
+    <!-- 宏命令都用出来了 -->
+    <!--[if lt ie 9]>
+    <script src="./html5shiv.js"></script> 
+    <![endif]-->
+    <style>
+        header {
+            background-color: orange;
+        }
+        footer {
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background-color: green;
+        }
+        aside {
+            float: right;
+        }
+    </style>
 </head>
 <body>
     <!-- 头部 -->
