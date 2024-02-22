@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>01_伸缩容器_伸缩项目</title>
+    <style>
+        .outer {
+            width: 1000px;
+            height: 600px;
+            background-color: gray;
+            /* 将该元素变为了 伸缩容器（开启了flex布局）*/
+            display: flex;
+            /* inline-flex 会把容器变为行内块 几乎不用 */
+            /* display: inline-flex; */
+        }
+        .inner {
+            width: 200px;
+            height: 200px;
+            background-color: deepskyblue;
+            border: 1px solid black;
+            box-sizing: border-box;
+            /* float: left; */
+        }
+        .inner3 {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">1</div>
+        <div class="inner">2</div>
+        <div class="inner inner3">
+            <div>a</div>
+            <div>b</div>
+            <div>c</div>
+        </div>
+    </div>
+</body>
+</html>

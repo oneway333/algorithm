@@ -1,0 +1,48 @@
+排版
+语义化
+文本
+图片
+超链接
+列表
+表单
+选择器
+字体
+文本
+背景
+鼠标
+* 盒子模型 基线问题 vertical-align overflow
+* 浮动
+* 定位
+* 布局，几种典型的左右居中 上下居中 文本图片居中 
+====H5====
+语义化标签
+多媒体标签
+====CSS3====
+* transform/变换
+* 过渡 transition
+动画
+* 伸缩盒模型
+* 所有的水平居中方案
+1.
+margin: 0 auto
+height=line-height
+display: inline-block
+2.
+定位+变换 绝对定位到父容器左上 left 50% right 50%  transform: translate(-50%,-50%)
+3.
+子容器宽高都设置了的情况下，设置绝对定位，再配置left 0 right 0 top 0 bottom 0 margin auto
+4.
+在弹性盒子中设置主轴和侧轴的对齐方式
+5.
+在弹性盒子中，设置项目的margin:auto
+上面都是用在父容器有宽高才行
+在没有的时候可以利用
+.content {
+    display: flex;
+    /* 百分百的视口高度减去头部高度 */
+    height: calc(100vh - XXpx);
+}
+
+弹性盒子会有侧轴自动拉伸的问题，即align-items/align-content默认值为stretch
+
+

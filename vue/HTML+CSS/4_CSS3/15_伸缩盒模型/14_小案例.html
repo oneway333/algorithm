@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>fuck</title>
+    <style>
+        * {
+            font-family: Arial;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        a {
+            text-decoration: none;            
+        }
+
+        ul {
+            list-style: none;            
+        }
+
+        /* 整个视口的宽高 */
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background-image: url('./images/bg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        header {
+            height: 70px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 0 20px;
+            box-sizing: border-box;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header nav a {
+            display: inline-block;
+            padding: 0 10px;
+            height: 30px;
+            border: 1px solid white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 8px;
+            margin: 0 20px;
+            font-size: 20px;
+        }
+        .content {
+            display: flex;
+            /* 百分百的视口高度减去头部高度 */
+            height: calc(100vh - 70px);
+        }
+        .content-nav {
+            width: 1000px;
+            height: 300px;
+            margin: auto;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        
+        .item {
+            width: 180px;
+            height: 100%;
+            padding: 20px 0;
+            box-sizing: border-box;
+            background-color: gray;
+            display: flex;
+            /*  */
+            flex-direction: column;
+            justify-content: space-between;
+            /* 不写这个不仅会无法左右居中（主轴朝下），还会图片放大，因为align-items默认是stretch，图片没有高度，自动拉伸了 */
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .item span {
+            font-size: 30px;
+            font-weight: bold;
+            color: white;            
+        }
+
+        .item:nth-child(1) {
+            background-color: #595ca8;
+        }
+        .item:nth-child(2) {
+            background-color: #FF9D2E;
+        }
+        .item:nth-child(3) {
+            background-color: #01A6DE;
+        }
+        .item:nth-child(4) {
+            background-color: #015E91;
+        }
+        .item:nth-child(5) {
+            background-color: #1DC128;
+        }
+        .item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="logo">
+            <a href="#">
+                <img src="./images/logo.png" alt="">
+            </a>
+        </div>
+        <nav>
+            <a href="#">fuck</a>
+            <a href="#">fuck</a>
+            <a href="#">fuck</a>
+            <a href="#">fuck</a>
+        </nav>
+    </header>
+    <!-- 内容区 -->
+    <div class="content">
+        <nav class="content-nav">
+            <div class="item">
+                <img src="./images/item1.png" alt="">
+                <span>fuck</span>
+            </div>
+            <div class="item">
+                <img src="./images/item2.png" alt="">
+                <span>fuck</span>
+            </div>
+            <div class="item">
+                <img src="./images/item3.png" alt="">
+                <span>fuck</span>
+            </div>
+            <div class="item">
+                <img src="./images/item4.png" alt="">
+                <span>fuck</span>
+            </div>
+            <div class="item">
+                <img src="./images/item5.png" alt="">
+                <span>fuck</span>
+            </div>
+        </nav>
+    </div>
+</body>
+
+</html>

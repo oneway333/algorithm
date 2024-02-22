@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>01_BFC_演示1</title>
+    <style>
+        body {
+            /* display: flex; */
+        }
+        .outer {
+            width: 600px;
+            background-color: gray;
+            /* 解决margin塌陷问题常用方式 */
+            /* 下列行为会开启BFC */
+            /* overflow: auto; */
+            /* float: left; */
+            /* position: absolute; */
+            /* display: inline-block; */
+            /* display: table; */
+            /* column-count: 1; */
+            display: flow-root;
+            /* 父元素开启BFC，子元素不会出现塌陷问题 */
+            
+        }
+        .inner {
+            width: 200px;
+            height: 200px;
+        }
+        .inner1 {
+            background-color: orange;
+            margin-top: 30px;
+        }
+        .inner2 {
+            background-color: green;
+        }
+        .inner3 {
+            background-color: blue;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner inner1"></div>
+        <div class="inner inner2"></div>
+        <div class="inner inner3"></div>
+    </div>
+</body>
+</html>

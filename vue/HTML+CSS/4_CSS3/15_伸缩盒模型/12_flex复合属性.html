@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>12_flex复合属性</title>
+    <style>
+        .outer {
+            width: 600px;
+            height: 900px;
+            background-color: gray;
+            margin: 0 auto;
+
+            /* 伸缩盒模型相关属性 */
+            display: flex;
+
+            flex-direction: row;
+            /* flex-direction: column; */
+            
+            flex-wrap: wrap;
+
+            /* 主轴的对齐方式 主轴起始位置*/
+            justify-content: flex-start;
+
+            /* 侧轴的对齐方式 多行 */ 
+            align-content: flex-start;            
+
+        }
+        .inner {
+            width: 200px;
+            height: 200px;
+            background-color: deepskyblue;
+            border: 1px solid black;
+            box-sizing: border-box;
+            /* 可以拉伸 */
+            flex-grow: 1;
+            /* 可以压缩 */
+            flex-shrink: 1;
+            /* 基准长度 */
+            flex-basis: 100px;
+            /* 可拉伸 可压缩 不设置基准长度，可简写为flex:auto */
+            flex: 1 1 auto;
+            flex: auto;
+            /* 可拉伸 可压缩 设置基准长度为0，可简写为flex: 1 */
+            flex: 1 1 0;
+            flex: 1;
+            /* 不可拉伸 不可压缩 不设置基准长度，可简写为flex: none */
+            flex: 0 0 auto;
+            flex: none;
+            /* 不可拉伸 可压缩 不设置基准长度 ，可简写为flex: 0 auto*/
+            flex: 0 1 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">1</div>
+        <div class="inner">2</div>
+        <div class="inner">3</div>
+    </div>
+</body>
+</html>

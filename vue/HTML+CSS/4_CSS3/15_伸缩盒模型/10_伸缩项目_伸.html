@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>10_伸缩项目_伸</title>
+    <style>
+        .outer {
+            width: 1000px;
+            height: 900px;
+            background-color: gray;
+            margin: 0 auto;
+
+            /* 伸缩盒模型相关属性 */
+            display: flex;
+
+            flex-direction: row;
+            /* flex-direction: column; */
+
+            flex-wrap: wrap;
+
+            /* 主轴的对齐方式 主轴起始位置*/
+            justify-content: flex-start;
+
+            /* 侧轴的对齐方式 多行 */ 
+            align-content: flex-start;            
+
+        }
+        .inner {
+            width: 200px;
+            height: 200px;
+            background-color: deepskyblue;
+            border: 1px solid black;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+        .inner:nth-child(2) {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">1</div>
+        <div class="inner">2</div>
+        <div class="inner">3</div>
+    </div>
+</body>
+</html>
