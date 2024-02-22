@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>02_缩放</title>
+    <style>
+        .outer {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 0 auto;
+            margin-top: 100px;
+            background-color: gray;
+        }
+
+        .inner {
+            width: 200px;
+            height: 200px;
+            background-color: deepskyblue;
+            /* transform: scaleX(0.5); */
+            /* transform: scaleY(0.5); */
+            transition: 0.5s linear all;
+        }
+        .inner:hover {
+            transform: scale(1.5);
+            /* transition: 0.5s linear all; */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">fuck</div>
+    </div>
+</body>
+</html>

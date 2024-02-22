@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>01_位移</title>
+    <style>
+        .outer {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 0 auto;
+            margin-top: 100px;
+            background-color: gray;
+            position: relative;
+        }
+
+        .inner {
+            width: 200px;
+            height: 200px;
+            background-color: deepskyblue;
+            /* 变换 */
+            /* 水平位移 */
+            transform: translateX(50px);
+            /* 垂直位移 */
+            transform: translateY(-50px);
+            /* 移动自己位置的% */
+            transform: translateX(50%);
+            /* 水平+垂直位移 */
+            transform: translate(50px,50px);
+        }
+
+        .inner2 {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            /* 和定位一起灵活运用 */
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">fuck</div>
+    </div>
+    <div class="outer">
+        <div class="inner2">fuck</div>
+    </div>
+</body>
+</html>

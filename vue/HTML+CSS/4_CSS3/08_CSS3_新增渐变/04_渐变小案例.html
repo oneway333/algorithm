@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>04_渐变小案例</title>
+    <style>
+        .box1 {
+            width: 800px;
+            height: 500px;
+            border: 1px solid black;
+            padding: 5px;
+            /* 利用渐变实现划线 */
+            background-image: repeating-linear-gradient(transparent 0px, transparent 29px, gray 30px);
+            /* 裁剪掉不需要的padding区域 */
+            background-clip: content-box;
+        }
+        .box2 {
+            width: 200px;
+            height: 200px;
+            background-color: gray;
+            border-radius: 50%;
+            background-image: radial-gradient(at 80px 80px, white, gray);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+
+    </div>
+    <div class="box2"></div>
+</body>
+</html>

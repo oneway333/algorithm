@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>01_基本使用</title>
+    <style>
+        .box1 {
+            width: 400px;
+            height: 400px;
+            background-color: orange;
+            opacity: 0.5;
+            /* 加到需要变换的盒子上 */
+            /* 设置需要过渡的属性 */
+            /* transition-property: height,width,background-color; */
+
+            /* 所有能过渡的属性都过渡 */
+            transition-property: all;
+            /* 分别设置过渡的时间 */
+            transition-duration: 0.5s,0.5s,0.5s;
+            /* 设置所有过渡的时间 */
+            transition-duration: 0.5s;
+
+
+        }
+        .box1:hover {
+            height: 800px;
+            width: 800px;
+            background-color: green;
+            transform: rotate(45deg);
+            box-shadow: 0 0 20px black;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+
+    </div>
+</body>
+</html>

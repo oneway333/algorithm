@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>03_位移</title>
+    <style>
+        .outer {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 0 auto;
+            margin-top: 100px;
+            /* background-color: gray; */
+            /* 开启3D空间 */
+            transform-style: preserve-3d;
+            /* 设置景深(有了透视效果，近大远小) */
+            perspective: 500px;
+            /* 设置透视点位置 */
+            /* perspective-origin: 60px 50px; */
+
+        }
+
+        .inner {
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0, 191, 255, 0.671);
+            /* transform: rotateX(45deg);             */
+            /* transform: rotate(30deg, 30deg, 30deg); */
+            transform: translate3d(100px,100px,200px);
+}
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">fuck</div>
+    </div>
+</body>
+</html>

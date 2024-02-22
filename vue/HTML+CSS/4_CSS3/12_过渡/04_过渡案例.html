@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>04_过渡案例</title>
+    <style>
+        .outer {
+            width: 400px;
+            height: 224px;
+            position: relative;
+            margin: 0 auto;            
+            margin-top: 100px;
+            /* nice 想出来了 */
+            overflow: hidden;
+        }
+        .mask {
+            width: 400px;
+            height: 224px;
+            background-color: black;
+            color: white;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            text-align: center;
+            line-height: 224px;
+            font-size: 100px;
+            font-weight: bold;
+            transition: all 0.5s linear;
+        }
+        img {
+            transition: all 0.5s linear;
+        }
+        .outer:hover .mask {
+            opacity: 0.5;
+        }
+        .outer:hover img {
+            transform: scale(2) rotate(30deg);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <img src="./shanghai.jpg" alt="">
+        <div class="mask">fuck</div>
+    </div>
+</body>
+</html>

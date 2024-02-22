@@ -1,0 +1,16 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "39138434",
+      "name": "应急舆情系统",
+      "font_class": "yingjiyuqingxitong",
+      "unicode": "e6f8",
+      "unicode_decimal": 59128
+    }
+  ]
+}

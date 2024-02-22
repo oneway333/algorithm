@@ -2,6 +2,15 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <title>03_重复渐变</title>
+</head>
+<body>
+    
+</body>
+</html><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
     <title>01_线性渐变</title>
     <style>
         .box {
@@ -15,24 +24,23 @@
             line-height: 200px;
         }
         .box1 {
-            background-image: linear-gradient(red, yellow, green);
+            background-image: repeating-linear-gradient(red, yellow, green);
         }
         .box2 {
-            background-image: linear-gradient(to left top, red, yellow, green);
+            background-image: repeating-linear-gradient(to left top, red, yellow, green);
+            font-size: 20px;
         }
         .box3 {
-            background-image: linear-gradient(30deg, red, yellow, green);
+            background-image: repeating-linear-gradient(30deg, red, yellow, green);
+            font-size: 20px;
         }
         .box4 {
-            background-image: linear-gradient(red 50px, yellow 100px, green 150px);
+            background-image: repeating-linear-gradient(red 50px, yellow 100px, green 150px);
+            font-size: 20px;
         }
         .box5 {
-            background-image: linear-gradient(20deg, red 50px, yellow 100px, green 110px);
-            color: transparent;
-            background-clip: text;
-            text-align: left;
-            font-size: 100px;
-            line-height: 210px;
+            background-image: repeating-radial-gradient(100px 50px at 150px 150px, red 50px, yellow 100px, green 150px);
+            font-size: 20px;
         }
     </style>
 </head>
