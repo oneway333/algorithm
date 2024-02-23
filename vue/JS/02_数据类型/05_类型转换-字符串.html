@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类型转换-字符串</title>
+    <script>
+        // JS也走的是返回值，也是有的对原来对象内部进行改变，有的利用传进来的地址求值
+        // 函数利用对传入的对象地址所指向的内存进行修改，来达到该改变原来对象数据的目的
+
+        
+            // 类型转换指将一种数据类型转换为其他类型
+            //     将其他类型转换为（字符串、数值和布尔值）
+
+            // 转换为字符串
+            //     1.调用toString()方法将其他类型转换为字符串
+            //         - 调用xxx的yyy方法
+            //             --> xxx.yyy()
+            //         - 由于null和undefined中没有toString()
+            //             所以对这两个东西调用toString()
+            //             时会报错
+            //     2.
+            //     调用String()
+            //     函数将其他类型转换为字符串
+            //         - 调用xxx函数
+            //             -- 
+            //             xxx()
+            //         - 原理
+            //             对于拥有toString()
+            //             方法的值调用String()
+            //             函数时
+            //                 实际上就是在调用toString()
+            //                 方法对于null
+            //                 则直接转换为
+            //                 "null"
+            //                 对于undefined
+            //                 直接转换为
+            //                 "undefined"
+
+        // let a = 10 // "10"
+        // a = true // "true"
+        // a = 11n  // "11"
+        // a = undefined
+        // // console.log(typeof a, a)
+
+        // // a = a.toString() // "10"
+        // // console.log(typeof a, a)
+
+        // let b = 33 // "33"
+        // b = null // "null"
+        // b = undefined // "undefined"
+        // b = true
+
+        // console.log(typeof b, b)
+
+        // b = String(b)
+
+        // console.log(typeof b, b)
+        
+        // toString() 和 String() 不会对传入的对象进行修改吧
+        let a = 10
+        console.log(typeof a, a)
+        
+        a.toString()
+        a = a.toString() // 返回值的地址交给a，a就会变成字符串
+        console.log(typeof a, a)
+
+        a = true
+        a = a.toString()
+        console.log(typeof a, a) // true会转成string
+        console.log(a == 'true')
+        console.log(a.valueOf())
+
+        a = Infinity
+        console.log(typeof a, a)
+        a = String(a)
+        console.log(typeof a, a)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

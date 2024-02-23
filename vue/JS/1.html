@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        // 获取用户输入的大于1的整数（暂时不考虑输错的情况）
+        //         然后编写代码检查这个数字是否是质数，并打印结果
+        let i, j
+        // n = +prompt('number')
+        for (i = 2; i < 100; i++) {
+            // 这样就可以有开根号了
+            for (j = 2; j <= i ** .5; j++) {
+                if (i % j == 0) break;
+            }
+            if (j > i**.5) console.log(i)            
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
