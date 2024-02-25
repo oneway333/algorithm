@@ -1,0 +1,39 @@
+编写位置 
+变量声明
+常量声明
+类型检查 typeof
+使用反单引号`来表示"模板字符串“   `${变量}`
+
+JS中原始值一共有七种
+1.Number
+2.BigInt
+3.String
+4.Boolean
+5.Null
+6.Undefined
+7.Symbol
+
+字符串方法 XX.toString()  String(XXX) window下的方法
+数值的方法 Number(XXX), parseInt(XXX), parseFloat(XXX)
+布尔值的方法 Boolean(XXX)
+运算符
+** 幂运算 可以实现根号 XXX**.5
+??=-空赋值 只有当变量的值为null或undefined时才会对变量进行赋值
+一元的±  +b 相当于 b = Number(b)
+== 它会将其转换为相同的类型（通常转换为数值）然后再比较
+=== 它不会进行自动的类型转换，如果两个值的类型不同直接返回false
+
+对象 注意可以用[] 比如 XXX[XXX] = XXX，属性就是[]里面的XXX
+枚举属性 for-in
+创建对象最好用 const 修饰，避免被修改
+对象里面可以写字面量 函数 其他对象
+
+函数的三种创建方法 
+function <name>(){}
+let <name> = function(){}
+let <name> = ()=>{}
+函数的返回值 箭头函数的返回值
+立即执行函数 (function(){})() (function(){}())
+函数中的this 箭头函数中的this，与调用方式无关，this指向外层作用域的函数的this。注意外层作用域中的外层指的是函数外层
+严格模式
+

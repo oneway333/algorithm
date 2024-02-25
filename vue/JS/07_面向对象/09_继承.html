@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        /* 
+            继承
+                - 通过继承可以在不修改一个类的情况下对其进行扩展
+                - OCP 开闭原则
+                    - 程序应该对修改关闭，对扩展开放
+
+        */
+
+        // class Animal{
+        //     constructor(name){
+        //         this.name = name
+        //     }
+
+        //     sayHello(){
+        //         console.log("动物在叫~")
+        //     }
+        // }
+
+        // class Dog extends Animal{
+
+        //     // 在子类中，可以通过创建同名方法来"重写"父类的方法
+        //     sayHello(){
+        //         console.log("汪汪汪")
+        //     }
+            
+        // }
+
+        // class Cat extends Animal{
+
+        //     // 重写构造函数
+        //     constructor(name, age){
+        //         // 重写构造函数时，构造函数的第一行代码必须为super()
+        //         super(name) // 调用父类的构造函数
+
+        //         this.age = age
+
+        //     }
+            
+        //     sayHello(){
+
+        //         // 调用一下父类的sayHello
+        //         super.sayHello() // 在方法中可以使用super来引用父类的方法
+
+        //         console.log("喵喵喵")
+        //     }
+        // }
+
+        
+        // const dog = new Dog("旺财")
+        // const cat = new Cat("汤姆", 3)
+
+        // dog.sayHello()
+        // cat.sayHello()
+        // console.log(dog)
+        // console.log(cat)
+
+        class Hentai{
+            constructor(name){
+                this.name = name
+            }
+
+            fuck(){
+                console.log("fuck you")
+            }
+        }
+
+        class Female extends Hentai{
+            // 如果不重写构造函数，则不用调用super() ....
+            fuck(){
+                console.log("shit")
+            }
+        }
+
+
+        class Male extends Hentai{
+            // 重写构造函数
+            constructor(name, age){
+                // 重写构造函数时，构造函数的第一行代码"必须"为super()
+                // super() // 调用父类的构造函数
+                // this.name = name // 只是这个不行，必须声明super()
+                super(name) // 或者直接这么写
+                this.age = age
+            }
+            fuck(){ // 在子类中，可以通过创建同名方法来"重写"父类的方法
+                // 调用一下父类的sayHello
+                super.fuck()
+
+                console.log("man")
+            }
+        }
+
+        
+        const male = new Male('damn', 33)
+        const female = new Female('shit')
+
+        male.fuck()
+        female.fuck()
+
+        console.log(male)
+        console.log(female)
+
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

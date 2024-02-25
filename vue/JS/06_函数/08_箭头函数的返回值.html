@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+            箭头函数的返回值可以直接写在箭头后
+                如果直接在箭头后设置"对象字面量"为返回值时，对象字面量必须使用()括起来
+        
+        */
+        // const sum = (a, b) => a + b
+
+        // const fn = () => ({name:"孙悟空"})
+
+        // let result = sum(123, 456)
+
+        // result = fn()
+
+        // console.log(result)
+
+        // 程序员必须是懒惰的，能一行写的，坚决不写两行！！！！
+        const sum = (a, b) => a + b // a+b 直接是返回值
+        const sum2 = () => (a, b) => a + b // 返回值是一个函数，由于都只有一行，所以不需要大括号
+        let res = sum(1, 2)
+        console.log(res, typeof res)
+
+        res = sum2()
+        console.log(res, typeof res)
+        console.log(res(1, 2))
+
+        const func = () => {name: 'fuck'}
+        const func1 = () => ({name: 'fuck'})
+        res = func()
+        console.log(res, typeof res)   // undefined，所以对象必须用括号包起来
+        res = func1()
+        console.log(res, typeof res)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

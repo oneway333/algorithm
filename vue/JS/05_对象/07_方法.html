@@ -15,23 +15,35 @@
                     调用函数就称为调用对象的方法
         */
 
-        let obj = {}
+        // let obj = {}
 
-        obj.name = "孙悟空"
-        obj.age = 18
+        // obj.name = "孙悟空"
+        // obj.age = 18
 
         // 函数也可以成为一个对象的属性
-        obj.sayHello = function(){
-            alert("hello")
-        }
+        // obj.sayHello = function(){
+        //     alert("hello")
+        // }
 
-        console.log(obj)
+        // console.log(obj)
 
-        obj.sayHello()
+        // obj.sayHello()
 
         // document.write()
 
         // String()
+
+        let obj = {
+            name: 'fuck',
+            age: 11,
+            fuckyou: function(){
+                alert('fuck you')
+            },
+            func1: (a, b) => a + b
+        }
+        
+        obj.fuckyou() // 函数调用
+        console.log(obj.func1(1, 2))
 
     </script>
 </head>

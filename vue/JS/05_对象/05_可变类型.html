@@ -11,9 +11,9 @@
             - 在内存中不会创建重复的原始值
 
         */
-        let a = 10 
-        let b = 10
-        a = 12 // 当我们为一个变量重新赋值时，绝对不会影响其他变量
+        // let a = 10
+        // let b = 10
+        // a = 12 // 当我们为一个变量重新赋值时，绝对不会影响其他变量
 
         // console.log("a =", a)
         // console.log("b =", b)
@@ -28,29 +28,32 @@
         */
        
         // let obj = {name:"孙悟空"}
-        let obj = Object()
-        obj.name = "孙悟空"
-        obj.age = 18
+        // let obj = Object()
+        // obj.name = "孙悟空"
+        // obj.age = 18
 
-        let obj2 = Object()
-        let obj3 = Object()
+        // let obj2 = Object()
+        // let obj3 = Object()
 
 
         // console.log(obj2 == obj3) // false
 
-        let obj4 = obj
+        // let obj4 = obj
 
-        obj4.name = "猪八戒" // 当修改一个对象时，所有指向该对象的变量都会收到影响
+        // obj4.name = "猪八戒" // 当修改一个对象时，所有指向该对象的变量都会收到影响
 
-        console.log("obj", obj)
-        console.log("obj4", obj4)
-        console.log(obj === obj4)
+        // console.log("obj", obj)
+        // console.log("obj4", obj4)
+        // console.log(obj === obj4)
         
-        
-        
-        
-
-
+        let obj1 = {
+            name: 'fuck'
+        }
+        let obj2 = Object()
+        obj2 = obj1
+        console.log(obj2 == obj1, obj2 === obj1, obj2.name)
+        obj1.name = 'damn'
+        console.log(obj2 == obj1, obj2 === obj1, obj2.name)
 
 
     </script>

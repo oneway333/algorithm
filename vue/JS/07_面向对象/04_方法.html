@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        // class Person{
+
+        //     name = "孙悟空"
+
+        //     // sayHello = function(){
+
+        //     // } // 添加方法的一种方式
+
+        //     sayHello(){
+        //         console.log('大家好，我是' + this.name)
+        //     } // 添加方法（实例方法） 实例方法中this就是当前实例
+
+        //     static test(){
+        //         console.log("我是静态方法", this)
+        //     } // 静态方法（类方法） 通过类来调用 静态方法中this指向的是当前类
+
+        // }
+
+        // const p1 = new Person()
+
+        // // console.log(p1)
+
+        // Person.test()
+
+        // p1.sayHello()
+
+        class Hentai{
+            name = 'fuck'
+            func1 = function(){
+                console.log('fuck1', this, this.name)
+            }
+            func2(){
+                console.log('fuck2', this, this.name)
+            }
+            static func3(){
+                console.log('fuck3', this)
+                console.log('fuck3', this.name)
+            }
+        }
+
+        const h1 = new Hentai()
+        const h2 = new Hentai()
+        h1.name = 'shit'
+        h2.name = 'damn'
+        h1.func1();
+        h1.func2();
+        Hentai.func3();
+
+        h2.func1();
+        h2.func2();
+        Hentai.func3();
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
