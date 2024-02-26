@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .outer{
+            width: 640px;
+            height: 390px;
+            margin: 100px auto;
+            /* text-align: center; */
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <span>total: n, now: m</span>
+        <img src="./images/1.png" alt="">
+        <button id="pre">previous</button>
+        <button id="next">next</button>    
+    </div>
+
+    <script>
+        const pre = document.getElementById('pre')
+        const next = document.getElementById('next')
+        const img = document.querySelector('img')
+        const stat = img.previousElementSibling
+        const imgAddr = [
+            './images/1.png',
+            './images/2.png',
+            './images/3.png',
+            './images/4.png',
+            './images/5.png',
+        ]
+
+        
+        // const reg = /\d+/
+        // const str = img.getAttribute('src')
+        // let i = reg.exec(str)
+        // let arr = img.getAttribute('src').split('/')
+
+        let i = 1
+
+        stat.textContent = `tatal: ${imgAddr.length}, now: ${i}`
+
+
+        pre.onclick = () => {
+            i = (i - 1) == 0 ? imgAddr.length : i - 1;
+            img.setAttribute('src', imgAddr[i - 1])
+            stat.textContent = `tatal: ${imgAddr.length}, now: ${i}`
+        }
+
+        next.onclick = () => {
+            let t = (i + 1) % imgAddr.length
+            i = t == 0 ? imgAddr.length : t;
+            img.setAttribute('src', imgAddr[i - 1])
+            stat.textContent = `tatal: ${imgAddr.length}, now: ${i}`
+        }
+    </script>
+</body>
+</html>

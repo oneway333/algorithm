@@ -9,7 +9,7 @@
 
             /* 
                 高阶函数
-                    - 如果一个函数的参数或返回值是函数，则这个函数就称为高阶函数
+                    - 如果一个函数的参数或返回值是"函数"，则这个函数就称为"高阶函数"
                     - 为什么要将函数作为参数传递？（回调函数有什么作用？）
                         - 将函数作为参数，意味着可以对另一个函数动态的传递代码
             
@@ -46,13 +46,16 @@
             //     return a.name === "孙悟空"
             // }
 
-            result = filter(personArr, a => a.name === "孙悟空")
-            result = filter(personArr, a => a.age >= 18)
-
+            result1 = filter(personArr, a => a.name === "孙悟空")
+            console.log(result1)
+            
+            result2 = filter(personArr, a => a.age >= 18)
+            console.log(result2)
+            
             const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
             result = filter(arr, a => a % 2 === 0)
-
             console.log(result)
+            
         </script>
     </head>
     <body></body>

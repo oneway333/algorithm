@@ -32,8 +32,61 @@ JS中原始值一共有七种
 function <name>(){}
 let <name> = function(){}
 let <name> = ()=>{}
-函数的返回值 箭头函数的返回值
+函数的返回值 箭头函数的返回值 return XXX 
 立即执行函数 (function(){})() (function(){}())
 函数中的this 箭头函数中的this，与调用方式无关，this指向外层作用域的函数的this。注意外层作用域中的外层指的是函数外层
 严格模式
+
+面向对象
+构造方法
+静态方法 通过 <class name>.方法名 的方式
+多态 同一个函数 根据传入的对象不同实现不同的效果，不是用if else 而是直接调用对象里面的方法
+继承 当重写父类构造方法时，构造方法第一行要写super()
+
+原型对象 对象中还有一些内容，会存储到其他的对象里（原型对象） 在对象中会有一个属性用来存储原型对象，这个属性叫做 __proto__
+访问原型对象
+obj.__proto__, Object.getPrototypeOf(obj)
+原型对象中的数据：
+1. 对象中的数据（属性、方法等）
+2. constructor（对象的构造函数）
+原型链
+读取对象属性时，会优先对象自身属性，
+如果对象中有，则使用，没有则去对象的原型中寻找
+如果原型中有，则使用，没有则去原型的原型中寻找
+直到找到"Object对象"的原型（Object的原型没有原型（为null））
+如果依然没有找到，则返回undefined
+
+所有的同类型对象它们的原型对象都是同一个，也就意味着，同类型对象的原型链是一样的
+
+修改原型
+obj.__proto__.xxx = ...
+<class name>.prototype.xxx = 
+
+instanceof 自身和原型链 obj instanceof <class name>
+in 自身和原型链 <prop name> in obj 
+Object.hasOwn(obj, <prop name>) 自身
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

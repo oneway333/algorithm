@@ -8,22 +8,27 @@
     <script>
         /* 
             浅拷贝（shallow copy）
-                - 通常对对象的拷贝都是浅拷贝
+                - 通常对”对象的拷贝都是浅拷贝“
                 - 浅拷贝顾名思义，只对对象的浅层进行复制（只复制一层）
-                - 如果对象中存储的数据是原始值，那么拷贝的深浅是不重要
+                - 如果对象中存储的数据是”原始值“，那么拷贝的深浅是不重要
                 - 浅拷贝只会对对象本身进行复制，不会复制对象中的属性（或元素）
 
-            深拷贝（deep copy）
-                - 深拷贝指不仅复制对象本身，还复制对象中的属性和元素
+            深拷贝（deep copy） 
+                - 深拷贝指不仅复制对象本身，"还复制对象中的属性和元素"
                 - 因为性能问题，通常情况不太使用深拷贝
         */
 
         // 创建一个数组
         const arr = [{name:"孙悟空"}, {name:"猪八戒"}]
         const arr2 = arr.slice() // 浅拷贝
+        console.log(arr)
+        console.log(arr2)
+        arr[1].name = 'shit'
+        console.log(arr)
+        console.log(arr2)
 
         const arr3 = structuredClone(arr) // 专门用来深拷贝的方法
-
+        arr[1].name = 'fuck'
         console.log(arr)
         console.log(arr3)
 

@@ -10,6 +10,7 @@
             const arr2 = [9, 8, 7, 6, 5, 4, 3, 2, 1]
 
             function sort(array) {
+                // 通过创建新得对象，来避免对新对象的修改
                 const arr = [...array]
                 for (let i = 0; i < arr.length; i++) {
                     for (let j = i + 1; j < arr.length; j++) {

@@ -7,7 +7,7 @@
         <title>Document</title>
         <script>
             /* 
-                for-of语句可以用来遍历可迭代对象
+                for-of语句可以用来遍历"可迭代对象"
 
                 语法：
                     for(变量 of 可迭代的对象){
@@ -26,9 +26,15 @@
             }
 
 
-            // for(let value of "hello"){
-            //     console.log(value)
-            // }
+            // 这样用其实是很怪异的
+            for(let value of "hello"){
+                console.log(value)
+            }
+
+            const arr1 = [1, 2, 3, 4]
+            for (const value of arr1) {
+                console.log(value)
+            }
 
         </script>
     </head>

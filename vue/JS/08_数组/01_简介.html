@@ -33,16 +33,16 @@
                         - length是可以修改的
             */
 
-            const obj = { name: "孙悟空", age: 18 }
+            // const obj = { name: "孙悟空", age: 18 }
 
-            const arr = new Array()
-            const arr2 = [1, 2, 3, 4, 5] // 数组字面量
+            // const arr = new Array()
+            // const arr2 = [1, 2, 3, 4, 5] // 数组字面量
 
-            arr[0] = 10
-            arr[1] = 22
-            arr[2] = 44
-            arr[3] = 88
-            arr[4] = 99
+            // arr[0] = 10
+            // arr[1] = 22
+            // arr[2] = 44
+            // arr[3] = 88
+            // arr[4] = 99
 
             // 使用数组时，应该避免非连续数组，因为它性能不好
             // arr[100] = 99
@@ -53,14 +53,30 @@
 
             // console.log(arr.length)
 
-            arr[arr.length] = 33 // 这个可以有
-            arr[arr.length] = 55
+            // arr[arr.length] = 33 // 这个可以有
+            // arr[arr.length] = 55
 
-            arr.length = 5
+            // arr.length = 5
 
-            console.log(arr)
+            // console.log(arr)
 
+            const arr1 = new Array()
+            const arr2 = [1, 2, 3, 4, 5]
+            let i;
 
+            // 很神奇的是竟然真的可以这么写。。。。
+            arr1[arr1.length] = 1
+            arr1[arr1.length] = 2
+            arr1[arr1.length] = 3
+            arr1[arr1.length] = 4
+
+            arr1.length = 2
+
+            function show(arr){
+                for(i = 0; i < arr.length; i++) console.log(arr[i])
+            }
+            show(arr1)
+            show(arr2)
 
         </script>
     </head>

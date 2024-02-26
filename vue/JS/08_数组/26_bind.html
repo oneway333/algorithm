@@ -16,7 +16,7 @@
                     5. 通过call和apply调用的函数，它们的第一个参数就是函数的this
                     6. 通过bind返回的函数，this由bind第一个参数决定（无法修改）
 
-                bind() 是函数的方法，可以用来创建一个新的函数
+                bind() 是"函数的方法"，可以用来创建一个新的函数
                     - bind可以为新函数绑定this
                     - bind可以为新函数绑定参数
 
@@ -34,18 +34,18 @@
 
             const newFn = fn.bind(obj, 10, 20, 30)
 
-            // newFn()
-
+            newFn() 
+            newFn(1, 2, 3) // 参数无法进行修改了
 
             const arrowFn = () => {
                 console.log(this)
             }
 
-            // arrowFn.call(obj)
+            arrowFn.call(obj) // this无法被就该，依然是window
 
-            const newArrowFn = arrowFn.bind(obj)
+            const newArrowFn = arrowFn.bind(obj) // // this无法被就该，依然是window
 
-            // newArrowFn()
+            newArrowFn()
 
             class MyClass{
                 fn = () => {
@@ -55,7 +55,8 @@
 
             const mc = new MyClass()
 
-            // mc.fn.call(window)
+            mc.fn.call(window)
+            mc.fn.call(obj)
         </script>
     </head>
     <body></body>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="#">
+        hobby: <input type="checkbox" class="total"> total
+        <br>
+        <input type="checkbox" class="hobby" value="fuck1"> fuck1
+        <input type="checkbox" class="hobby" value="fuck2"> fuck2
+        <input type="checkbox" class="hobby" value="fuck3"> fuck3
+        <input type="checkbox" class="hobby" value="fuck4"> fuck4
+        <input type="checkbox" class="hobby" value="fuck5"> fuck5
+        <br>
+        <button class="total">total</button>
+        <button id="no">choose no</button>
+        <button id="rever">choose reverse</button>
+        <input type="submit" value="submit" id="sub">
+    </form>
+
+    <script>
+        const totalCheck = document.querySelector('input.total')
+        const totalButton = document.querySelector('button.total')
+        const hobby = document.querySelectorAll('.hobby')
+        const no = document.querySelector('#no')
+        const rever = document.querySelector('#rever')
+        const sub = document.querySelector('#sub')
+
+        totalCheck.onclick = () => {
+            for (let h of hobby) h.checked = totalCheck.checked
+        }
+
+        totalButton.onclick = () => {
+            for (let h of hobby) h.checked = true
+            totalCheck.checked = true
+        }
+
+        for (let h of hobby) {
+            h.onclick = () => {
+                let flag = false
+                for (let h of hobby) {
+                    if (!h.checked) {
+                        flag = true
+                    }
+                }
+                totalCheck.checked = flag ? false : true
+            }
+        }
+
+        no.onclick = () => {
+            for (let h of hobby) h.checked = false
+            totalCheck.checked = false
+        }
+
+        rever.onclick = () => {
+            for (let h of hobby) h.checked = !h.checked
+            if(totalCheck.checked) totalCheck.checked = false
+        }
+
+
+    </script>
+</body>
+
+</html>

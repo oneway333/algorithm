@@ -12,36 +12,67 @@
             函数在作用域，在函数创建时就已经确定的（词法作用域）
                 和调用的位置无关
 
-            闭包利用的就是词法作用域
+            闭包利用的就是“词法作用域”
         
         */
-        function fn(){
-            console.log(a)
-        }
+        // function fn(){
+        //     console.log(a)
+        // }
 
 
-        function fn2(){
-            let a = "fn2中的a"
+        // function fn2(){
+        //     let a = "fn2中的a"
 
-            fn()
-        }
+        //     fn()
+        // }
 
         // fn2()
 
 
-        function fn3(){
-            let a = "fn3中的a"
+        // function fn3(){
+        //     let a = "fn3中的a"
 
-            function fn4(){
-                console.log(a)
-            }
+        //     function fn4(){
+        //         console.log(a)
+        //     }
 
-            return fn4
+        //     return fn4
+        // }
+
+        // let fn4 = fn3()
+
+        // fn4()
+
+        function func1(){
+            console.log(a)
         }
 
-        let fn4 = fn3()
+        func1()
 
-        fn4()
+        function func2() {
+            let a = 'shit'
+            // a = 'shit' // 擅自在全局创建了一个a
+            // var a = 'shit' // var 在代码块之外才会创建全局的变量
+            console.log(a);
+
+            func1()
+        }
+
+        func2()
+
+        function func3() {
+            let a = 'fuck'
+
+            return () => {
+                console.log(a)
+            }
+        }
+
+        let func4 = func3()
+        
+        func4()
+
+
 
     </script>
 </head>

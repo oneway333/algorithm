@@ -20,6 +20,7 @@
             }
 
             function outer(cb){
+                // 箭头函数的this比较好确定
                 return () => {
                     console.log("记录日志~~~~~")
                     const result = cb()
@@ -27,10 +28,20 @@
                 }
             }
 
+            function outer1(cb){
+                // 也可以用函数表达式的形式 
+                return function(){
+                    console.log('fuck1')
+                    return cb
+                }
+            }
+
+            console.log(outer1(someFn)()()) // 好煞笔啊。。。。哈哈哈哈
+
             let result = outer(someFn)
 
-            // console.log(result)
-
+            console.log(result)
+            console.log(result())
 
             function test(){
                 console.log("test~~~~")

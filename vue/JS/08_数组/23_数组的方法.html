@@ -31,18 +31,18 @@
                         array 被遍历的数组
 
                 filter()
-                    - 将数组中符合条件的元素保存到一个新数组中返回
+                    - 将数组中符合条件的元素保存到一个"新数组"中返回
                     - 需要一个回调函数作为参数，会为每一个元素去调用回调函数，并根据返回值来决定是否将元素添加到新数组中
                     - 非破坏性方法，不会影响原数组
 
                 map()
-                    - 根据当前数组生成一个新数组
-                    - 需要一个回调函数作为参数，
+                    - 根据当前数组生成一个新数组 好处，而forEach仅仅遍历
+                    - 需要一个"回调函数作为参数"，
                         回调函数的返回值会成为新数组中的元素
                     - 非破坏性方法不会影响原数组
 
                 reduce()
-                    - 可以用来将一个数组中的所有元素整合为一个值
+                    - 可以用来将一个数组中的所有元素"整合"为一个值
                     - 参数：
                         1. 回调函数，通过回调函数来指定合并的规则
                         2. 可选参数，初始值
@@ -53,31 +53,35 @@
 
             // arr.sort()
             arr.sort((a, b) => a - b)
-            arr.sort((a, b) => b - a)
+            console.log(arr)
 
-            // console.log(arr)
+            arr.sort((a, b) => b - a)
+            console.log(arr)
 
             arr = ["孙悟空", "猪八戒", "沙和尚", "唐僧"]
 
-            // arr.forEach((element, index, array) => {
-            //     console.log(array)
-            // })
+            arr.forEach((element, index, array) => {
+                console.log(array)
+            })
 
-            // arr.forEach((element, index) => console.log(index, element))
+            arr.forEach((element, index) => console.log(index, element))
 
             arr = [1, 2, 3, 4, 5, 6, 7, 8]
 
             // 获取数组中的所有偶数
             let result = arr.filter((ele) => ele > 5)
+            console.log(result);
 
             result = arr.map((ele) => ele * 2)
 
             arr = ["孙悟空", "猪八戒", "沙和尚"]
 
             result = arr.map((ele) => "<li>" + ele + "</li>")
+            console.log(result);
 
             arr = [1, 2, 3, 4, 5, 6, 7, 8]
 
+            // 前一次的结果最后下一次的a，b就是数组中的第三个数
             result = arr.reduce((a, b) => {
                 /* 
                     1, 2
@@ -89,9 +93,10 @@
                 // console.log(a, b)
 
                 return a * b
-            })
+            }, 10)
+            console.log(result)
 
-            // result = arr.reduce((a, b) => a + b, 10)
+            result = arr.reduce((a, b) => a + b, 10)
            
 
             console.log(result)
