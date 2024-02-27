@@ -40,6 +40,8 @@
 
         <div id="box2"></div>
 
+        <!-- 事件的冒泡和元素的样式无关，之和结构相关 -->
+        <!-- 即使box4根据定位远在天边，也不影响冒泡 -->
         <div id="box3" onclick="alert(3)">
             <div id="box4" onclick="alert(4)"></div>
         </div>
@@ -53,14 +55,26 @@
 
             const box1 = document.getElementById("box1")
             const box2 = document.getElementById("box2")
+            const box3 = document.getElementById("box3")
+            const box4 = document.getElementById("box4")
 
-            document.addEventListener("mousemove", (event) => {
-                box1.style.left = event.x + "px"
-                box1.style.top = event.y + "px"
+            // 绑定到的是document，不然没办法实现，事件的触发对象也就是事件触发的范围，最大的就是document
+            document.addEventListener("mousemove", (event) => { 
+                // box1.style.left = event.x - 50 + "px"
+                // box1.style.top = event.y - 50 + "px"
+                box1.style.left = event.clientX - 50 + "px"
+                box1.style.top = event.clientY - 50 + "px"
             })
 
             box2.addEventListener("mousemove", event => {
-                event.stopPropagation()
+                event.stopPropagation()  // 小球可能被卡住，所以有了冒泡，就可以一直移动了
+                // 这个是因为最开始绑定在document上，是box2的父元素，所以box2上的事件会产生冒泡
+                // 如果box2没有冒泡，而是停止了，那么小球在box2中可能无法运动
+
+            })
+
+            box4.addEventListener('click', e => {
+                // e.stopPropagation()
             })
         </script>
     </body>

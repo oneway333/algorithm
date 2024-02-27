@@ -29,46 +29,60 @@
             }
         </style>
 
+        <script src="./scripts/jquery-3.6.1.js"></script>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                /* 
-                    点击删除超链接后，删除当前的员工信息
-                */
+            $(function () {
+                // 删除
+                $(document).on("click", "a", function () {
+                    // alert(this) 委托时 jq将this设置为了触发事件的对象
+                    // 获取当前tr
+                    // var tr = this.parentNode.parentNode
 
-                function delEmpHandler() {
-                    // 本练习中的超链接，我们是不希望发生跳转，但是跳转行为是超链接的默认行为
-                    // 只要点击超链接就会触发页面的跳转，事件中可以通过取消默认行为来阻止超链接的跳转
-                    // 使用return false来取消默认行为，只在 xxx.xxx = function(){}这种形式绑定的事件中才适用
-                    // return false
+                    var $tr = $(this).parents("tr") // 在当前元素的祖先中寻找tr
 
-                    // 删除当前员工 删除当前超链接所在的tr
-                    // console.log(this)
-
-                    // this表示当前点击的超链接
-                    const tr = this.parentNode.parentNode
-
-                    // 获取要删除的员工的姓名
-                    // const empName = tr.getElementsByTagName("td")[0].textContent
-                    const empName = tr.firstElementChild.textContent
-
-                    // 弹出一个友好的提示
-                    if (confirm("确认要删除【" + empName + "】吗？")) {
-                        // 删除tr
-                        tr.remove()
+                    if (
+                        confirm(
+                            "确认删除【" +
+                                $tr.children()[0].textContent +
+                                "】吗？"
+                        )
+                    ) {
+                        $tr.remove()
                     }
-                }
 
-                // 获取所有的超链接
-                const links = document.links
-                // 为他们绑定单级响应函数
-                for (let i = 0; i < links.length; i++) {
-                    links[i].onclick = delEmpHandler
+                    return false
+                })
 
-                    // links[i].addEventListener("click", function(){
-                    //     alert(123)
-                    //     return false // 无法取消默认行为
-                    // })
-                }
+                // 添加
+                $("#btn").on("click", function () {
+                    // 获取用户输入的内容
+                    var name = $("#name").val().trim()
+                    var email = $("#email").val().trim()
+                    var salary = $("#salary").val().trim()
+
+                    // console.log(name + "--" + email + "--" + salary)
+                    // $("tbody").append(
+                    //     "<tr><td>" +
+                    //         name +
+                    //         "</td><td>" +
+                    //         email +
+                    //         "</td><td>" +
+                    //         salary +
+                    //         "</td><td><a href='javascript:;'>删除</a></td></tr>"
+                    // )
+
+                    // 创建一个tr
+                    var $tr = $(
+                        "<tr><td/><td/><td/><td><a href='javascript:;'>删除</a></td><tr>"
+                    )
+                    // 添加内容
+                    var $tds = $tr.find("td")
+                    $tds.eq(0).text(name)
+                    $tds.eq(1).text(email)
+                    $tds.eq(2).text(salary)
+                    // 将tr添加到tbody中
+                    $("tbody").append($tr)
+                })
             })
         </script>
     </head>
@@ -116,7 +130,7 @@
                     <label for="salary">薪资</label>
                     <input type="number" id="salary" />
                 </div>
-                <button>添加</button>
+                <button id="btn" type="button">添加</button>
             </form>
         </div>
     </body>

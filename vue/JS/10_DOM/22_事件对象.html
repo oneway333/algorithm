@@ -25,8 +25,8 @@
                             这个对象中封装了事件相关的各种信息
                         - 通过事件对象可以获取到事件的详细信息
                             比如：鼠标的坐标、键盘的按键..
-                        - 浏览器在创建事件对象后，会将事件对象作为响应函数的参数传递，
-                            所以我们可以在事件的回调函数中定义一个形参来接收事件对象
+                        - 浏览器在创建事件对象后，会将事件对象作为“响应函数”的参数传递，
+                            所以我们可以在事件的“回调函数”中定义一个“形参”来接收”事件对象“
             */
 
             const box1 = document.getElementById("box1")
@@ -35,11 +35,20 @@
             //     console.log(event)
             // }
 
-            box1.addEventListener("mousemove", event => {
-                console.log(event.clientX, event.clientY)
 
-                box1.textContent = event.clientX + "," + event.clientY
+
+            box1.addEventListener("mouesmove", event => {    // 箭头函数
+                console.log(event.clientX, event.clientY)   // this指向window
+                // console.log(this);
+                const date = new Date()
+                box1.textContent = date.toString() + ',' + event.clientX + "," + event.clientY
             })
+
+            // box1.addEventListener("mousemove", function(e){    // 函数表达式
+            //     console.log(e.clientX, e.clientY);
+            //     console.log(this);   // this指向box1
+            //     box1.textContent = e.clientX + ',' + e.clientY
+            // })
         </script>
     </body>
 </html>

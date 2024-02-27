@@ -9,7 +9,7 @@
     <body>
         <button id="btn01">按钮1</button>
         <button id="btn02">按钮2</button>
-
+        <button onclick="location.reload()">refresh</button>
         <hr />
 
         <ul id="list">
@@ -36,10 +36,10 @@
                 // 向li中添加文本
                 li.textContent = "唐僧"
                 // 给li添加id属性
-                li.id = "ts"
+                li.id = "ts" + Math.floor(Math.random() * 1000000)
 
-                // appendChild() 用于给一个节点添加子节点
-                // list.appendChild(li)
+                // appendChild() 用于给一个节点添加“子节点”
+                list.appendChild(li)
 
                 //insertAdjacentElement()可以向元素的任意位置添加元素
                 //两个参数：1.要添加的位置 2.要添加的元素
@@ -47,7 +47,8 @@
                 // beforebegin 在元素的前边插入元素（兄弟元素） afterend 在元素的后边插入元素（兄弟元素）
                 // list.insertAdjacentElement("afterend", li)
 
-                list.insertAdjacentHTML("beforeend", "<li id='bgj'>白骨精</li>")
+                // list.insertAdjacentHTML("beforeend", "<li id='bgj'>白骨精</li>")
+                // console.log(this); // 指向的按钮
 
             }
 
@@ -63,10 +64,10 @@
                 const swk = document.getElementById("swk")
 
                 // replaceWith() 使用一个元素替换当前元素
-                // swk.replaceWith(li)
+                swk.replaceWith(li)
 
                 // remove()方法用来删除当前元素
-                swk.remove()
+                // swk.remove()
 
             }
         </script>

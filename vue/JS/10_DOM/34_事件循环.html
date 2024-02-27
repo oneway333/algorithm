@@ -58,7 +58,7 @@
 
                 const begin = Date.now()
 
-                while (Date.now() - begin < 3000) {}
+                while (Date.now() - begin < 3000) {}  // 事件触发之后会强制排队一段时间，其他的事件如果此时触发，会进行排队等待
             }
 
             btn02.onclick = function () {

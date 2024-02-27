@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./script/prototypeLinks.js"></script>
         <title>Document</title>
     </head>
     <body>
@@ -22,8 +23,17 @@
                     - BOM对象都是作为window对象的属性保存的，所以可以直接在JS中访问这些对象
             */
 
+            console.log(window);
+            console.log(navigator);
+            console.log(location);
+            console.log(screen);
             console.log(history)
 
+            prototypeLinks(window)
+            prototypeLinks(navigator)
+            prototypeLinks(location)
+            prototypeLinks(screen)
+            prototypeLinks(history)
 
         </script>
     </body>

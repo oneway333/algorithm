@@ -43,7 +43,7 @@
 
             arrowFn.call(obj) // this无法被就该，依然是window
 
-            const newArrowFn = arrowFn.bind(obj) // // this无法被就该，依然是window
+            const newArrowFn = arrowFn.bind(obj) // // this无法被改变，依然是window
 
             newArrowFn()
 

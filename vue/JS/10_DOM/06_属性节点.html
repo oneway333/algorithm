@@ -15,7 +15,7 @@
                 属性节点（Attr）
                     - 在DOM也是一个对象，通常不需要获取对象而是直接通过元素即可完成对其的各种操作
                     - 如何操作属性节点：
-                        方式一：
+                        方式一： 比较方便
                             读取：元素.属性名（注意，class属性需要使用className来读取）
                             读取一个布尔值时，会返回true或false
 
@@ -26,7 +26,7 @@
 
                             修改：元素.setAttribute(属性名, 属性值)
 
-                            删除：元素.removeAttribute(属性名)
+                            删除：元素.removeAttribute(属性名)  
             */
 
             // const input = document.getElementsByName("username")[0]  // 这里返回的始终是一个list，需要取第一个元素
@@ -42,7 +42,7 @@
 
             input.setAttribute("disabled", "disabled")
 
-            input.removeAttribute('disabled')
+            input.removeAttribute('disabled')    // 这个必须remove掉才行，不能设为true来实现
 
         </script>
     </body>

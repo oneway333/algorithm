@@ -31,7 +31,8 @@
 
             const btn = document.getElementById("btn")
             const box1 = document.querySelector(".box1")
-
+            // const box1_before = document.querySelector(".box1::before") // 什么也没有，读不到
+            
             btn.onclick = function () {
                 /* 
                     getComputedStyle()
@@ -46,20 +47,37 @@
                             样式对象中返回的样式值，不一定能来拿来直接计算
                                 所以使用时，一定要确保值是可以计算的才去计算
                 */
-                const styleObj = getComputedStyle(box1)
+                // const styleObj = getComputedStyle(box1)
 
-                console.log(styleObj.width)
-                console.log(styleObj.left)
+                // console.log(styleObj.width)
+                // console.log(styleObj.left)
 
                 // console.log(parseInt(styleObj.width) + 100)
                 // box1.style.width = parseInt(styleObj.width) + 100 + "px"
 
                 // console.log(styleObj.backgroundColor)
 
-                const beforeStyle = getComputedStyle(box1, "::before")
-                // console.log(beforeStyle.color)
+                // const beforeStyle = getComputedStyle(box1, "::before")
+                // // console.log(beforeStyle.color)
 
-                console.log(box1.firstElementChild)
+                // console.log(box1.firstElementChild)
+
+                // 这种方式只允许读取，不能修改，修改需要用内联样式的方式
+                const box1_style = getComputedStyle(box1)
+                // console.log(box1_style);
+                console.log(box1_style.width);
+                console.log(box1_style.height);
+                console.log(parseInt(box1_style.height)); // parseInt会读到最后一个是数字的，当然第一个必须是数字
+
+                // 继续设置成内联样式
+                box1.style.height = (parseInt(box1_style.height) + 100).toString().concat('px')
+
+                console.log(box1_style.backgroundColor);
+
+                const box1_before = getComputedStyle(box1, '::before')
+                console.log(box1_before.content)
+                console.log(box1_before.color)
+                console.log(box1_before.display)
             }
         </script>
     </body>

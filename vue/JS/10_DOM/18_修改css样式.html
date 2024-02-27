@@ -10,6 +10,7 @@
                 width: 200px;
                 height: 200px;
                 background-color: #bfa;
+                
             }
         </style>
     </head>
@@ -28,14 +29,18 @@
             const btn = document.getElementById("btn")
             const box1 = document.querySelector(".box1")
 
-            btn.onclick = function () {
-                // 修改box1的样式
+            btn.onclick = function () {    
+                // 修改box1的样式，这个操作的是内联样式
                 // 修改样式的方式：元素.style.样式名 = 样式值
                 // 如果样式名中含有-，则需要将样式表修改为驼峰命名法
                 // background-color --> backgroundColor
-                box1.style.width = "400px"
-                box1.style.height = "400px"
-                box1.style.backgroundColor = "yellow"
+                // box1.style.width = "400px"
+                // box1.style.height = "400px"
+                // box1.style.backgroundColor = "yellow"
+                box1.style.width = box1.style.width == '300px' ? '200px' : '300px'
+                box1.style.height = box1.style.height == '300px' ? '200px' : '300px'
+                box1.style.backgroundColor = box1.style.backgroundColor == 'deepskyblue' ? 'green' : 'deepskyblue'
+
             }
         </script>
     </body>

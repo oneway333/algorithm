@@ -28,12 +28,20 @@
                         会导致document上的点击事件被触发，这样只绑定一次，所有的超链接都会具有这些事件
             */
 
-            const links = document.querySelectorAll("ul a")
+            // const links = document.querySelectorAll("ul a")
+            const links = document.links
             const list = document.getElementById("list")
             const btn = document.getElementById("btn")
 
-            document.addEventListener("click", (event) => {
-                alert(event.target.textContent)
+            // 将事件的触发范围调成最大，然后根据event.target判断触发对象，达到只绑定一次，所有超链接都实现一个功能的目的
+            // 这样只要在这个范围内，无论添加多少个超链接，都能实现功能
+            // document.addEventListener("click", (event) => {
+            //     alert(event.target.textContent) // 事件的触发对象的内容
+            //     console.log(event.target);
+            // })
+            list.addEventListener("click", (event) => {
+                alert(event.target.textContent) // 事件的触发对象的内容
+                console.log(event.target);
             })
 
             // 点击按钮后，在ul中添加一个新的li

@@ -13,14 +13,14 @@
             /* 
                 通过定时器，可以使代码在指定时间后执行
                     - 设置定时器的方式有两种：
-                        setTimeout()
+                        setTimeout()  执行一次
                             - 参数：
                                 1. 回调函数（要执行的代码）
                                 2. 间隔的时间（毫秒）
                             - 关闭定时器
                                 clearTimeout()
 
-                        setInterval() (每间隔一段时间代码就会执行一次)
+                        setInterval() (每间隔一段时间代码就会执行一次) 执行多次
                             - 参数：
                                 1. 回调函数（要执行的代码）
                                 2. 间隔的时间（毫秒）
@@ -29,23 +29,24 @@
 
             */
 
-            const timer = setTimeout(()=>{
-                alert("我是定时器中的代码")
-            }, 3000)
+            // const timer = setTimeout(()=>{
+            //     alert("我是定时器中的代码")
+            // }, 3000)
 
             // clearTimeout(timer)
 
 
             const numH1 = document.getElementById("num")
 
-            // let num = 0
+            let num = 0
 
             // const timer = setInterval(() => {
             //     num++
             //     numH1.textContent = num
 
-            //     if(num === 200){
+            //     if(num === 10){
             //         clearInterval(timer)
+            //         console.log(this);
             //     }
             // }, 30)
 

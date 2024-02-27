@@ -44,6 +44,7 @@
             static func3(){
                 console.log('fuck3', this)
                 console.log('fuck3', this.name)
+                console.log('fuck3', typeof this)
             }
         }
 
@@ -53,7 +54,7 @@
         h2.name = 'damn'
         h1.func1();
         h1.func2();
-        Hentai.func3();
+        Hentai.func3();    // 静态方法中的this在被调用时会指向当前类
 
         h2.func1();
         h2.func2();

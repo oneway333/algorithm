@@ -69,6 +69,14 @@
             console.log(Object.hasOwn(p, 'shit'))
             console.log('shit' in p1)
 
+            const obj1 = {
+                fuck: Person,
+                shit: 1
+            }
+
+            console.log(obj1, obj1.fuck);
+            console.log(new obj1.fuck());    // 甚至可以这么玩，原因还是js中的类实际上是function
+
         </script>
     </head>
     <body></body>
