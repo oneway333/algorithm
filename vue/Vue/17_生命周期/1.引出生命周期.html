@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.引出生命周期</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 绑定style样式，要用对象的写法才对 -->
+        <h2 :style="{opacity, backgroundColor: color}">fuck you</h2>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                opacity: 1,
+                color: '#ff0000'
+            },
+            // Vue完成模板的解析并把初始的真实DOM元素放入页面后调用mounted
+            // 生命周期回调函数，生命周期函数，生命周期钩子
+            mounted() {
+                // setInterval(() => {
+                //     // 这里的this指向外部函数的this，也就是mounted的this，而mounted的this就是Vue对象，或者组件实例对象
+                //     this.opacity = this.opacity <= 0 ? 1 : this.opacity - 0.1
+                // }, 100)
+
+                // 这里竟然不能给类型，应该是作为属性来定义了
+                setTimeout(fn = () => {
+                    this.opacity = this.opacity <= 0 ? 1 : this.opacity - 0.1
+                    setTimeout(fn, 100)
+                }, 100)
+
+            }
+        })
+
+        // const h2 = document.querySelector('h2')
+
+        // 最完美的定时器
+        // setTimeout(function fn(){
+        //     h2.style.opacity = h2.style.opacity == 0 ? 1 : h2.style.opacity - 0.1
+        //     setTimeout(fn, 100)
+        // }, 100)
+    </script>
+</body>
+
+</html>

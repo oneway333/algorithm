@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2.分析生命周期 非常重要</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>now {{n}}</h2>
+        <button @click="add">n++</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                n: 1,
+            },
+            methods: {
+                add(){
+                    this.n++
+                }
+            },
+            beforeCreate () {
+                console.log('beforeCreate', this);
+                // debugger
+            },
+            created () {
+                // 数据监视和数据代理上线
+                // 挂到el配置的HTML元素上
+            },
+            beforeMount () {
+                
+            },
+            mounted() {
+                // ajax请求，启动定时器，绑定自定义事件，订阅消息
+            },
+            beforeUpdate () {
+                
+            },
+            updated () {
+                
+            },
+            beforeDestroy () {
+                // 清除定时器，解绑自定义事件，取消订阅消息
+                console.log('beforeDestroy');
+            },
+            destroyed () {
+                console.log('destroyed');
+            },
+            beforeUnmount() {
+                console.log('beforeUnmount');
+            },
+            unmounted(){
+                console.log('unmounted');
+            }
+        })        
+        // setTimeout(()=>{
+        //     // vm = null
+        // }, 2000)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>now n: <span v-text="n"></span></h2>
+        <h2>10 times n: <span v-big="n"></span></h2>
+        <button @click="n++">n++</button>
+        <hr>
+        <input type="text" :value="n">
+        <input type="text" v-fbind:value="n">
+    </div>
+
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                n: 1,
+                str: '',
+            },
+            directives: {
+                // 当指令与元素绑定成功，或者指令所在的模板被重新解析时big被调用
+                // 传入两个参数，一个是当前元素，一个是绑定的表达式
+                big(element, binding) {
+                    // console.log(e);
+                    element.textContent = binding.value * 10
+                },
+
+                // 第一种写法
+                // fbind(element, binding){
+                //     element.value = binding.value
+                //     element.setAttribute("autofocus", "autofocus")
+                // }
+
+                // 第二种写法
+                fbind: {
+                    // 指令与元素成功绑定时
+                    bind(element, binding){
+                        element.value = binding.value
+                    },
+                    // 元素被插入页面时
+                    inserted(element, binding){
+                        element.focus()
+                    },
+                    // 指令所在模板被重新解析时
+                    update(element, binding){
+                        element.value = binding.value
+                    }
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>
