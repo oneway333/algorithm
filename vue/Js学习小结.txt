@@ -13,6 +13,7 @@ JS中原始值一共有七种
 6.Undefined
 7.Symbol
 
+asdfasdfsadf
 
 ...展开运算符
 可以复制，做函数形参

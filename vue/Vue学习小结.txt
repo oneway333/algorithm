@@ -7,6 +7,7 @@ Vue是怎样实现数据监视的？应该也就是通过给每个属性（无�
 {{js表达式}}
 可以写{{data中的属性}}，{{n++}}, {{}}
 
+adfasdfasdfasdfsfdf
 
 @click="showInfo"    // 双引号里面也可以写js表达式
 @click="showInfo1($event, 321)"  // 回调函数可以配置多个参数，事件对象要加$event
