@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>1.绑定样式</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .basic {
+            width: 400px;
+            height: 200px;
+            border: 2px solid red;
+            margin-bottom: 50px;
+        }
+
+        .happy {
+            background-color: yellow;
+        }
+
+        .sad {
+            background-color: gray;
+        }
+
+        .normal {
+            background-color: green;
+        }
+
+        .fuck1 {
+            background-image: linear-gradient(red, yellow, blue);
+        }
+
+        .fuck2 {
+            font-size: 30px;
+        }
+
+        .fuck3 {
+            border-radius: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- 通过v-bind绑定 class 来实现对样式的控制 -->
+        <!-- 数组可以实现样式的动态添加与删除 -->
+        <div class="basic" :class="pat1">{{name}}</div> 
+        <!-- 对象形式可以控制已有样式的显示与否 -->
+        <div class="basic" :class="pat2">{{name}}</div>
+        <!-- 直接绑定style，不掌握了，没啥用 -->
+        <div class="basic" :style="">{{name}}</div>
+        <button @click="change_mood">change Mood</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data :{
+                name: 'shit',
+                pat1: [],     // 这个是数组，可以使用数组的方法
+                pat2: {       // 也可以写成对象，给每个样式true或者false
+                    fuck1: true,
+                    fuck2: true,
+                },
+            },
+            methods: {
+                change_mood(){
+                    this.pat1.push('fuck1')    // 将这些样式添加进class中
+                    this.pat1.push('fuck2')
+                    this.pat1.push('fuck3')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

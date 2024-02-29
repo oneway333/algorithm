@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>6.Vue监测数据改变的原理</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h3>{{name}}</h3>
+        <h3>{{addr}}</h3>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'shit',
+                addr: 'fuck',
+            }
+        })
+    </script>
+</body>
+</html>

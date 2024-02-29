@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- {{}} 文本读取 -->
+        <h3>{{name[0]}}</h3>
+        <h3>{{name[1]}}</h3>
+        <hr>
+        <!-- 这是一种 指令 -->
+        <!-- v-bind:XXX="" 属性读取 -->
+        <a v-bind:href="url">{{name[2]}}</a>
+        <!-- 简写形式 -->
+        <a :href="url">shit</a>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                name: ['fuck','shit', 'damn'],
+                url: 'https://www.baidu.com'
+            }
+        })
+    </script>
+</body>
+</html>

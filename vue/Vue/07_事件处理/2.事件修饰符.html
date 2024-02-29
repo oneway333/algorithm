@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>2.事件修饰符</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>{{name}} you</h1>
+        <a href="https://www.baidu.com" @click="showInfo">shit</a> <br>
+        <!-- prevent能阻止跳转的默认事件 -->
+        <a href="https://www.baidu.com" @click.prevent="showInfo">shit</a> <br>
+
+        <!-- 事件的冒泡 -->
+        <div style="width: 100px;height: 100px;background-color: red;text-align: center;line-height: 100px;;" 
+            @click="showInfo">
+            <!-- 阻止事件的冒泡 -->
+            <button @click.stop="showInfo">shit</button><br>
+            <!-- 即阻止冒泡又阻止跳转 -->
+            <a href="https://www.baidu.com" @click.prevent.stop="showInfo">shit</a>
+        </div>
+
+        <!-- 只发生一次 -->
+        <button @click.once="showInfo">shit</button>    
+        
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'fuck',
+            },
+            methods: {
+                showInfo(e){
+                    // e.preventDefault()    // 阻止默认事件的触发
+                    // e.stopPropagation()    // 阻止冒泡
+                    alert('fuck you')                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>

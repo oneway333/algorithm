@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>收集表单数据</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 绑定表单提交的事件，pervent阻止默认事件的修饰符 -->
+        <form action="" @submit.prevent="demo">
+            <!-- v-model的修饰符，会移除前后空格 -->
+            account: <input v-model.trim="userInfo.account" type="text" autofocus placeholder="fuck you"><br>
+            password: <input type="password" v-model="userInfo.pwd"><br>
+            <!-- v-model的修饰符，这个类型必须是数字 -->
+            age: <input type="number" v-model.number="userInfo.age"><br>
+            gender:
+            <!-- input为radio时的数据绑定 -->
+            <input type="radio" name="gender" v-model="userInfo.gender" value="male"> male
+            <input type="radio" name="gender" v-model="userInfo.gender" value="female"> female
+            <br>
+            hobbies:
+            <!-- input为checkbox时的数据绑定 -->
+            <!-- hobby记得要变成数据类型 -->
+            <input type="checkbox" v-model="userInfo.hobby" value="fuck1"> fuck1
+            <input type="checkbox" v-model="userInfo.hobby" value="fuck2"> fuck2
+            <input type="checkbox" v-model="userInfo.hobby" value="fuck3"> fuck3
+            <br>
+            city:
+            <!-- select的数据绑定 -->
+            <select v-model="userInfo.city">
+                <option value="">fuck</option>
+                <option value="shit1">shit1</option>
+                <option value="shit2">shit2</option>
+                <option value="shit3">shit3</option>
+                <option value="shit4">shit4</option>
+            </select>
+            <br>
+            other:
+            <!-- textarea的数据绑定 -->
+            <!-- v-model的修饰符，当textares失去焦点时更新vue的data -->
+            <textarea cols="30" rows="10" v-model.lazy="userInfo.other" v-model="other"></textarea> <br>
+            <!-- 单个checkbox中，v-model绑定的是checked，默认为false -->
+            <input type="checkbox" v-model="userInfo.agree"> reading
+            <a href="javascript:;">agreement</a> <br>
+            <input type="submit">
+        </form>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                userInfo: {
+                    account: '',
+                    pwd: '',
+                    gender: '',
+                    hobby: [],
+                    city: '',
+                    other: '',
+                    agree: false,
+                    age: '',
+
+                }
+            },
+            methods: {
+                demo() {
+                    console.log(JSON.stringify(this.userInfo));
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

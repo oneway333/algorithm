@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>4.列表排序 重要</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        li {
+            width: 200px;
+            height: 100px;
+            border: 2px red solid;
+        }
+
+        #root {
+            /* display: flex; */
+            width: 600px;
+            flex-wrap: wrap;
+            /* justify-content: right; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <input type="text" v-model="search">
+        <button @click="sortType = 2">age 升序</button>
+        <button @click="sortType = 1">age 降序</button>
+        <button @click="sortType = 0">age 原顺序</button>
+        <ul v-for="p of bakPersons" :key="p.id">
+            <li>
+                {{p.name}}-{{p.age}}-{{p.gender}}-{{p.id}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        // 用监视实现
+        new Vue({
+            el: '#root',
+            data: {
+                persons: [
+                    {
+                        id: 1,
+                        name: 'fuck1',
+                        gender: 'male',
+                        age: 12,
+                    },
+                    {
+                        id: 2,
+                        name: 'shit2',
+                        gender: 'female',
+                        age: 17
+                    },
+                    {
+                        id: 3,
+                        name: 'damn3',
+                        gender: 'male',
+                        age: 14
+                    },
+                    {
+                        id: 4,
+                        name: 'damn4',
+                        gender: 'female',
+                        age: 15
+                    },
+                ],
+                search: '',
+                sortType: 0,    // 0 原顺序, 1 降序, 2 升序
+            },
+            methods: {
+            },
+            computed: {
+                bakPersons(){
+                    const t = this.persons.filter(p => p.name.includes(this.search))
+                    // 操作数组中的对象时的sort
+                    if (this.sortType == 2) return t.sort((a, b) => a.age - b.age)
+                    else if (this.sortType == 1) return t.sort((a, b) => b.age - a.age)
+                    else return t
+                }                
+            }
+        })
+        
+
+    </script>
+</body>
+
+</html>

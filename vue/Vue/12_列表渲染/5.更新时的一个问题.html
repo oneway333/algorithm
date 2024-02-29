@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>5.更新时的一个问题 重要</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        li {
+            width: 200px;
+            height: 100px;
+            border: 2px red solid;
+        }
+
+        #root {
+            /* display: flex; */
+            width: 600px;
+            flex-wrap: wrap;
+            /* justify-content: right; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <button @click="update1">update</button>
+        <ul v-for="p of persons" :key="p.id">
+            <li>
+                {{p.name}}-{{p.age}}-{{p.gender}}-{{p.id}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        // 用监视实现
+        new Vue({
+            el: '#root',
+            data: {
+                persons: [
+                    {
+                        id: 1,
+                        name: 'fuck1',
+                        gender: 'male',
+                        age: 12,
+                    },
+                    {
+                        id: 2,
+                        name: 'shit2',
+                        gender: 'female',
+                        age: 17
+                    },
+                    {
+                        id: 3,
+                        name: 'damn3',
+                        gender: 'male',
+                        age: 14
+                    },
+                    {
+                        id: 4,
+                        name: 'damn4',
+                        gender: 'female',
+                        age: 15
+                    },
+                ],
+                search: '',
+            },
+            methods: {
+                update1() {
+
+                    for (let p of this.persons) {
+                        if (p.name == 'fuck1') {
+                            // 第一种写法
+                            // p.age = 33
+                            // p.name = 'shit'
+                            // p.gender = 'female'
+
+                            // 这个第二种写法不奏效
+                            p = {
+                                id: 1,
+                                name: 'shit',
+                                gender: 'female',
+                                age: 3,
+                            }
+
+                        }
+                    }
+
+                }
+            },
+            computed: {
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

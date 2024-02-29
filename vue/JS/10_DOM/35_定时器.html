@@ -60,6 +60,11 @@
         // }, 0)
 
         // console.log(222222)  // 相比于11111先执行
+
+        setTimeout(function fn(){
+            alert('fuck')
+            setTimeout(fn, 3000)
+        }, 3000)
     </script>
 </body>
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>4.v-once_指令</title>
+    <script src="../js/vue.js"></script>
+
+</head>
+
+<body>
+    <!-- v-bind v-model v-for v-on v-show v-if v-else-if v-else -->
+    <div id="root">
+        <!-- 此处n只会变化一次 -->
+        <h2 v-once>initial n: {{n}}</h2>
+        <h2>now n: {{n}}</h2>
+        <button @click="n++">n++</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                n: 1,
+            },
+            methods: {
+            }
+        })
+    </script>
+</body>
+
+</html>

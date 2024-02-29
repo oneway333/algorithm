@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>1.天气案例_监视属性</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>weather is {{name}}</h1>
+        <button @click="change_status">change status</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'fuck'
+            },
+            methods: {
+                change_status(){
+                    this.name = this.name == 'fuck' ? 'shit' : 'fuck'
+                }
+            },
+            // 监视属性
+            watch: {
+                name: {
+                    // immediate: true,    // 在handler执行之前会执行一次
+                    handler(new_val, old_val){
+                        console.log(new_val, old_val);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

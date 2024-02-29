@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>3.天气案例_深度监视</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>weather is {{name}}</h1>
+        <button @click="change_status">change status</button>
+        <hr>
+        <h3>a: {{nums.a}}</h3>
+        <button @click="nums.a++">a++</button><br><br>    <!-- 可以写函数表达式的 -->
+        <button @click="plus_a">a++</button><br><br>
+        <button @click="nums.b++">b++</button><br><br>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'fuck',
+                nums: {
+                    a: 1,
+                    b: 1
+                }
+            },
+            methods: {
+                change_status(){
+                    this.name = this.name == 'fuck' ? 'shit' : 'fuck'
+                },
+                plus_a(){
+                    this.nums.a++
+                }
+            },
+            // 监视属性
+            watch: {
+                name: {
+                    // immediate: true,    // 在handler执行之前会执行一次
+                    handler(new_val, old_val){
+                        console.log(new_val, old_val);
+                    }
+                },
+                // 监视多级属性中某个的变化
+                'nums.a': {
+                    handler(new_val, old_val){
+                        console.log(new_val, old_val);
+                    }
+                },
+
+                // 监视多级属性中所有属性的变化
+                nums: {
+                    deep: true,
+                    handler(new_val, old_val){
+                        console.log(new_val, old_val);
+                    }
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>

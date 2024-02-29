@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>1.天气案例</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>weather is {{name}}</h1>
+        <button @click="change_status">change status</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'fuck'
+            },
+            methods: {
+                change_status(){
+                    // console.log(e.target.previousElementSibling);
+                    // console.log(this.name);
+                    this.name = this.name == 'fuck' ? 'shit' : 'fuck'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

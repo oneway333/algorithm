@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>1.条件渲染 重要</title>
+    <script src="../js/vue.js"></script>
+    
+</head>
+<body>
+    <div id="root">
+        <!-- v-show相当于display: none -->
+        <div style="font-size: 40px;" v-show="flag">fuck {{name}}</div> <br>
+        <!-- 控制是否渲染 -->
+        <button @click="flag = !flag">show</button>
+        <hr>
+        <!-- v-if主要是会删除节点，相当于 DPM中的 element.remove() -->
+        <!-- v-else-if成立必须当前节点的上一个兄弟节点有v-if修饰，因此下方div之间不能有除了空白节点之外的任何东西 -->
+        <!-- 太垃圾了 -->
+        <div style="font-size: 40px;" v-if="n % 4 == 0">fuck1 {{name}}</div>
+        <div style="font-size: 40px;" v-else-if="n % 4 == 1 ">fuck2 {{name}}</div>
+        <div style="font-size: 40px;" v-else-if="n % 4 == 2">fuck3 {{name}}</div>
+        <div style="font-size: 40px;" v-else>fuck4 {{name}}</div>
+        <button @click="n++">n++</button>
+
+        <!-- 模板标签，可以绑定事件，但是在最后不会出现在页面上 -->
+        <!-- 但是必须使用v-if修饰，所以是个垃圾 -->
+        <template v-if="false">
+            <h1>fuck you!!!</h1>
+        </template>
+
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'shit',
+                flag: true,
+                n: 1,
+            },
+            // watch: {
+            //     n(new_val, old_val){
+            //         console.log(new_val, old_val);
+            //         console.log(this.n % 3 == 0);
+            //     }
+            // }
+        })
+    </script>
+</body>
+</html>

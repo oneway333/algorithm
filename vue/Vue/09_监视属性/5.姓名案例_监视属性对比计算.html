@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>5.姓名案例_监视属性对比计算</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        fuck <input type="text" v-model="fuck"> <br><br>
+        you <input type="text" v-model="you"><br><br>
+        full <span>{{fuck}} - {{you}}</span>
+        full <span>{{fuck}} - {{you}}</span>
+        <!-- 神经病写法 -->
+    </div>
+    <script>
+        new Vue({
+            el:'#root',
+            data:{
+                fuck: 'fuck',
+                you:'you'
+            },
+        })
+    </script>
+</body>
+</html>

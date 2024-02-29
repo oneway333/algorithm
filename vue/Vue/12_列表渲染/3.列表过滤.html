@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>3.列表过滤 重要</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        li {
+            width: 200px;
+            height: 100px;
+            border: 2px red solid;
+        }
+
+        #root {
+            /* display: flex; */
+            width: 600px;
+            flex-wrap: wrap;
+            /* justify-content: right; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 模糊搜索 -->
+        <!-- 这里要用双向绑定使得搜索框输入值绑定到data -->
+        <input type="text" v-model="search">
+        <button @click="add_person">add person</button>
+        <ul v-for="p of bakPersons" :key="p.id">
+            <li>
+                {{p.name}}-{{p.age}}-{{p.gender}}-{{p.id}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        // 用监视实现
+        /*
+        new Vue({
+            el: '#root',
+            data: {
+                persons: [
+                    {
+                        id: 1,
+                        name: 'fuck1',
+                        gender: 'male',
+                        age: 12,
+                    },
+                    {
+                        id: 2,
+                        name: 'shit2',
+                        gender: 'female',
+                        age: 13
+                    },
+                    {
+                        id: 3,
+                        name: 'damn3',
+                        gender: 'male',
+                        age: 14
+                    },
+                    {
+                        id: 4,
+                        name: 'damn4',
+                        gender: 'female',
+                        age: 15
+                    },
+                ],
+                search: '',
+                bakPersons: [],    // 用这个作为真正展示用的数据，从而保留原数据
+            },
+            methods: {
+                add_person(){
+                    this.persons.unshift({
+                        id: 5,
+                        name: 'fuck5',
+                        age: 16,
+                    },)
+                }
+            },
+            watch: {
+                search: {
+                    immediate:true,    // 由于需要先进性一次handler，使得bakPerson与persons建立连接
+                    // deep: true,
+                    // 只要获取一个新的值就行了
+                    handler(val){
+                        // console.log(val);
+                        // filter进行数组的过滤
+                        this.bakPersons = this.persons.filter(p => p.name.includes(this.search))
+                    }
+                }
+            }
+        })
+        */
+
+        // 用计算属性，计算属性适合一个属性是由另一个属性获得的情况
+        // 计算属性一开始就会执行，不会出现监视属性第一次不执行的情况
+        // 所以计算属性在语义和实现上都比监视属性优雅
+        new Vue({
+            el: '#root',
+            data: {
+                persons: [
+                    {
+                        id: 1,
+                        name: 'fuck1',
+                        gender: 'male',
+                        age: 12,
+                    },
+                    {
+                        id: 2,
+                        name: 'shit2',
+                        gender: 'female',
+                        age: 13
+                    },
+                    {
+                        id: 3,
+                        name: 'damn3',
+                        gender: 'male',
+                        age: 14
+                    },
+                    {
+                        id: 4,
+                        name: 'damn4',
+                        gender: 'female',
+                        age: 15
+                    },
+                ],
+                search: '',
+            },
+            methods: {
+                add_person(){
+                    this.persons.unshift({
+                        id: 5,
+                        name: 'fuck5',
+                        age: 16,
+                    },)
+                }
+            },
+            computed: {
+                
+                bakPersons: {
+                    get() {    // 必须是函数表达式
+                        return this.persons.filter(p => p.name.includes(this.search))
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

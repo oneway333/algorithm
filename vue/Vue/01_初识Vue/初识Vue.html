@@ -8,17 +8,23 @@
 </head>
 <body>
     <div id="root">
-        <!-- 双大括号，记起来了 -->
+        <!-- 双大括号获取data中的属性 -->
         <h1>{{name}} you</h1>
+        
+        <!-- 双大括号里面可以写js表达式 -->
+        <h1>{{name.toUpperCase()}} you</h1>
+        <h1>{{Date.now()}}</h1>
     </div>
     <script>
         // 创建Vue实例
-        const x = new Vue({
+        new Vue({
             el: '#root', // element
             data: {
                 name: 'fuck'
             }
         })
+        
+
     </script>
 </body>
 </html>

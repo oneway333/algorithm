@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>3.键盘事件</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>{{name}} you</h1>
+
+        <input type="text" placeholder="enter"        
+        @keyup.enter="showInfo"><br>   <!-- 代表键盘上enter键抬起来，触发事件，下面依次类推 -->
+
+        <input type="text" placeholder="delete"        
+        @keyup.delete="showInfo"><br>
+
+        <input type="text" placeholder="esc"        
+        @keyup.esc="showInfo"><br>
+
+        <input type="text" placeholder="space"
+        @keyup.space="showInfo"><br>
+
+        <input type="text" placeholder="tab"        
+        @keydown.tab="showInfo"><br>    <!-- tab最好用keydown事件 -->
+
+        <input type="text" placeholder="up"        
+        @keyup.up="showInfo"><br>
+
+        <input type="text" placeholder="down"        
+        @keyup.down="showInfo"><br>
+
+        <input type="text" placeholder="left"        
+        @keyup.left="showInfo"><br>
+
+        <input type="text" placeholder="right"        
+        @keyup.right="showInfo"><br>
+
+        <input type="text" placeholder="ctrl c"        
+        @keyup.ctrl.c="showInfo"><br>    <!-- 可以写多个 -->
+
+        <input type="text" placeholder="fuck you"        
+        @keyup="showInfo"><br>
+
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'fuck',
+            },
+            methods: {
+                showInfo(e){                    
+                    console.log(e.key);
+                    console.log(e.target.value);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

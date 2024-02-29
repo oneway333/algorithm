@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>1.事件的基本使用</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>{{name}}</h1>
+        <button onclick="alert('fuck you1')">fuck you</button><br>
+        <!-- v-on:click 当点击的时候 -->
+        <button v-on:click="showInfo">fuck you</button><br>
+        <!-- 简写 -->
+        <button @click="showInfo">fuck you 不传参</button><br>
+        <!-- 传入额外参数 -->
+        <button @click="showInfo1($event, 321)">fuck you 传参</button><br>
+    </div>
+    <script>
+        new Vue({
+            el:'#root',
+            data: {
+                name: 'fuck',
+            },
+            methods: {
+                // js中事件的回调函数，里面会有event对象
+                showInfo(e){
+                    // alert('fuck you2')
+                    // args.forEach(item => console.log(item))
+                    console.log(e.target);
+                    console.log(e.target.textContent);
+                },
+                // showInfo:() => { 
+                //     console.log(this); // window
+                // }
+                showInfo1(e, num){
+                    console.log(num);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

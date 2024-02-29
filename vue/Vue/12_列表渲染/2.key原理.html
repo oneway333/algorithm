@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.基本列表 重要</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        li {
+            width: 100px;
+            height: 100px;
+            border: 2px red solid;
+        }
+
+        #root {
+            /* display: flex; */
+            width: 600px;
+            flex-wrap: wrap;
+            /* justify-content: right; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <button @click="add_person">add person</button>
+        <ul v-for="p of persons" :key="p.id">
+            <li>
+                {{p.name}}-{{p.age}}-{{p.id}}
+                <input type="text">    <!-- 如果有key属性，input中的值会进行保留，也就是diff算法的优化 -->
+            </li>
+        </ul>
+        <!-- <ul v-for="(p, index) of persons" :key="index">
+            <li>
+                {{p.name}}-{{p.age}}-{{index}}
+                <input type="text">
+            </li>
+        </ul> -->
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                persons: [
+                    {
+                        id: 1,
+                        name: 'fuck1',
+                        age: 12,
+                    },
+                    {
+                        id: 2,
+                        name: 'shit2',
+                        age: 13
+                    },
+                    {
+                        id: 3,
+                        name: 'damn3',
+                        age: 14
+                    },
+                    {
+                        id: 4,
+                        name: 'damn4',
+                        age: 15
+                    },
+                ],
+            },
+            methods: {
+                add_person(){
+                    this.persons.unshift({
+                        id: 5,
+                        name: 'fuck5',
+                        age: 16,
+                    },)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

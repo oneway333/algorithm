@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 这个变data不变 -->
+        单向数据绑定 <input type="text" :value="name">
+        <br>
+        <!-- 这个变data变，但是v-model只能用在value属性上，其他的会报错 -->
+        双向数据绑定 <input type="text" v-model:value="name">
+        <!-- 简写 -->
+        双向数据绑定 <input type="text" v-model="name">
+        <br>
+
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'shit',
+                url: 'https://www.baidu.com'
+            }
+        })
+    </script>
+</body>
+</html>

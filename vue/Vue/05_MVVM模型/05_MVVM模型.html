@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- view 视图-->
+        <h1>{{name}} you</h1>
+    </div>
+    <script>
+        new Vue({    // 视图模型，viewModel，控制模型数据变化的时候，刷新视图
+            // model 模型数据   
+            el: '#root',
+            data: {
+                name: 'fuck',
+            }
+        })
+    </script>
+</body>
+</html>

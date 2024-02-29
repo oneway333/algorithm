@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.v-text_指令</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- v-bind v-model v-for v-on v-show v-if v-else-if v-else -->
+    <div id="root">
+        <h1>{{name}}</h1>
+        <!-- 将内容完全当文本插入标签中 -->
+        <!-- 怀疑用的是textContent -->
+        <h1 v-text="name">fuck</h1>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                name: "shit"
+            },
+            methods: {
+            }
+        })
+    </script>
+</body>
+
+</html>

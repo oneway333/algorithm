@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.基本列表 重要</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        li {
+            width: 100px;
+            height: 100px;
+            border: 2px red solid;
+        }
+
+        #root {
+            display: flex;
+            width: 500px;
+            flex-wrap: wrap;
+            /* justify-content: right; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 列表渲染 -->
+        <!-- 这里还是数组用of 对象用in，或者随便混淆，都一样 -->
+        <!-- 需要给key，来进行后续的diff算法 -->
+        <ul v-for="p of persons" :key="p.id">
+            <li>{{p.name}}-{{p.age}}-{{p.id}}</li>
+        </ul>
+        <!-- 也可以这么写，让index作为key -->
+        <!-- <ul v-for="p,index in persons" :key="index">
+            <li>{{p.name}}-{{p.age}}-{{index}}</li>
+        </ul> -->
+        <!-- 对象用in，或者随便混淆，都一样 -->
+        <ul v-for="a in animals" :key="a.id">
+            <li>{{a.id}}-{{a.name}}</li>
+        </ul>
+        <!-- 还可以遍历字符串 -->
+        <ul v-for="(s, index) of str">
+            <li>{{s}}-{{index}}</li>
+        </ul>
+        <!-- 遍历次数，好煞笔啊。。。 -->
+        <ul v-for="(s, index) of 5">
+            <li>{{s}}-{{index}}</li>
+        </ul>
+
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                persons: [
+                    {
+                        id: 1,
+                        name: 'fuck1',
+                        age: 12,
+                    },
+                    {
+                        id: 2,
+                        name: 'shit2',
+                        age: 13
+                    },
+                    {
+                        id: 3,
+                        name: 'damn3',
+                        age: 14
+                    },
+                    {
+                        id: 4,
+                        name: 'damn4',
+                        age: 15
+                    },
+                ],
+                animals: {
+                    fuck1: {id: 5, name:'fuck1'},
+                    fuck2: {id: 6, name:'fuck2'},
+                    fuck3: {id: 7, name:'fuck3'},
+                },
+                str: 'fuckyou'
+            },
+        })
+    </script>
+</body>
+
+</html>

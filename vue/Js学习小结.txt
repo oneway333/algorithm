@@ -7,11 +7,171 @@
 JS中原始值一共有七种
 1.Number
 2.BigInt
-3.String
+3.77
 4.Boolean
 5.Null
 6.Undefined
 7.Symbol
+
+
+...展开运算符
+可以复制，做函数形参
+arr1 = [...arr2]
+arr = [...obj]
+arr = [...map]
+
+对象的复制
+Object.assign(destination, obj)
+window.structuredClone()    由于是window开头的，可以不写
+
+
+数据方法
+Array.isArray()    用来检查一个对象是否是数组
+arr = Array.from(map) // [["name","孙悟空"],["age",18]]
+at()               可以根据索引获取数组中的指定元素   at可以接收负索引作为参数
+concat()           用来连接两个或多个数组  非破坏性方法，不会影响原数组，而是返回一个新的数组
+indexof()          获取元素在数组中第一次出现的索引  参数： 1. 要查询的元素  2. 查询的起始位置
+lastindexof()       - 获取元素在数组中最后一次出现的位置，也有两个参数
+join()          数组转字符串
+slice()         切片，传一个开始一个结束位置，也可以用来复制 arr1 = arr.slice()
+push()         末尾添加一个或多个元素
+pop()          删除并返回最后一个元素
+unshift()      开头添加一个或多个元素
+shift()        删除并返回开头一个元素
+splice()       可以删除、插入、替换数组中的元素
+参数：
+1. 删除的起始位置
+2. 删除的数量
+3. 要插入的元素
+
+reverse()     反转数组
+sort()        arr.sort((a, b)=> a - b) 升序   arr.sort((a, b)=> b - a) 降序
+forEach()     遍历
+arr.forEach((element, index, array) => {
+    console.log(array)
+})
+
+filter()      将数组中符合条件的元素保存到一个"新数组"中返回
+arrNew = arr.filter((a)=>{某些满足条件的元素，最后记得return true/false，但是如果只有一行就默认return表达式的返回值})
+
+map()       根据当前数组生成一个新数组 好处，而forEach仅仅遍历
+result = arr.map((ele) => ele * 2)
+result = arr.map((ele) => "<li>" + ele + "</li>")
+
+reduce()    可以用来将一个数组中的所有元素"整合"为一个值
+参数：
+  1. 回调函数，通过回调函数来指定合并的规则
+  2. 可选参数，初始
+result = arr.reduce((a, b) => a + b, 10)
+
+
+
+Map    散列表
+创建：
+    new Map()
+
+属性和方法：
+map.size() 获取map中键值对的数量
+map.set(key, value) 向map中添加键值对
+map.get(key) 根据"key获取值"
+map.delete(key) 删除指定数据
+map.has(key) 检查map中是否包含指定键
+map.clear() 删除全部的键值对
+map.forEach((key, value)=>{
+                console.log(key, value)
+            })
+            
+
+Set    集合
+创建
+    - new Set()
+    - new Set([...])
+
+方法
+    size 获取数量
+    add() 添加元素
+    has() 检查元素
+    delete() 删除元素
+    
+
+Math    数学工具类
+- 常量：
+    Math.PI 圆周率
+- 方法：
+    Math.abs() 求一个数的绝对值
+    Math.min() 求多个值中的最小值
+    Math.max() 求多个值中的最大值
+    Math.pow() 求x的y次幂
+    Math.sqrt() 求一个数的平方根   可以用 x**x替代
+    Math.floor() 向下取整
+    Math.ceil() 向上取整
+    Math.round() 四舍五入取整
+    Math.trunc() 直接去除小数位
+    Math.random() 生成一个0-1之间的随机数
+
+
+Date    日期类
+创建    new Date()
+getFullYear() 获取4位年份
+getMonth() 返当前日期的月份（0-11）
+getDate() 返回当前是几日
+getDay() 返回当前日期是周几（0-6） 0表示周日
+......
+getTime() 返回当前日期对象的时间戳
+    时间戳：自1970年1月1日0时0分0秒到当前时间所经历的毫秒数
+    计算机底层存储时间时，使用都是时间戳
+Date.now() 获取当前的时间戳
+
+
+字符串:
+串其本质就是一个字符数组
+串的很多方法都和数组是非常类似的属性和方法：
+length 获取字符串的长度
+字符串[索引] 获取指定位置的字符
+str.at() （实验方法）
+    - 根据索引获取字符，可以接受负索引
+str.charAt()
+    - 根据索引获取字符
+str.concat()
+    - 用来连接两个或多个字符串
+str.includes()
+    - 用来检查字符串中是否包含某个内容
+        有返回true
+        没有返回false
+str.indexOf()
+str.lastIndexOf()
+    - 查询字符串中是否包含某个内容
+str.startsWith()
+    - 检查一个字符串是否以指定内容开头
+str.endsWith()
+    - 检查一个字符串是否以指定内容结尾
+str.padStart()
+str.padEnd()
+    - 通过添加指定的内容，使字符串保持某个长度
+str.replace()
+    - 使用一个新字符串替换一个指定内容  
+str.replaceAll()    
+    - 使用一个新字符串替换所有指定内容
+str.slice()
+    - 对字符串进行切片
+str.substring()
+    - 截取字符串
+str.split()
+    - 用来将一个字符串拆分为一个数组
+str.toLowerCase()
+    - 将字符串转换为小写
+str.toUpperCase()
+    - 将字符串转换为大写
+str.trim()
+    - 去除前后空格
+str.trimStart()
+    - 去除开始空格
+str.trimEnd()
+    - 去除结束空格
+
+
+
+
 
 字符串方法 XX.toString()  String(XXX) window下的方法
 数值的方法 Number(XXX), parseInt(XXX), parseFloat(XXX)
@@ -65,6 +225,171 @@ obj.__proto__.xxx = ...
 instanceof 自身和原型链 obj instanceof <class name>
 in 自身和原型链 <prop name> in obj 
 Object.hasOwn(obj, <prop name>) 自身
+
+通过document来获取已有的元素节点
+document.getElementById()
+document.getElementsByClassName()
+document.getElementsByTagName()
+document.getElementsByName()
+document.querySelectorAll()    常用
+document.querySelector()    常用
+创建
+document.createElement()
+
+通过元素节点对象获取其他节点的方法
+element.childNodes 获取当前元素的子节点（会包含"空白"的子节点）
+element.children 获取当前元素的子元素
+element.firstElementChild 获取当前元素的第一个子元素
+element.lastElementChild 获取当前元素的最后一个子元素
+element.nextElementSibling 获取当前元素的下一个兄弟元素
+element.previousElementSibling 获取当前元素的前一个兄弟元素
+element.parentNode 获取当前元素的父节点
+element.tagName 获取当前元素的标签名    这个好
+
+文本节点
+element.textContent 纯文本，不会带CSS样式
+element.innerText   带CSS样式的文本
+element.innerHTML 获取或修改元素中的html代码    不建议，会有XSS注入风险
+
+属性节点
+方式一：
+读取 元素.属性名 
+修改 元素.属性名 = 属性值
+当属性是class的时候，属性名要变成className
+
+方式二：
+读取：元素.getAttribute(属性名)
+修改：元素.setAttribute(属性名, 属性值)
+删除：元素.removeAttribute(属性名)
+
+
+事件：
+1.可以直接在元素的属性中设置
+2.可以通过为元素的"指定属性(element.onclick这样子的)"设置“回调函数”的形式来绑定事件（一个事件只能绑定一个响应函数）
+3.可以通过元素addEventListener()方法来绑定事件 btn.addEventListener("click", function(){
+    alert("哈哈哈")
+})
+
+
+DOM修改：
+appendChild()    给一个节点添加“子节点”
+insertAdjacentElement()可以向元素的任意位置添加元素
+element.insertAdjacentElement("afterend", element)
+element.insertAdjacentElement("afterbegin", element)
+element.insertAdjacentElement("beforeend", element)
+element.insertAdjacentElement("beforebegin", element)
+element.remove() 删除结点
+
+cloneNode()    复制节点，传入true会复制子结点
+
+
+CSS修改
+
+元素.style.样式名 = 样式值
+
+getComputedStyle() 它会返回一个对象，这个对象中包含了当前元素所有的生效的样式
+
+元素.classList 是一个对象，对象中提供了对当前元素的类的各种操作方法
+
+元素.classList.add() 向元素中添加一个或多个class
+元素.classList.remove() 移除元素中的一个或多个class
+元素.classList.toggle() 切换元素中的class 切换样式是否生效
+元素.classList.replace() 替换class
+元素.classList.contains() 检查class
+
+
+事件对象：
+
+box1.addEventListener("mouesmove", event => {    // event事件对象，回调函数的形参
+    // 箭头函数
+    console.log(event.clientX, event.clientY)   // this指向window
+    box1.textContent = date.toString() + ',' + event.clientX + "," + event.clientY
+})
+
+
+box1.addEventListener("mousemove", function(e){    // 函数表达式的形式
+    console.log(e.clientX, e.clientY);
+    console.log(this);   // this指向box1
+    box1.textContent = e.clientX + ',' + e.clientY
+})
+
+
+event.target 触发事件的对象
+event.currentTarget 绑定事件的对象（同this）
+event.stopPropagation() 停止事件的传导   不会从里面往外继续事件的触发
+event.preventDefault() 取消默认行为   比如超链接的跳转
+
+
+事件的冒泡（bubble） 事件的冒泡就是指事件的向上传导
+
+
+事件的委派 ”委派就是将本该绑定给多个元素的事件“，统一绑定给document，这样可以降低代码复杂度方便维护。并且通过event.target定位到触发事件的对象，进行精准的控制
+
+
+
+BOM： 
+
+window —— 代表浏览器窗口（全局对象）
+navigator —— 浏览器的对象（可以用来识别浏览器）
+location —— 浏览器的地址栏信息
+history —— 浏览器的历史记录（控制浏览器前进后退）
+screen —— 屏幕的信息
+
+navigator.userAgent    返回一个用来描述浏览器信息的字符串
+
+location.assign() 跳转到一个新的地址 传入新地址的字符串
+location.replace() 跳转到一个新的地址（无法通过回退按钮回退） 传入新地址的字符串
+location.reload() 刷新页面，可以传递一个true来强制清缓存刷新
+location.href 获取当前地址
+
+history.back()
+    - 回退按钮
+history.forward()
+    - 前进按钮
+history.go()
+    - 可以向前跳转也可以向后跳转
+
+
+定时器
+
+setTimeout()  执行一次
+    - 参数：
+        1. 回调函数（要执行的代码）
+        2. 间隔的时间（毫秒）
+    - 关闭定时器
+        clearTimeout()
+
+setInterval() (每间隔一段时间代码就会执行一次) 执行多次
+    - 参数：
+        1. 回调函数（要执行的代码）
+        2. 间隔的时间（毫秒）
+    - 关闭定时器
+        clearInterval()
+    但是如果函数执行的速度比较慢，它是”无法确保“每次执行的”间隔都是一样的“
+    这个属于一直在跑，但是时间里面会包含等待执行的时间
+
+
+// 希望可以确保函数每次执行都有相同间隔
+console.time("间隔")
+setTimeout(function fn() {
+    console.timeEnd("间隔")
+    alert("哈哈") // 执行完了之后才会再次开启定时，解决了操作慢导致的定时时间不准确的问题
+
+    console.time("间隔")
+    // 在setTimeout的回调函数的最后，在调用一个setTimeout
+    setTimeout(fn, 2000)
+}, 2000)
+
+
+对象的序列化
+JSON.stringify() 可以将一个对象转换为JSON字符串
+JSON.parse() 可以将一个JSON格式的字符串转换为JS对象
+const str2 = `{"name":"猪八戒","age":28}`   // 对象
+const str3 = '{"name":"猪八戒","age":28}'   // 单引号
+const str4 = '{"name":"猪八戒","age":28}'   // 单引号
+const str5 = "{}"   // 空对象
+const str6 = '["hello", true, []]'    // 数组
+const str7 = '{"name":"shit", "age": 11, "bool": false, "null": null, "obj":{"name":"fuck"}, "arr": [123, "321", true, null]}'
 
 
 
