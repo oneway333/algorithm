@@ -19,8 +19,8 @@
 新增列表标签 datalist details
 多媒体标签
 ====CSS3====
-* transform/变换
-* 过渡 transition
+* transform/变换 
+* 过渡 transition  1s linear all
 动画
 * 伸缩盒模型
 * 所有的水平居中方案

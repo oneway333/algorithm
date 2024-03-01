@@ -392,6 +392,33 @@ const str5 = "{}"   // 空对象
 const str6 = '["hello", true, []]'    // 数组
 const str7 = '{"name":"shit", "age": 11, "bool": false, "null": null, "obj":{"name":"fuck"}, "arr": [123, "321", true, null]}'
 
+全局过滤器
+Vue.filter('filter', function(val){return new_val})
+通过在双大括号中，{{name | filter}} 来实现过滤
+
+
+浏览器本地存储
+localStorage.setItem('key', 'value')
+localStorage.getItem('key')
+localStorage.removeItem('key')
+localStorage.clear()
+
+sessionStorage.setItem('key', 'value')
+sessionStorage.getItem('key')
+sessionStorage.removeItem('key')
+sessionStorage.clear()
+
+js文件中的import优先执行，也就是执行import from 'XXX.js'中的XXX.js
+
+
+
+
+
+
+
+
+
+
 
 
 
