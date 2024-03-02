@@ -1,0 +1,698 @@
+vue
+
+数据代理，数据劫持？
+Vue是怎样实现数据监视的？应该也就是通过给每个属性（无论是字面量、函数、对象）套上set get方法，获取的时候都需要调用set和get方法。这样在get和set中就有那么一段神奇的逻辑，监视着这些数据的变化，然后来渲染页面
+
+双大括号
+{{js表达式}}
+可以写{{data中的属性}}，{{n++}}, {{}}
+
+adfasdfasdfasdfsfdf
+
+@click="showInfo"    // 双引号里面也可以写js表达式
+@click="showInfo1($event, 321)"  // 回调函数可以配置多个参数，事件对象要加$event
+class="basic" :class="class_style1"    // 绑定样式
+<h2 :style="{opacity:1}">fuck you</h2>    // 通过style绑定样式，要用对象形式的写法
+
+一般结构：
+
+body中：
+
+<div id="root">
+</div>
+
+script中：
+new Vue({
+    el:'#root',
+    data: {
+        name: 'fuck',    // 绑定的属性变量
+        class_style1: [],   // 样式的数组
+        class_style2: {css1: true, css2:false},   // 样式的对象
+    },
+    methods: {
+        // 事件的回调函数，和js一样，会传入事件对象，用法相同
+        showInfo1(e){
+            console.log(e.target);
+            console.log(e.target.textContent);
+        },
+        showInfo2:(e) => { 
+            console.log(this); // this指向window，所以尽量不要使用箭头函数
+        },
+        showInfo3(e, num){
+            console.log(num);  // 回调函数可以配置多个参数，此处可以接收
+        },
+        change_mood(){
+            this.class_style1.push('fuck1')    // 将这些样式添加进class中
+            this.class_style1.push('fuck2')
+            this.class_style1.push('fuck3')
+        }
+    },
+    computed: {    // 计算属性
+        full1: {
+            get(){
+                return this.fuck + '-' + this.you   // 通过this拿到data中的数据，需要return
+            },
+            // 当full被修改时调用，要传入一个val值
+            set(val){
+                // 要改data中的数据全都要改
+                let t = val.split('-')
+                this.fuck = t[0]
+                this.you = t[1]
+            }
+        },
+        full2(){    // 计算属性通常只会get，所以这是只有get功能的简写形式
+            return 'XXX'
+        }
+    },
+    // 计算属性更适合属性是由其他属性变化而来的情况
+    // 计算属性一开始就会执行，不会出现监视属性第一次不执行的情况
+    // 监视适合对当前属性的变化进行监视，从而影响其他的属性（好像也没说明白）
+    watch: {
+        name1: {
+            deep:true,  // 深度监视，当name为obj的时候，其中的每个属性变化都会触发
+            immediate: true,    // 在handler执行之前会执行一次
+            handler(new_val, old_val){    // 两个参数，也可以传入一个参数，一个参数就是new_val
+                console.log(new_val, old_val);
+            }
+        },
+        // 当不需要配置除了handler之外的其他属性的时候可以采取简写形式
+        name2(new_val, old_val) {
+            console.log(new_val, old_val);
+        }
+    },
+    
+    
+})
+
+
+指令
+v-bind      单向数据绑定，数据变但是data不变，v-bind:XXX="XXX" 简写 :XXX="xxxx"
+            想要使得 “” 中是js表达式返回时，就使用v-bind，用途还是很广的
+            不仅可以返回字符串，数组，数字，布尔值，对象，都可以
+
+v-model     双向数据绑定，数据变data也变，v-model:value="XXX" 简写 v-model="xxxx"    
+            一般用于input中绑定value
+            input为radio时的数据绑定：
+             <input type="radio" name="gender" v-model="gender" value="male">
+             
+            input为checkbox时的数据绑定：
+            <input type="checkbox" v-model="hobby" value="fuck1">
+            
+            select的数据绑定：
+            <select v-model="city">
+            通过number修饰符确保step的数据类型
+            <select v-model.number="step">
+            
+            textarea的数据绑定，lazy修饰符表示当textares失去焦点时更新vue的data：
+            <textarea v-model.lazy="other" v-model="other">
+            
+            单个checkbox中，v-model绑定的是checked，默认为false
+            <input type="checkbox" v-model="agree">
+            
+            绑定表单提交的事件，pervent阻止默认事件的修饰符
+            <form action="" @submit.prevent="demo">
+            
+            
+            
+v-for       列表渲染：(element, index) of/in arr/obj/str/num  相当神奇的写法
+            key的数据绑定是为了diff算法优化数据刷新的逻辑
+            <ul v-for="p of persons" :key="p.id/index">
+            <li>
+                {{p.name}}-{{p.age}}-{{p.id}}
+                <input type="text">    <!-- 如果有key属性，input中的值会进行保留，也就是diff算法的优化 -->
+            </li>
+            </ul>
+
+
+v-on        事件处理：v-on:click="XXX"，简写：@click="XXX"
+            修饰符：.prevent 阻止默认事件   
+                    .stop 阻止冒泡    
+                    .once 只发生一次
+            键盘事件：@keyup @keydown, tab这种有默认效果的，最好用keydown
+
+
+v-show      是否展示，相当于display: none
+v-if        主要是会删除节点，相当于 DPM中的 element.remove()
+v-else-if   成立必须当前节点的上一个兄弟节点有v-if修饰，因此下方div之间不能有除了空白节点之外的任何东西
+v-else
+
+v-text      将内容完全当文本插入标签中，怀疑用的是textContent
+            name='shit'
+            <h1 v-text="name">fuck</h1>
+v-html      将内容解析为标签插入到内容中
+            str: "<h2>damn</h2>"
+            <h1 v-html="str">fuck</h1>
+v-cloak     v-cloak结合CSS属性，来实现Vue未渲染时，元素不显示，当渲染时再显示
+            <style>
+                [v-cloak]{    // 属性选择器
+                    display: none;
+                }
+            </style>
+            <h1 v-cloak>{{name}}</h1>
+v-once      此处n只会变化一次，n=1
+            <h2 v-once>initial n: {{n}}</h2>
+v-pre       跳过所在节点的编译过程，达到快速编译
+            <h2 v-pre>fuck you</h2>
+
+
+
+一些实例应用：
+
+列表过滤  模糊搜索  用计算属性定义一个属性指向原来的内容属性，通过数组的方法来实现
+computed: {
+              bakPersons: {
+                  get() {    // 必须是函数表达式
+                      return this.persons.filter(p => p.name.includes(this.search))
+                  }
+              }
+          }
+
+列表的排序 通过数组的方法来实现 sortType作为不同排序的index
+computed: {
+    bakPersons(){
+        const t = this.persons.filter(p => p.name.includes(this.search))
+        // 操作数组中的对象时的sort
+        if (this.sortType == 2) return t.sort((a, b) => a.age - b.age)
+        else if (this.sortType == 1) return t.sort((a, b) => b.age - a.age)
+        else return t
+    }                
+}
+
+自定义指令
+下面分别是 v-big v-fbind，也就是只要用 - 号后面那个当作属性名就可以
+v-big-number，属性就需要用"big-number"
+directives:{    // 这个单词就是指令的意思
+    // 第一种写法
+    big(element, binding) {
+        // console.log(e);
+        element.textContent = binding.value * 10
+    },
+    // 第二种写法
+    fbind: {
+        // 指令与元素成功绑定时
+        bind(element, binding){
+            element.value = binding.value
+        },
+        // 元素被插入页面时
+        inserted(element, binding){
+            element.focus()
+        },
+        // 指令所在模板被重新解析时
+        update(element, binding){
+            element.value = binding.value
+        }
+    }
+}
+
+
+生命周期钩子：
+
+// 用于在创建VM的时候绑定 全局事件总线 axios 
+beforeCreate () {
+    console.log('beforeCreate', this);
+    // debugger
+},
+created () {
+    // 数据监视和数据代理上线
+    // 挂到el配置的HTML元素上
+},
+beforeMount () {
+    
+},
+
+// 可用于监听全局事件，达到数据传递的目的
+mounted() {
+    // ajax请求，启动定时器，绑定自定义事件，订阅消息
+},
+beforeUpdate () {
+    
+},
+updated () {
+    
+},
+beforeDestroy () {
+    // 清除定时器，解绑自定义事件，取消订阅消息
+    clearTimeout(XXX);
+    clearInterval(XXX);
+    console.log('beforeDestroy');
+},
+destroyed () {
+    console.log('destroyed');
+},
+
+// 激活和失活的生命周期，可以避免路由缓存时，定时器/不需要的内容也缓存的情况，可以及时清理
+activated () {
+  this.timer = setInterval(()=>{
+    console.log('fuck');
+    this.opacity = this.opacity < 0 ? 1 : this.opacity -= 0.1
+  }, 200)
+},
+deactivated () {
+  clearInterval(this.timer)
+}
+
+
+// 在DOM元挂载完之后执行，可与ref配合，实现input框的focus
+this.$nextTick(()=>{})
+
+
+
+
+
+
+=====================Vue/cli脚手架====================
+
+main.js:
+// 引入Vue
+import Vue from 'vue'
+// 所有组件的父组件
+import App from './App.vue'
+
+new Vue({
+  el: '#app',
+  render: h => h(App),
+})
+或者
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
+
+
+XXX.vue:
+<template>
+    <div class="container">
+
+    </div>
+</template>
+
+<script>
+import XXX from 'XXX'
+export default {
+    name: 'App',
+    components: {},
+    data(){
+        return{}
+    },
+    methods: {},
+    computed: {},
+    watch: {},
+    // 各种生命周期钩子
+    props: [],
+
+</script>
+
+<style scoped>
+
+</style>
+
+
+ref 给元素或者组件打上标记，再通过this.$refs.btn就能获取这个元素或者组件，使用其身上的所有方法和属性
+<button ref="btn">previous</button>
+<School ref="sch"></School>
+
+
+组件间通信 props $emit 全局事件总线
+
+props
+可以在父组件中给子组件添加额外的属性，然后在子组件中通过props接收收到的参数
+通过给age绑定，使age转为number
+<Student name="fuck" :age="11" gender="male"></Student>
+
+minxin，感觉了解一下就好，用到了再查一下
+
+插件
+在main.js中引入，import XXX from 'XXX'
+然后 Vue.use(XXX)
+
+axios:
+在main.js中引入，加入到Vue的原型上
+import axios from 'axios'
+new Vue({
+  el: '#app',
+  render: h => h(App),
+  beforeCreate () {
+    Vue.prototype.$bus = this
+    Vue.prototype.$axios = axios    // 
+
+  }
+})
+
+// get后面的url不能加协议、域名、端口号，不然请求不走代理
+this.$axios.get('/api/list').then((result) => {
+  console.log(result.data);
+}).catch((err) => {
+  console.log(err.message);
+});
+
+
+vue inspect > output.js    // 注意要用管理员身份，将vue的一些配置打印出来
+
+CORS 跨域访问问题
+从浏览器位置发送请求，其origin就是当前网页的 协议+域名+端口
+这种情况是浏览器向服务器发送请求时，因为 协议 域名 端口 有一个不同了，所以被”策略“判定为了跨域
+1.CORS解决跨域，后台配置响应头的方式来解决，亲测有效
+2.jsonp
+3.代理服务器，服务器之前不会有跨域问题，所以只要代理服务器的协议+域名+端口与浏览器一致就可以了，在vue.config.js中配置
+module.exports = {
+    devServer: {
+        // 开启代理服务器，端口要配置为要请求的服务器的端口号
+        // proxy: 'http://localhost:5001'
+        proxy: {
+            '/': {
+                target: 'http://localhost:5001',
+                changeOrigin: true,
+                // pathRewrite: {"^/api": ""}    // 给服务器的时候，会把/api前缀给干掉
+            }
+        }
+    },
+}
+
+
+插槽slot：
+默认插槽：
+通过父组件中在组件标签中间放入HTML结构，子组件声明<slot></slot>
+<Category title="fuck">
+ <ul v-for="(i, index) of fuck" :key="index">
+   <li>{{ i }}</li>
+</ul>
+</Category>
+
+具名插槽：
+在被插入插槽的标签上增加slot属性对应插槽的slot属性，来实现精准的控制
+<Category title="fuck">
+<ul v-for="(i, index) of fuck" :key="index" slot="center">
+  <li>{{ i }}</li>
+</ul>
+<div class="footer" slot="footer">
+  <a href="javascript:;">fuck shit</a>
+</div>
+</Category>
+
+<slot name="center"></slot>
+<slot name="footer"></slot>
+
+作用域插槽，结合template使用
+<Category title="fuck">
+  <template scope="fuck">
+    <ul>
+      <li v-for="(i, index) of fuck.fuck" :key="index">{{ i }}</li>
+    </ul>
+  </template>
+  <div class="footer">
+    <a href="javascript:;">fuck shit</a>
+  </div>
+</Category>
+
+
+Vuex：
+//main.js引入store
+import store from './store/index.js'
+
+new Vue({
+  el: '#app',
+  store, // store属性
+  render: h => h(App),
+  beforeCreate () {
+    Vue.prototype.$bus = this
+    Vue.prototype.$axios = axios
+  }
+})
+
+strore/index.js中
+// vuex中的store
+import Vuex from 'vuex'
+
+import Vue from 'vue'
+
+import {nanoid} from 'nanoid'
+
+// 应用Vuex插件
+Vue.use(Vuex)
+
+// actions 响应组件中的动作，预先做一些数据或者东西的准备
+const actions = {}
+
+// mutations 操作数据
+const mutations = {}
+
+// state 存储数据
+const state = {}
+
+// 这个就是state_2.0，可以对state中的数据做其他操作
+const getters = {}
+
+// 创建并暴露store
+export default new Vuex.Store({
+    actions,
+    mutations,
+    state,
+    getters,
+})
+
+
+路由：非常重要
+// main.js中引入router
+import VueRouter from 'vue-router'
+import router from './router/index.js'
+
+Vue.use(VueRouter)
+
+new Vue({
+  el: '#app',
+  render: h => h(App),
+  router,  // 这里确实要写router，也就是路由器，不能是route路由
+  beforeCreate () {
+    Vue.prototype.$bus = this
+    Vue.prototype.$axios = axios
+  }
+})
+
+router-link配置导航
+to指示导航项，地址栏也会变
+<router-link to="/about">About</router-link
+
+<!-- 组件展示的位置 -->
+<router-view></router-view>
+
+./router/index.js中先引入需要路由的各种组件
+配置路由的信息
+export default new VueRouter({
+    // 注意这里必须是routes，不能拼错
+    routes: [
+        name: '/fuck'    // 注意只有第一层有/，下面的都不允许有/
+        path: 'message',
+        component: Message,
+        meta: {flag: true, XXX: XXX} // 可以自己随意配置一些元信息，搞个flag用来判断啥的
+        children: [
+            {
+                path: 'details',
+                component: MessageContent,
+            },
+        ]
+
+    ]
+})
+
+通过路由传递数据
+query参数
+第一种写法
+<router-link :to="`/home/message/details?id=${m.id}&title=${m.title}`">{{ m.title }}</router-link>
+
+第二种写法
+<router-link :to="{
+    path: '/home/message/details',
+    name: 'fuck', // 也可以不写path，用名称，这个名称和./router/index.js中配置的路由名称要一致
+    query: {
+        id: m.id,
+        title: m.title
+    }
+}">
+    {{ m.title }}
+</router-link>
+
+然后在被路由到的组件中这样获取数据
+<li>id: {{ $route.query.id }}</li>
+
+params参数：
+./router/index.js中需要配置占位符
+name: 'xiangqing',
+path: 'details/:id/:title', // 不然不知道哪个是哪个
+component: MessageContent,
+
+第一种写法
+<router-link :to="`/home/message/details/${m.id}/${m.title}`">{{ m.title }}</router-link>
+第二种写法
+<router-link :to="{
+    // params参数不能写path，只能写name
+    name: 'xiangqing',  // 可以节省点，但是感觉最好不要省
+    params: {
+        id: m.id,
+        title: m.title
+    }
+}">
+    {{ m.title }}
+</router-link>
+
+
+路由的props配置：
+name: 'xiangqing',
+path: 'details/:id/:title',
+component: MessageContent,
+// 对象写法，所有的属性都会以props的形式传给MessageContent
+// props: {a: 1,b: 'fuckyou'}
+
+// 布尔值写法
+// 若为true，就会把所有收到的params参数以props的形式传给MessageContent，也就是路径上的那个id和title
+// props: true
+
+// 函数写法
+props($route){
+    return {id: $route.params.id, title: $route.params.title}
+}
+这样在组件中就可以用props来接收了 props: ['id', 'title'] 
+
+
+编程式路由导航，相当重要：
+methods: {
+    // 原来会传入这个m？好神奇
+    push(m){
+        // 编程式跳转，相当重要
+        this.$router.push({    // 可以回退的查看
+            name: 'xiangqing',  // 这个name就是./router/index.js中配置的
+            params: {
+                id: m.id,
+                title: m.title,
+            }
+        })
+    },
+    replace(m){
+        this.$router.replace({
+            name: 'xiangqing',  // 不可以回退的查看
+            params: {
+                id: m.id,
+                title: m.title,
+            }
+        })
+    }
+}
+
+缓存路由组件：可以使组件中输入的数据什么的得到缓存，切出去切回来还有
+<!-- 路由缓存，include输入组件名称，也就是New.vue中配置的name属性 -->
+<!-- 单个的情况 -->
+<!-- <keep-alive include="News"> -->
+<!-- 多个的情况，不写include就是全都缓存 -->
+<keep-alive :include="['News', 'Message']">
+  <router-view></router-view>
+</keep-alive>
+
+
+
+
+
+全局路由守卫，感觉挺重要
+首先不能直接export default，需要把router对象拿出来
+const router = new VueRouter({})
+
+// 全局前置路由守卫
+// 初始化和在每一次路由切换之前被调用
+// to: 目的地的路由，from：从哪个路由来，next() 允许放行
+router.beforeEach((to, from, next) => {
+    // 路由的meta属性可以传入一个对象，里面可以配置自己想配置的标签或者值
+    if (to.meta.isAuth) {
+        if (to.path == '/home/news' || to.name == 'xiaoxi') {
+            if (localStorage.getItem('school') == 'fuck') {    
+                next()
+            }
+        }
+    } else {
+        next()
+    }
+    
+})
+
+// 全局后置路由守卫
+// 每一次路由切换之后被调用
+router.afterEach((to, from)=>{
+    if (to.meta.isTitle) document.title=to.name
+    else document.title='shit'
+})
+
+// 独享路由守卫，写在routes的配置项之中的
+name: 'xinwen',
+path: 'news',
+component: News,
+meta: { isAuth: true },
+// 独享路由守卫只有前置没有后置守卫
+beforeEnter: (to, from, next) => {
+    if (localStorage.getItem('school') == 'fuck') next()
+}
+
+
+组件内路由守卫
+// 根据路由规则，进入该组件时
+beforeRouteEnter(to, from, next){
+  // console.log(to, from);
+  next()
+},
+// 根据路由规则，离开该组件时
+beforeRouteLeave(to, from, next){
+  // console.log(to, from);
+  next()
+},
+
+hash和history模式：
+const router = new VueRouter({
+    // 默认hash模式，会加上路径上会有/#/,#号后面的标记都不会被认为是请求时的路径而加到请求的路径中
+    // history，不会有/#/，会有地址找不到的风险，需要服务器端配合，识别那些是静态组件，不需要跳转
+    // mode: 'hash',
+    mode: 'history',
+})
+
+
+用递归对所有路由加入路由守卫
+
+
+npm run serve    // 启动Vue项目
+npm run build    // 打包
+用node搭建简易服务器：
+在某个文件夹中，npm init，创建基本的运行环境
+创建static文件夹，将打包的文件放入其中
+创建server.js，内容：
+---------------------------------------------------------------------------
+//导入express
+const express = require('express')
+const history = require('connect-history-api-fallback')
+//创建web服务器
+const app=express()
+
+app.use(history())
+app.use(express.static(__dirname + "/static"))
+
+app.get('/person', (req, res) => {
+    res.send({
+        name: 'fuck',
+        age: 22
+    })
+})
+
+app.listen(5005,(err)=>{
+    if(!err) console.log('OK');
+})
+---------------------------------------------------------------------------
+
+node server    // 启动服务
+应该默认是localhost然后加上那个端口号访问
+
+
+
+
+
+
+
+
+
+
+
+
+
+
