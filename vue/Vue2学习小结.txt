@@ -131,8 +131,8 @@ v-on        事件处理：v-on:click="XXX"，简写：@click="XXX"
             键盘事件：@keyup @keydown, tab这种有默认效果的，最好用keydown
 
 
-v-show      是否展示，相当于display: none
-v-if        主要是会删除节点，相当于 DPM中的 element.remove()
+v-show      是否展示，相当于display: none，组件一直存在着，不用担心
+v-if        主要是会删除节点，相当于 DPM中的 element.remove()，也就是组件会被销毁，会触发生命周期的destory或者unmount
 v-else-if   成立必须当前节点的上一个兄弟节点有v-if修饰，因此下方div之间不能有除了空白节点之外的任何东西
 v-else
 
