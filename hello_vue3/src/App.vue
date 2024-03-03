@@ -1,79 +1,35 @@
 <template>
   <div class="app">
-    <h2 class="title">test</h2>
-    <!-- 导航 -->
-    <nav class="navigate">
-      <!-- replace会造成不能后退的情况 -->
-      <RouterLink replace active-class="active" to="/home">Home</RouterLink>
-      <RouterLink replace active-class="active" to="/about">About</RouterLink>
-      <RouterLink replace active-class="active" :to="{
-        // 好像只能两者写其一
-        // path: '/news'
-        name: 'news'
-      }">
-        News
-      </RouterLink>
-    </nav>
-    <!-- 展示区 -->
-    <div class="content">
-      <RouterView></RouterView>
-    </div>
+    <h2>我是App组件 x{{ x }}</h2>
+    <h2 v-beauty="123">我是App组件 x{{ x }}</h2>
+    <!-- 好像不怎么好用，哈哈 -->
+    <button @click="x += 1">x++</button>
+    <!-- 这个好像就是子组件使用了async await之后，仍然会有组件无法挂载的情况，所以需要加这个 -->
+    <!-- 那这个不就是BUG嘛，需要用这个来处理 -->
+    <!-- 那么组件内部就不能直接await来获取数据 -->
+    <Suspense>
+      <!-- 这两个要么一起用，要么只能用default，fallback单独用不起任何效果 -->
+      <template v-slot:default>
+      <!-- <template v-slot:fallback> -->
+        <Child/>
+      </template>
+      <template v-slot:fallback>
+        <h2>加载中......</h2>
+      </template>
+    </Suspense>
   </div>
 </template>
 
-<script lang='ts' setup name="App">
-import type { RouterLink, RouterView } from 'vue-router';
-
-
+<script setup lang="ts" name="App">
+  import {Suspense} from 'vue'
+  import Child from './Child.vue'
 </script>
 
-<style lang="scss" scoped>
-.title {
-  text-align: center;
-  word-spacing: 5px;
-  margin: 30px 0;
-  height: 70px;
-  line-height: 70px;
-  background-image: linear-gradient(45deg, gray, white);
-  border-radius: 10px;
-  box-shadow: 0 0 2px;
-  font-size: 30px;
-}
-
-.navigate {
-  display: flex;
-  justify-content: space-around;
-  margin: 0 100px;
-}
-
-.navigate a {
-  display: block;
-  text-align: center;
-  width: 90px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 10px;
-  background-color: gray;
-  text-decoration: none;
-  color: white;
-  font-size: 18px;
-  letter-spacing: 5px;
-}
-
-.navigate a.active {
-  background-color: #64967E;
-  color: #ffc268;
-  font-weight: 900;
-  text-shadow: 0 0 1px black;
-  font-family: 微软雅黑;
-}
-
-.content {
-  margin: 0 auto;
-  margin-top: 30px;
-  border-radius: 10px;
-  width: 90%;
-  height: 400px;
-  border: 1px solid;
-}
+<style>
+  .app {
+    background-color: #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px;
+  }
 </style>

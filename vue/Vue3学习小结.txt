@@ -2,11 +2,300 @@ Vue3
 
 项目都是用的 element-ui，作为一个子组件，那么其实就会有很多的props，还有子组件返回的数据，子给父就可以有自定义事件，全局事件总线，消息订阅与发布这些方式，熟练掌握
 还有对子组件的样式调整，定位、大小、旋转、位移这些
+在复杂结构下的CSS也要看着调整
+
 
 Vite创建项目
+【基于 vite 创建】(推荐)
+
+main.js中进行根组件的创建和挂载
+import './assets/main.css'
+
+// 引入创世神，应该相当于 new Vue()
+import { createApp } from 'vue'
+// 引入根组件 App
+import App from './App.vue'
+
+// 创建VM VC对象（App根组件对应的对象），并绑定到页面上
+createApp(App).mount('#app')
 
 
-路由 非常重要:
+Vue3中的数据和方法都是在setup()中进行编写的
+setup函数返回的对象中的内容，可直接在模板中使用。
+setup中访问this是undefined。
+setup函数会在beforeCreate之前调用，它是“领先”所有钩子执行的。
+如果在setup(){}中编写代码，最后需要进行return {}，对象中写所有要暴露的属性和方法
+
+setup 与 Options API 的关系
+Vue2 的配置（data、methos......）中可以访问到 setup中的属性、方法。
+但在setup中不能访问到Vue2的配置（data、methos......）。
+如果与Vue2冲突，则setup优先。
+
+setup函数有一个语法糖，这个语法糖，可以让我们把setup独立出去，代码如下：
+<script setup lang="ts" name="Person">
+</script>
+
+扩展：上述代码，还需要编写一个不写setup的script标签，去指定组件名字，比较麻烦，我们可以借助vite中的插件简化
+
+第一步：npm i vite-plugin-vue-setup-extend -D
+第二步：vite.config.ts
+
+import { defineConfig } from 'vite'
+import VueSetupExtend from 'vite-plugin-vue-setup-extend'
+
+export default defineConfig({
+  plugins: [ VueSetupExtend() ]
+})
+
+
+【ref 创建：基本类型的响应式数据】
+可用ref包裹基本类型和对象类型，这样Vue就会对数据进行代理和劫持
+但是需要通过 XXX.value 的方式获取和修改（无论是基本类型还是对象类型）
+
+【reactive 创建：对象类型的响应式数据】
+reactive包裹对象类型的数据，进行深层次的代理和劫持
+reactive重新分配一个新对象，会失去响应式（可以使用Object.assign去整体替换）。类似于这种情形
+let person = reactive({
+    name: 'fuck',
+    age: 11
+})
+Object.assign(person, {name: 'shit', age: 321})
+
+
+【toRefs 与 toRef】
+// 解构赋值，name和age都会变成ref响应式，而且变化会引起person的数据变化
+let {name, age} = toRefs(person)
+
+// 单独的变成ref，而且变化会引起person的数据变化
+let yearOld = toRef(person, 'age')
+let yearOld1 = ref(person.age)  // 上下两个不是一个概念
+
+
+
+【computed】挺重要
+import { ref, reactive, computed} from 'vue'
+let first = ref('')
+let second = ref('')
+
+// 计算属性：传入回调函数，返回值给那个计算属性，而且计算属性多次调用只会执行一次，不像方法调几次执行几次，所以尽量考虑计算属性
+// 因为可能会有复杂的属性处理逻辑，所以要做好封装
+// 简写
+// let full = computed(()=> first.value + '-' + second.value)
+// 这么定义的计算属性只读，不可修改
+// let full = computed(()=> {
+//     return first.value.slice(0, 2).toUpperCase() + '-' + second.value.slice(3)
+// })
+
+// 给出get，set实现可读写
+let full = computed({
+    get(){
+        return first.value.slice(0, 2).toUpperCase() + '-' + second.value.slice(1)
+    },
+    set(val){
+        first.value = val.split('-')[0]
+        second.value = val.split('-')[1]
+    },
+})
+
+
+
+【watch】挺重要
+// 监视 情况一，监视【ref】定义的【基本类型数据】
+const stopWatch = watch(sum, (new_val, old_val)=>{
+    console.log(new_val, old_val);
+    // 取消监视
+    if(sum.value >= 10) stopWatch()     // 接收过来就可以停止监视
+})
+
+// 监视 情况二，监视【ref】定义的【对象类型】数据，监视的是对象整体的地址，如果要监视内部属性，需要手动开启深度监视
+// watch参数 被监视的数据、监视的回调、配置对象（deep, immediate等）
+const stopWatch = watch(person, (val1, val2)=>{
+    // val1和val2的值在修改内部属性时，其实都一样的
+    console.log(val1, val2);        
+}, {
+    deep: true,     // 开启深度监视
+    // immediate: true    // 预先立即执行一次
+})
+
+
+// 监视 情况三，监视【reactive】定义的【对象类型】数据
+// person是reactive定义的，默认开启了深度监控
+const stopWatch = watch(person, (val1, val2)=>{
+    // val1和val2的值在修改内部属性时，其实都一样的
+    console.log(val1, val2);        
+}, {
+    // deep: true,
+    // immediate: true
+})
+
+
+// 监视单个基本类型属性时，第一个参数必须是一个getter函数，即有返回值的，即返回那个要监视的属性
+// 简写
+// watch(()=>person.name, (new_val, old_val)=>{
+// watch(()=>{ return person.name}, (new_val, old_val)=>{
+//     console.log(new_val, old_val);
+// })
+
+// 监视对象属性中的对象属性时，也建议写成函数式，再配合深度监视
+watch(() => person.cars, (new_val, old_val)=>{
+    console.log(new_val, old_val);
+}, {deep: true})
+
+
+// 监视上述多个属性，就传入一个数组，对象中单个属性就是方法，不是内层的就直接写
+watch([()=>person.name, ()=>person.cars.c1, person.cars], (new_val, old_val)=>{
+    console.log(new_val, old_val);
+}, {deep: true});
+
+
+watchEffect：不用明确指出监视的数据（函数中用到哪些属性，那就监视哪些属性）。
+// watchEffect实现，此时就会自动监视所有下面声明的属性
+watchEffect(()=>{
+    if (sum1.value >= 60 || sum2.value >= 80) console.log('fuck you');
+    
+})
+
+
+3.11. 【标签的 ref 属性】
+
+作用：用于注册模板引用。
+
+用在普通DOM标签上，获取的是DOM节点。
+h2 ref="title2">shit</h2>
+<h3 ref="title1">damn</h3>
+
+// 创建一个title2，用于存储ref标记的内容
+let title2 = ref()
+let title1 = ref() 
+
+然后通过.value的方式获取DOM元素
+title2.value
+title1.value
+
+
+用在组件标签上，获取的是组件实例对象。
+子组件Person.vue中要使用defineExpose暴露内容
+// 使用defineExpose将组件中的数据交给外部
+  defineExpose({name,age})
+
+
+【ts中定义接口，控制对象中的数据类型】
+
+// 定义接口，限制Person对象的类型
+export interface PersonInter {
+    id: string,
+    name: string,
+    age: number
+}
+
+// export type Persons = Array<PersonInter>
+// 这样写也可以
+export type Persons = PersonInter[]
+
+
+【props】挺重要
+父组件给子组件传递数据时用
+<Person msg1='fuck you' :personList="personList"></Person>
+
+import { defineProps, withDefaults } from 'vue';
+
+// 仅接收personList、msg，但是script中读取不到
+// defineProps(['personList', 'msg'])
+
+// 接收personList并加入类型显示，括号里面就不用再写了
+// defineProps<{ personList: Persons, msg: string }>()
+
+// 接收+限制类型+限制必要性（通过 ?: 来实现）+指定默认值
+withDefaults(defineProps<{ personList: Persons, msg?: string }>(), {
+    personList: ()=>[{id: '123', name: '123', age: 321}],
+    msg: 'fuck shit'
+})
+
+// 接收并读取personList
+// let props = defineProps(['personList'])
+// console.log(props.personList);
+
+
+【生命周期】挺重要
+
+因为Vue3有了setup，所以创建都是最先完成的，setup要早于任何一个周期
+
+// create，应该是setup就帮忙创建了？
+console.log('created');
+
+// 在onMounted和onBeforeUpdate之间
+nextTick(()=>{
+    console.log('nextTick'); 
+})
+
+onBeforeMount(()=>{
+    console.log('onBeforeMount');
+})
+
+onMounted(()=>{
+    console.log('onMounted'); 
+})
+
+onBeforeUpdate(()=>{
+    console.log('onBeforeUpdate'); 
+})
+
+onUpdated(()=>{
+    console.log('onUpdated'); 
+})
+
+onBeforeUnmount(()=>{
+    console.log('onBeforeUnmount'); 
+})
+
+onUnmounted(()=>{
+    console.log('onUnmounted'); 
+})
+
+// 大概是路由中的钩子
+onActivated(()=>{})
+
+onDeactivated(()=>{})
+
+// 这个应该这么用的吧
+nextTick(()=>{})
+
+
+【自定义hook】应该是后面编码时的一些规范上的问题，某个功能用到的变量、函数集中放在一个ts中进行管理
+
+示例代码：
+useSum.ts中内容如下：
+
+import {ref,onMounted} from 'vue'
+
+export default function(){
+  let sum = ref(0)
+
+  const increment = ()=>{
+    sum.value += 1
+  }
+  const decrement = ()=>{
+    sum.value -= 1
+  }
+  onMounted(()=>{
+    increment()
+  })
+
+  //向外部暴露数据
+  return {sum,increment,decrement}
+}
+
+组件中
+<script setup lang="ts">
+  import useSum from './hooks/useSum'
+
+  // 解构赋值
+  let {sum,increment,decrement} = useSum()
+  let {dogList,getDog} = useDog()
+</script>
+
+
+【路由】 非常重要:
 
 1、导航区 展示区
 2、请来路由器
@@ -14,3 +303,138 @@ Vite创建项目
 4、形成一个一个的 XXX.vue
 
 通过点击导航，视觉效果上“消失” 了的路由组件，默认是被**卸载**掉的，需要的时候再去**挂载**。这个我也意识到了
+
+最重要的就是路由的配置文件，和Vue2挺相像的，API有些变化
+
+// 创建路由器，并向外暴露
+
+import { createRouter, createWebHistory } from "vue-router";
+import About from '@/pages/About.vue'
+import Home from '@/pages/Home.vue'
+import News from '@/pages/News.vue'
+
+
+// 引入createRouter
+const router =  createRouter({
+    // history: createWebHistory(),  // 路由器的history工作模式，不会有#号
+    history: createWebHashHistory(),  // 路由器的hash工作模式，会有#号，但是省心
+    routes: [
+        {
+            name: 'about',    // 路由的名字
+            path: '/about',
+            component: About,
+        },
+        {
+            name: 'home',
+            path: '/home',
+            component: Home,
+        },
+        {
+            name: 'news',
+            path: '/news',
+            component: News,
+            children: [     // 嵌套路由
+                {
+                    name: 'detail',
+                    // path: 'detail', // query传参可以这样子
+                    path: 'detail/:id/:title/:content',  // params传参
+                    component: Detail,
+                    // 对象写法，所有的属性都会以props的形式传给MessageContent
+                    // props: {a: 1,b: 'fuckyou'}
+
+                    // 布尔值写法
+                    // 若为true，就会把所有收到的params参数以props的形式传给MessageContent
+                    // props: true
+
+                    // 函数写法
+                    
+                    props(route) {
+                        // 竟然会自动解构赋值哦？不对，这是因为params本身就是对象了，这种写法写重复了
+                        // return { id: route.params.id, title: route.params.title, content: route.params.content }
+                        return route.params
+                    }
+                },
+            ]
+
+        },
+    ],
+    
+})
+
+
+export default router
+
+
+组件中要配置导航项：
+点击进行路由跳转的
+<RouterLink active-class="active" to="/home">Home</RouterLink>
+路由挂载的区域
+<RouterView></RouterView>
+
+query和params参数，是通过路由路径进行传参，和Vue2大同小异
+params要注意路由配置时的占位符
+<!-- query参数 -->
+<!-- <RouterLink :to="`/news/detail?id=${n.id}&title=${n.title}&content=${n.content}`">{{n.title}}</RouterLink> -->
+<!-- <RouterLink :to="{
+  name: 'detail',
+  query: {
+    id: n.id,
+    title: n.title,
+    content: n.content,
+  }
+}">{{n.title}}</RouterLink> -->
+
+<!-- params参数 -->
+<!-- <RouterLink :to="`/news/detail/${n.id}/${n.title}/${n.content}`">{{n.title}}</RouterLink> -->
+<RouterLink :to="{
+name: 'detail',
+params: {
+  id: n.id,
+  title: n.title,
+  content: n.content,
+}
+}">{{ n.title }}</RouterLink>
+
+
+props传参，路由配置文件需要配置，路由组件中要用defineProps()来接收
+
+
+路由导航项上加replace属性，会造成不能浏览器历史后退的情况
+<RouterLink replace active-class="active" to="/home">Home</RouterLink>
+<RouterLink replace active-class="active" to="/about">About</RouterLink>
+
+
+同步异步
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

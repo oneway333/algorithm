@@ -7,7 +7,7 @@
 
 <script setup lang="ts" name="Person">
 
-import { onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, onUpdated, ref, nextTick } from 'vue';
+import { onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, onUpdated, ref, nextTick, onActivated, onDeactivated } from 'vue';
 
 let sum = ref(0)
 
@@ -46,6 +46,7 @@ onBeforeUnmount(()=>{
 onUnmounted(()=>{
     console.log('onUnmounted'); 
 })
+
 
 
 

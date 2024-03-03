@@ -418,7 +418,7 @@ new Vue({
   }
 })
 
-strore/index.js中
+store/index.js中
 // vuex中的store
 import Vuex from 'vuex'
 

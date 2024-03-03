@@ -2,7 +2,7 @@
   <div class="news">
     <ul>
       <li v-for="n of newsList" :key="n.id">
-
+        <button @click="show(n)">fuck</button>
         <!-- query参数 -->
         <!-- <RouterLink :to="`/news/detail?id=${n.id}&title=${n.title}&content=${n.content}`">{{n.title}}</RouterLink> -->
         <!-- <RouterLink :to="{
@@ -16,7 +16,7 @@
 
         <!-- params参数 -->
         <!-- <RouterLink :to="`/news/detail/${n.id}/${n.title}/${n.content}`">{{n.title}}</RouterLink> -->
-        <RouterLink  :to="{
+        <RouterLink :to="{
         name: 'detail',
         params: {
           id: n.id,
@@ -36,14 +36,34 @@
 
 <script setup lang="ts" name="News">
 import { reactive } from 'vue';
-import type { RouterLink, RouterView } from 'vue-router';
+import { useRoute, type RouterLink, type RouterView, useRouter } from 'vue-router';
 
+const router = useRouter()
 const newsList = reactive([
   { id: '1', title: 'fuck1', content: 'shit1' },
   { id: '2', title: 'fuck2', content: 'shit2' },
   { id: '3', title: 'fuck3', content: 'shit3' },
   { id: '4', title: 'fuck4', content: 'shit4' },
 ])
+
+interface NewsDetail {
+  id: string,
+  title: string,
+  content: string,
+}
+
+
+function show(n: NewsDetail) {
+  router.push({
+    name: 'detail',
+    params: {
+      id: n.id,
+      title: n.title,
+      content: n.content,
+
+    }
+  })
+}
 
 </script>
 
