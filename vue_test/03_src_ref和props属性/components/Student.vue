@@ -3,6 +3,8 @@
         <h2>Student {{name}}</h2>
         <h2>Student {{myAge+1}}</h2>
         <h2>Student {{gender}}</h2>
+        <h2>Student {{fuck}}</h2>
+        <h2>Student {{shit}}</h2>
         <button @click="change">fuck you</button>
     </div>
 </template>
@@ -18,7 +20,7 @@ export default {
             myAge: this.age   // this获取props里面传过来的this
         }
     },
-    props: ['name', 'age', 'gender'],  // 简单接收
+    props: ['name', 'age', 'gender', 'fuck', 'shit'],  // 简单接收
 
     // 类型声明式接收
     // props: {

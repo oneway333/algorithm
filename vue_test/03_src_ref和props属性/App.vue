@@ -4,7 +4,7 @@
     <button ref="btn" @click="previous">previous</button>
     <School ref="sch" ></School>
     <!-- 通过给age绑定，使age转为number -->
-    <Student name="fuck" :age="11" gender="male"></Student>
+    <Student name="fuck" :age="11" gender="male" v-bind="{fuck: 1, shit: 2}"></Student>
   </div>
 </template>
 

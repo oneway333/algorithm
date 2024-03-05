@@ -13,8 +13,6 @@ JS中原始值一共有七种
 6.Undefined
 7.Symbol
 
-asdfasdfsadf
-
 ...展开运算符
 可以复制，做函数形参
 arr1 = [...arr2]
@@ -52,10 +50,10 @@ arr.forEach((element, index, array) => {
     console.log(array)
 })
 
-filter()      将数组中符合条件的元素保存到一个"新数组"中返回
+filter(()=>{})      将数组中符合条件(true)的元素保存到一个"新数组"中返回
 arrNew = arr.filter((a)=>{某些满足条件的元素，最后记得return true/false，但是如果只有一行就默认return表达式的返回值})
 
-map()       根据当前数组生成一个新数组 好处，而forEach仅仅遍历
+map()       根据当前数组生成一个新数组，而forEach仅仅遍历
 result = arr.map((ele) => ele * 2)
 result = arr.map((ele) => "<li>" + ele + "</li>")
 
@@ -227,6 +225,8 @@ instanceof 自身和原型链 obj instanceof <class name>
 in 自身和原型链 <prop name> in obj 
 Object.hasOwn(obj, <prop name>) 自身
 
+DOM:
+
 通过document来获取已有的元素节点
 document.getElementById()
 document.getElementsByClassName()
@@ -247,7 +247,7 @@ element.previousElementSibling 获取当前元素的前一个兄弟元素
 element.parentNode 获取当前元素的父节点
 element.tagName 获取当前元素的标签名    这个好
 
-文本节点
+文本节点 重要的
 element.textContent 纯文本，不会带CSS样式
 element.innerText   带CSS样式的文本
 element.innerHTML 获取或修改元素中的html代码    不建议，会有XSS注入风险
@@ -317,7 +317,7 @@ box1.addEventListener("mousemove", function(e){    // 函数表达式的形式
 
 event.target 触发事件的对象
 event.currentTarget 绑定事件的对象（同this）
-event.stopPropagation() 停止事件的传导   不会从里面往外继续事件的触发
+event.stopPropagation() 停止事件的传导   不会从里面往外继续事件的触发，俗称冒泡
 event.preventDefault() 取消默认行为   比如超链接的跳转
 
 
@@ -392,9 +392,7 @@ const str5 = "{}"   // 空对象
 const str6 = '["hello", true, []]'    // 数组
 const str7 = '{"name":"shit", "age": 11, "bool": false, "null": null, "obj":{"name":"fuck"}, "arr": [123, "321", true, null]}'
 
-全局过滤器
-Vue.filter('filter', function(val){return new_val})
-通过在双大括号中，{{name | filter}} 来实现过滤
+
 
 
 浏览器本地存储

@@ -1,0 +1,220 @@
+webpack兼容版本
+@babel/core": “^7.8.4”,
+“@babel/polyfill”: “^7.8.3”,
+“@babel/preset-env”: “^7.8.4”,
+“add-asset-html-webpack-plugin”: “^3.1.3”,
+“babel”: “^6.23.0”,
+“babel-loader”: “^8.0.6”,
+“core-js”: “^3.6.4”,
+“css-loader”: “^3.4.2”,
+“eslint”: “^6.8.0”,
+“eslint-config-airbnb-base”: “^14.0.0”,
+“eslint-loader”: “^3.0.3”,
+“eslint-plugin-import”: “^2.20.1”,
+“file-loader”: “^5.0.2”,
+“html-loader”: “^0.5.5”,
+“html-webpack-plugin”: “^3.2.0”,
+“less”: “^3.11.1”,
+“less-loader”: “^5.0.0”,
+“mini-css-extract-plugin”: “^0.9.0”,
+“optimize-css-assets-webpack-plugin”: “^5.0.3”,
+“postcss-loader”: “^3.0.0”,
+“postcss-preset-env”: “^6.7.0”,
+“style-loader”: “^1.1.3”,
+“terser-webpack-plugin”: “^2.3.5”,
+“thread-loader”: “^2.1.3”,
+“url-loader”: “^3.0.0”,
+“webpack”: “^4.41.6”,
+“webpack-cli”: “^3.3.11”,
+“webpack-dev-server”: “^3.10.3”,
+“workbox-webpack-plugin”: “^5.0.0”
+vue-loader@15.7.1
+
+
+1.安装webpack工具，安装方式有两种：全局安装（命令：npm install -g webpack webpack-cli）以及安装在项目中，这里使用第二种：
+
+-D和--save-dev是等价的
+
+pack.json里面会有依赖 dependencies 和开发依赖 dependencies
+开发依赖是打包、环境配置，不是项目上线所必须的，安装的时候要注意区分
+
+
+需要注意版本
+
+npm install webpack@4.42.0 --save-dev
+npm install webpack-cli@3.3.11 -D
+
+
+npm install -D html-webpack-plugin@3.2.0
+npm install -D css-loader@3.3.1
+npm install -D style-loader@1.1.3
+npm install -D url-loader@3.0.0
+npm install -D file-loader@5.0.2
+npm install -D vue-loader@15.7.1
+npm install -D less-loader@5.0.0
+
+
+webpack-cli是webpack的运行环境
+//在项目中安装，这里的-D表示运用到开发(development)环境
+npm install -D webpack webpack-cli
+
+2.在项目根目录新建一个webpack.config.js文件，配置打包时候需要的一些插件。**作用: 指示 webpack 干那些活(当你运行 webpack 指令时, 会加载里面的配置)**添加代码如下：
+
+const path = require('path') // 引用path模块
+module.exports = {  // 这里是commrnt.js语法
+    // 入口文件
+    entry:"./src/main.js",
+    // 打包后的出口文件
+    output:{
+        // 输出的路径  是绝对路径(导入path模块) 这里是用node来做的
+        path:path.resolve(__dirname,'build'),
+        // 输出的文件名称
+        filename:'build.js',
+    },
+    //配置webpack开发服务功能
+    devServer:{
+    contentBase: "./src", //本地服务器所加载的页面所在的目录
+    host: "localhost",
+    inline: true, //实时刷新
+    compress: true,
+    port: 8080,
+    },
+    mode:"development"
+}
+
+3.在package.json文件中配置打包命令：
+"scripts": {
+  //
+  "serve": "vue-cli-service serve",
+  "build": "webpack",
+},
+
+
+4.配置Loaders
+
+上面给出的webpack.config.js的内容还不完整，所以会报错。意思是webpack只能打包JavaScript和JSON文件。Loaders允许webpack处理其他类型的文件，Loaders有两个属性：test属性标识要转换的文件；use属性指示应该使用哪个loader（加载器)进行转换。而我们的项目是vue工程，肯定包括.vue文件和html文件，那么如何让webpack解析.vue文件以及html文件呢？首先看个官网例子就大概能清楚怎么解析.vue文件了。
+
+4.1 解析.vue文件
+
+module.rules允许我们在webpack配置中指定多个类型的loaders。首先，按照官网提示，首先下载需要的vue-loader，在项目终端执行命令：
+
+npm install --save-dev vue-loader
+
+然后在webpack.config.js中使用该loader：
+
+module.exports = {
+  module: {
+    rules: [
+      { test: /\.vue$/, use: 'vue-loader' },
+    ],
+  },
+};
+
+还要加上:
+
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
+module.exports = {
+    //...
+    plugins:[
+          new VueLoaderPlugin(),
+    ]
+    //...
+}
+
+
+vue-loader@15.*之后除了必须带有VueLoaderPlugin 之外，还需另外单独配置css-loader。
+
+所以在终端执行命令 npm install --save-dev css-loader ，再在webpack.config.js里面加上：
+
+还有很多类型的文件解析loader，可以根据官网文档loader部分下载相应的loader，并在webpack.config.js里进行使用。一般只要报错，就是版本问题，可上网搜索解决办法。
+
+* npm install --save-dev style-loader 配置 style-loader
+
+    module: {
+        rules: [
+            { test: /\.vue$/, use: 'vue-loader' },
+            // 可以用多个loader处理
+            { test: /\.css$/, use: ['css-loader', 'style-loader'] },
+        ],
+
+
+4.2解析html
+
+跟上面同样的步骤，下载html-loader，再在webpack.config.js使用即可，但是也需要配合plugin使用。所以需要在webpack.config.js加入以下内容：
+
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+//...
+
+plugins:[
+          //...
+          new HtmlWebpackPlugin({
+              template: path.resolve(__dirname, './public/index.html')
+          })
+    ],
+
+
+4.3图片资源打包（.png/.jpg/.gif）
+我的项目中还有图片资源需要打包，所以还需要下载url-loader，并在相应部分添加：
+
+npm install --save-dev url-loader file-loader
+
+{
+    // 处理图片资源
+  test: /\.jpg|png|gif$/,
+  // 只使用一个loader处理，写法如下：
+  // 下载 url-loader 和 file-loader
+  loader:'url-loader',
+  // loader的配置可以通过option来配置
+  options: {
+    // 图片大小小于12kb，就会base64处理
+    // 通常我们只会对8-12kb以下的图片进行base64处理
+    // 优点：减少请求数量（减轻服务器压力）
+    // 缺点：图片体积会更大（文件请求速度更慢）
+    limit: 12 * 1024
+  }
+}
+
+
+4.4多个js文件打包成一个文件
+
+项目里面有多个js需要打包成一个js文件，必须使用模块化开发方式，需要通过一个集合js的文件，将其他各个的js文件模块，进行集中引入
+
+我就新建了一个blocklyTools.js文件将那些分散的.js文件引用进去
+
+再将新建的 blocklyTools.js 写到入口文件处，最后连同 main.js 编译成一个 build.js文件：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

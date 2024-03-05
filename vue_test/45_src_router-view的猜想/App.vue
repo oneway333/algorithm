@@ -12,11 +12,8 @@
 </template>
 
 <script>
-// webpack连这个后面的路径都必须是全的
-import Father from './components/Father.vue'
-import Uncle from './components/Uncle.vue'
-
-
+import Father from './components/Father'
+import Uncle from './components/Uncle'
 
 export default {
   name: 'App',
@@ -28,4 +25,4 @@ export default {
 
 </script>
 
-<style scoped lang="css"></style>
+<style scoped></style>

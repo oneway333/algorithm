@@ -1,7 +1,22 @@
-vue
+Vue
+
+Vue2 的vue-router不能用4版本以上的
+
+Node.js的版本要注意下
+
+Vue2内部的变量感觉要么从this获取，要么从event获取
+Vue3不同，更多的需要写函数，还得记得返回
 
 数据代理，数据劫持？
 Vue是怎样实现数据监视的？应该也就是通过给每个属性（无论是字面量、函数、对象）套上set get方法，获取的时候都需要调用set和get方法。这样在get和set中就有那么一段神奇的逻辑，监视着这些数据的变化，然后来渲染页面
+
+MVVM：M model 模型数据  V view 视图  VM 实例对象，控制模型数据变化，刷新视图
+
+
+全局过滤器
+Vue.filter('filter', function(val){return new_val})
+通过在双大括号中，{{name | filter}} 来实现过滤
+
 
 双大括号
 {{js表达式}}
@@ -12,7 +27,7 @@ adfasdfasdfasdfsfdf
 @click="showInfo"    // 双引号里面也可以写js表达式
 @click="showInfo1($event, 321)"  // 回调函数可以配置多个参数，事件对象要加$event
 class="basic" :class="class_style1"    // 绑定样式
-<h2 :style="{opacity:1}">fuck you</h2>    // 通过style绑定样式，要用对象形式的写法
+<h2 :style="{opacity}">fuck you</h2>    // 通过style绑定样式，要用对象形式的写法
 
 一般结构：
 
@@ -160,12 +175,12 @@ v-pre       跳过所在节点的编译过程，达到快速编译
 
 列表过滤  模糊搜索  用计算属性定义一个属性指向原来的内容属性，通过数组的方法来实现
 computed: {
-              bakPersons: {
-                  get() {    // 必须是函数表达式
-                      return this.persons.filter(p => p.name.includes(this.search))
-                  }
-              }
-          }
+    bakPersons: {
+        get() {    // 必须是函数表达式
+            return this.persons.filter(p => p.name.includes(this.search))
+        }
+    }
+}
 
 列表的排序 通过数组的方法来实现 sortType作为不同排序的index
 computed: {
@@ -273,9 +288,20 @@ new Vue({
   render: h => h(App),
 })
 或者
+
+// 创建Vue实例对象
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  // 将app组件放入容器中
+  // 这里面h实际上是 createElement
+  // render会调用vue的模板解析器，为了不造成代码的冗余，从众多js中进行了分离
+  // render: h => h(App),
+  render: function (a) { 
+    // console.log(App);
+    // console.log(typeof App);
+    return a(App) 
+  },  // 效果是一样的
+  // VM对象挂载在一个index.html中的id为app的元素上
+}).$mount('#app')   // 这个就相当于el: "#app"
 
 
 XXX.vue:
@@ -308,10 +334,11 @@ export default {
 
 ref 给元素或者组件打上标记，再通过this.$refs.btn就能获取这个元素或者组件，使用其身上的所有方法和属性
 <button ref="btn">previous</button>
+应用在组件上时，可以获取其所以的数据和方法
 <School ref="sch"></School>
 
 
-组件间通信 props $emit 全局事件总线
+组件通信 组件间通信 props 自定义事件 ref给子组件标记 全局事件总线 作用域插槽 
 
 props
 可以在父组件中给子组件添加额外的属性，然后在子组件中通过props接收收到的参数
@@ -430,16 +457,35 @@ import {nanoid} from 'nanoid'
 Vue.use(Vuex)
 
 // actions 响应组件中的动作，预先做一些数据或者东西的准备
-const actions = {}
+const actions = {
+        plus: function(context, val){
+        context.commit('plus', val)
+    },
+
+}
 
 // mutations 操作数据
-const mutations = {}
+const mutations = {
+    plus: (state, val) => {
+        state.num += val
+    },
+}
 
 // state 存储数据
-const state = {}
+const state = {
+    num: 0,
+    personList: [
+        {id: 1, name: 'fuck'},
+        {id: 2, name: 'shit'},
+    ],
+}
 
 // 这个就是state_2.0，可以对state中的数据做其他操作
-const getters = {}
+const getters = {
+    bigSum(state){
+        return state.num * 10
+    }
+}
 
 // 创建并暴露store
 export default new Vuex.Store({
@@ -448,6 +494,17 @@ export default new Vuex.Store({
     state,
     getters,
 })
+
+然后在需要用vuex的组件中，通过
+this.$store.dispatch('XXX', this.step) 把数据给 actions
+this.$store.commit('XXX', this.step)   把数据给 mutations
+
+DOM元素中这么接收
+<h2>num: {{ $store.state.num }}</h2>
+<h2>num: {{ $store.getters.bigSum }}</h2>
+
+
+
 
 
 路由：非常重要
@@ -475,6 +532,7 @@ to指示导航项，地址栏也会变
 <router-view></router-view>
 
 ./router/index.js中先引入需要路由的各种组件
+import VueRouter from 'vue-router'
 配置路由的信息
 export default new VueRouter({
     // 注意这里必须是routes，不能拼错
@@ -485,13 +543,13 @@ export default new VueRouter({
         meta: {flag: true, XXX: XXX} // 可以自己随意配置一些元信息，搞个flag用来判断啥的
         children: [
             {
-                path: 'details',
+                path: 'details/:id/:title',  //  前面不能有 /，如果用params的方式传递参数，需要使用这种方式
                 component: MessageContent,
             },
         ]
-
     ]
 })
+
 
 通过路由传递数据
 query参数
@@ -510,7 +568,7 @@ query参数
     {{ m.title }}
 </router-link>
 
-然后在被路由到的组件中这样获取数据
+然后在被路由加载出来的组件中这样获取数据
 <li>id: {{ $route.query.id }}</li>
 
 params参数：
@@ -647,9 +705,6 @@ const router = new VueRouter({
     // mode: 'hash',
     mode: 'history',
 })
-
-
-用递归对所有路由加入路由守卫
 
 
 npm run serve    // 启动Vue项目

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <title>1.事件的基本使用</title>
     <script src="../js/vue.js"></script>
 </head>
+
 <body>
     <div id="root">
         <h1>{{name}}</h1>
@@ -18,13 +20,13 @@
     </div>
     <script>
         new Vue({
-            el:'#root',
+            el: '#root',
             data: {
                 name: 'fuck',
             },
             methods: {
                 // js中事件的回调函数，里面会有event对象
-                showInfo(e){
+                showInfo(e) {
                     // alert('fuck you2')
                     // args.forEach(item => console.log(item))
                     console.log(e.target);
@@ -33,11 +35,12 @@
                 // showInfo:() => { 
                 //     console.log(this); // window
                 // }
-                showInfo1(e, num){
+                showInfo1(e, num) {
                     console.log(num);
                 }
             }
         })
     </script>
 </body>
+
 </html>

@@ -46,6 +46,1847 @@ display: inline-block
 
 弹性盒子会有侧轴自动拉伸的问题，即align-items/align-content默认值为stretch
 
+
+
 隐藏标签的方式
 visibility; hidden
 display:none
+
+
+====================================HTML========================================
+
+
+<!DOCTYPE html> <!-- 文档申明 -->
+<html lang="zh-CN">  <!-- 设置语言 -->
+<head>
+    <meta charset="UTF-8">    字符集
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title>
+</head>
+<body>
+    <!-- 块级元素，特点：独占一行 -->
+    <marquee behavior="" direction="">fuck</marquee>
+
+    <!-- 行内元素，特点：不独占一行 -->
+    <input type="text" name="" id="">
+
+    <!-- 规则1：块级元素中能写：行内元素、块级元素（几乎什么都能写） -->
+    <div>
+        <div></div>
+        <input type="text">
+    </div>
+
+    <!-- 规则2：行内元素中能写：行内元素，但不能写：块级元素 -->
+    <span>
+        lkasdjf
+        <input type="text" name="" id="">
+    </span>
+
+    <!-- 特殊规则：h1-h6不能相互嵌套 -->
+    <h1>
+        lakdjf
+        <h2>lkjasdf</h2>
+    </h1>
+
+    <!-- 特殊规则：p标签中不能写块元素 -->
+    <p>
+        <marquee behavior="" direction="">fuck</marquee>
+    </p>
+</body>
+</html>
+
+
+图片标签
+<img width="" src="./one_way.png" alt="oneway">
+<img width="" src="./one_way.png" alt="oneway">
+
+1. jpg 格式：
+2. png 格式：  色彩丰富，可以搞透明背景
+3. bmp 格式：
+4. gif 格式：
+5. webp 格式：
+6. base64 格式  原理：把图片进行 base64 编码，形成一串文本。
+
+
+【超链接】
+<a></a>
+属性：
+href ： 指定要跳转到的具体目标。
+target ： 控制跳转时如何打开页面，常用值如下:
+_self ：在本窗口打开。
+_blank ：在新窗口打开。
+id ： 元素的唯一 标识，可用于设置锚点。
+name ： 元素的名字，写在 a 标签中，也能设置锚点。
+
+
+<a href="https://www.baidu.com/">baidu</a>    跳转网站
+<a href="./07_HTML字符编码.html">123</a>      跳转网页
+<a href="./11_HTML语义化标签.html">
+    <a href="./12_块级元素与行内元素.html">daa</a>
+</a>
+
+
+跳转文件
+<a href="./resource/2.jpg">picture</a>
+<a href="./resource/1.mp3">mp3</a>
+<a href="./resource/5.gif" class="">gif</a>
+<a href="./resource/3.pdf">pdf</a>
+
+<!-- 浏览器不可直接打开的文件，会触发下载 -->
+<a href="./resource/kms.zip">zip</a>
+
+<!-- 浏览器可以打开，但是要强制触发下载 -->
+<a href="./resource/1.mp3" download="321">download</a>
+
+跳转图片
+<a href="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png">baidu logo</a>
+
+
+跳转锚点
+<a href="#one">1</a>
+<a href="#two">2</a>
+<a href="#three">3</a>
+<a name="one"></a>
+<p>1</p>
+<img width="300" src="./one_way.png" alt="">
+
+<a name="two"></a>
+<p>2</p>
+<img width="300" src="./resource/2.jpg" alt="">
+
+<a id="three"></a>
+<p>3</p>
+<img width="300" src="./one_way.png" alt="">
+
+<p></p>
+<!-- 回到顶部 -->
+<a href="#">top</a>
+
+<!-- 刷新页面 -->
+<a href="">fresh</a>
+
+<!-- 弹窗 -->
+<a href="javascript:alert(30)"></a>
+
+唤起指定应用：
+手机打开比较有用的
+<a href="tel:110">110</a>
+<a href="mailto:179038073@qq.com">mail</a>
+<a href="sms:10086">10086</a>
+
+
+【列表】
+<!-- ordered list 有序列表 -->
+<ol>
+    <!-- list item 列表项 -->
+    <li>one</li>
+    <li>two</li>
+    <li>three</li>
+</ol>
+
+<h2>city</h2>
+<!-- unordered list 无序列表 -->
+<ul>
+    <li>
+        one
+        <ul>
+            <li>
+                1
+                <ul>
+                    <li>一</li>
+                    <li>二</li>
+                    <li>三</li>
+                </ul>
+            </li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </li>
+    <li>two</li>
+    <li>three</li>
+</ul>
+
+<!-- definition list 定义列表 -->
+<dl>
+    <dt>第一</dt>              definition title
+    <dd>绝对不意气用事</dd>    definition data
+    <dd>绝对不意气用事</dd>    也可以搞多个这样子的
+    <dt>第二</dt>
+    <dd>绝对不漏判任何一件坏事</dd>
+    <dt>第三</dt>
+    <dd>绝对裁判的公正漂亮</dd>
+</dl>
+
+
+【表格】
+    <!-- 表格 -->
+    <!-- height表示至少XXX -->
+    <table border="1" width="500" height="300" cellspacing="0">
+        <!-- 表格标题 -->
+        <caption>information</caption>
+        <!-- 表格头部 -->
+        <thead height="80" align="center" valign="middle">
+            <!-- table row 表格行 -->
+            <tr>
+                <!-- table head 表格头部单元格 -->
+                <th width="150" height="50" align="right" valign="bottom">name</th>
+                <th>gender</th>
+                <th>age</th>
+                <th>from</th>
+                <th>politics</th>
+            </tr>
+        </thead>
+        <!-- 表格主体 -->
+        <tbody height="300" align="right" valign="top">
+            <tr height="40" align="left" valign="bottom">
+                <!-- table data 表格数据 -->
+                <td align="left" valign="top">zhangsan</td>
+                <td>male</td>
+                <td>18</td>
+                <td>han</td>
+                <td>republican</td>
+            </tr>
+            <tr>
+                <td>lisi</td>
+                <td>female</td>
+                <td>20</td>
+                <td>man</td>
+                <td>people</td>
+            </tr>
+            <tr>
+
+                <td>wangwu</td>
+                <td>male</td>
+                <td>19</td>
+                <td>hui</td>
+                <td>republican</td>
+            </tr>
+            <tr>
+                <td>zhaoliu</td>
+                <td>female</td>
+                <td>21</td>
+                <td>zhuang</td>
+                <td>people</td>
+            </tr>
+        </tbody>
+        <!-- 表格脚注 -->
+        <tfoot height="80" align="right" valign="top">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>totle: 4</td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+表格_跨行与跨列
+
+<table border="1" cellspacing="0" height="300" width="500">
+    <caption>课程表</caption>
+    <thead>
+        <tr>
+            <th>项目</th>
+            <!-- 跨列，多的列要删除 -->
+            <th colspan="5">上课</th>
+            <th colspan="2">活动与休息</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>星期</td>
+            <td>星期一</td>
+            <td>星期二</td>
+            <td>星期三</td>
+            <td>星期四</td>
+            <td>星期五</td>
+            <td>星期六</td>
+            <td>星期日</td>
+        </tr>
+        <tr>
+            <!-- 跨行，多的行要删除 -->
+            <td rowspan="4">上午</td>
+            <td>语文</td>
+            <td>数学</td>
+            <td>英语</td>
+            <td>英语</td>
+            <td>物理</td>
+            <td>数学竞赛</td>
+            <td rowspan="4">休息</td>
+        </tr>
+        <tr>
+            <td>数学</td>
+            <td>语文</td>
+            <td>化学</td>
+            <td>物理</td>
+            <td>英语</td>
+            <td>篮球比赛</td>
+        </tr>
+        <tr>
+            <td>化学</td>
+            <td>语文</td>
+            <td>体育</td>
+            <td>历史</td>
+            <td>地理</td>
+            <td>周考</td>
+        </tr>
+        <tr>
+            <td>体育</td>
+            <td>化学</td>
+            <td>语文</td>
+            <td>数学</td>
+            <td>英语</td>
+            <td>社会实践</td>
+        </tr>
+        <tr>
+            <td rowspan="2">下午</td>
+            <td>语文</td>
+            <td>英语</td>
+            <td>数学</td>
+            <td>物理</td>
+            <td>数学</td>
+            <td>英语角</td>
+            <td rowspan="2">休息</td>
+        </tr>
+        <tr>
+            <td>化学</td>
+            <td>物理</td>
+            <td>地理</td>
+            <td>生物</td>
+            <td>体育</td>
+            <td>自由活动</td>
+        </tr>
+    </tbody>
+</table>
+
+
+ <!-- 按原文显示 -->
+<pre>
+    fuck        that        shit
+        fuck    thet    shit
+           fuck that shit
+</pre>
+
+
+表单 根据action的网址发送get请求
+<form action="https://search.jd.com/search" target="_blank">
+    <!-- 主要信息 -->
+    <fieldset>
+        <legend>main</legend>
+        <label for="zhanghu">账号：</label>   点击文字就相当于点输入框的效果
+        disabled 禁用
+        <input disabled id="zhanghu" maxlength="" type="text" name="account" id=""><br>
+        <label>
+            密码：
+            <input id="pwd" maxlength="" type="password" name="pwd" id=""><br>
+        </label>
+        性别：
+        <label>
+            <input type="radio" name="gender" value="male" checked> 男
+        </label>
+        <label>
+            <input type="radio" name="gender" value="female"> 女
+        </label>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>addition</legend>
+        爱好：
+        <label>
+            <input type="checkbox" name="hobby" id="" value="抽烟"> 抽烟
+        </label>
+        <label>
+            <input type="checkbox" name="hobby" id="" value="喝酒"> 喝酒
+        </label>
+        <label>
+            <input type="checkbox" name="hobby" id="" value="烫头" checked> 烫头
+        </label>
+        <br>
+        <label>
+            其他：
+            <textarea name="other" cols="22" rows="5"></textarea>
+        </label>
+        <br>
+        <label>
+            籍贯：
+            <select name="place">
+                <option value="one">1</option>
+                <option value="two">2</option>
+                <option value="three" selected>3</option>
+                <option value="four">4</option>
+            </select>
+        </label>
+
+    </fieldset>
+    <br>
+    <input type="hidden" name="from" value="baidu">
+    <br>
+
+    <button type="submit">submit</button>
+    <button type="reset">reset</button>
+    <!-- 普通按钮 第一种写法-->
+    <button type="button">whether account registered</button>
+</form>
+
+
+【框架标签】
+
+<!-- 与超链接的target属性配合使用 -->
+    <a href="https://www.taobao.com" target="container">taobao</a>
+    <a href="https://www.bilibili.com" target="container">blibili</a>
+    <br>
+    <iframe name="container" frameborder="0" width="900" height="900"></iframe>
+    
+    <br>
+    <!-- 利用iframe嵌入一个普通网页 -->
+    <iframe frameborder="0" src="https://www.bilibili.com" height="600" width="600"></iframe>
+    <br>
+    
+    <!-- 利用iframe嵌入一个广告网页 -->
+    <iframe frameborder="1" width="900" height="900" src="https://pos.baidu.com/vctm?conwid=368&conhei=24&rdid=6924089&dc=3&di=u6924089&s1=2774005352&s2=2060309122&dri=1&dis=0&dai=163&ps=1100x0&enu=encoding&exps=110279,110275,110261,110252,110011&ant=0&psi=bb47c92747ddcc69&dcb=___adblockplus_&dtm=HTML_POST&dvi=0.0&dci=-1&dpt=none&tpr=1708062783857&ti=%E7%BD%91%E6%98%93&ari=2&ver=0830&dbv=2&drs=4&pcs=1901x959&pss=1901x11270&cfv=0&cpl=5&chi=1&cce=true&cec=UTF-8&tlm=1708062784&prot=2&rw=959&ltu=https%3A%2F%2Fwww.163.com%2F&ltr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DzrighE42TTpGFGE5ASmwnKLFd9ym2FtpScmH7qQzm0S%26wd%3D%26eqid%3Df34707dc03a9481a0000000565cef83d&lcr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DzrighE42TTpGFGE5ASmwnKLFd9ym2FtpScmH7qQzm0S%26wd%3D%26eqid%3Df34707dc03a9481a0000000565cef83d&eqid=f34707dc03a9481a0000000565cef83d&ecd=1&dft=2&uc=1920x1080&pis=-1x-1&sr=1920x1080&tcn=1708062785&qn=5128a41dddff6bb4&ft=1" frameborder="0"></iframe>
+    <!-- 利用iframe嵌入其他内容 -->
+    <br>
+    <!-- <iframe src="./resource/1.mp3" frameborder="0"></iframe> -->
+
+    iframe中嵌入图片
+    <iframe src="./resource/2.jpg" frameborder="0"></iframe>
+    <br>
+    <iframe src="./resource/3.pdf" frameborder="0"></iframe>
+    <br>
+    <iframe src="./resource/kms.zip" frameborder="0"></iframe>
+
+
+【字符实体】
+
+<div>fuck&nbsp;&nbsp;&nbsp;that</div>    空格
+<div>fuck&#160;&#160;&#160;&#160;that</div>    
+<div>lower than & greater than &lt;h1&gt;</div>    大于小于
+<div>whitespace: &amp;nbsp</div>    & 和号
+<div>&: &amp;amp;</div>    
+<div>current: &yen;199</div>    ¥ 元（yen）
+<div>copyright: &copy;</div>    © 版权（copyright）
+<div>2 * 2 = 4</div>            
+<div>2 + 2 = 4</div>
+<div>2 &times; 2 = 4</div>      × 乘号
+<div>2 / 2 = 1</div>        
+<div>2 &divide; 2 = 1</div>     ÷ 除号 
+
+
+【HTML全局属性】
+
+id
+给标签指定唯一标识，注意： id 是不能重复的。
+作用：可以让 label 标签与表单控件相关联；也可以与 CSS 、 JavaScript 配合使
+用，。
+
+class 给标签指定类名，随后通过 CSS 就可以给标签设置样式。
+
+style 给标签设置 CSS 样式。
+
+dir 内容的方向，值: ltr 、 rtl
+
+title 给标签设置一个文字提示，一般超链接和图片用得比较多。
+
+lang 给标签指定语言，具体规范和可选值请参考【10. HTML 设置语言】。
+
+
+【meta 元信息】
+
+<!-- 配置字符编码 -->
+<meta charset="UTF-8">
+
+<!-- 针对IE浏览器的兼容性设置 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- 针对一些国产”双核“浏览器设置，让浏览器优先使用webkit内核渲染网页 -->
+<meta name="render" content="webkit">
+
+<!-- 针对移动端的配置 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 配置网页关键字 -->
+<meta name="keywords" content="fuck,that,shit">
+
+<!-- 配置网页描述信息 -->
+<meta name="description" content="fuck,that,shit">
+
+<!-- 搜索引擎爬虫配置 -->
+<meta name="robots" content="此处可选值见下表">
+
+name的其他可选值：
+index 允许搜索爬虫索引此页面。
+noindex 要求搜索爬虫不索引此页面。
+follow 允许搜索爬虫跟随此页面上的链接。
+nofollow 要求搜索爬虫不跟随此页面上的链接。
+all 与 index, follow 等价
+none 与 noindex, nofollow 等价
+noarchive 要求搜索引擎不缓存页面内容。
+nocache noarchive 的替代名称。
+
+配置网页作者：
+<meta name="author" content="tony">
+
+配置网页生成工具
+<meta name="generator" content="Visual Studio Code">
+
+配置定义网页版权信息：
+<meta name="copyright" content="2023-2027©版权所有">
+
+
+<!-- 自动刷新 -->
+<meta http-equiv="refresh" content="3;url=https://www.baidu.com">
+
+
+布局标签：
+header
+nav
+aside
+article文章  section段落
+footer
+
+
+状态标签
+电量：meter
+进度：progress
+
+
+列表标签
+<form action="#">
+    <input type="text" list="shit">
+    <button>search</button>
+</form>
+<datalist id="shit">    input的预先配置选项，模糊搜索的
+    <option value="one">one</option>
+    <option value="two">two</option>
+    <option value="three">three</option>
+</datalist>
+<hr>
+<details>   内容的标题和下拉
+    <summary>fuck</summary>
+    <p>fuck shit</p>
+</details>
+
+
+文本标签：
+ruby
+
+
+表单控件属性：
+H5新增placeholder
+required 必填项
+autofocus 自动获取焦点
+autocomplete 自动完成 记录所有输入过的值
+pattern 正则表达式，看输出内容是否和正则相匹配，如果输入为空则不其效果，所以需要有required一起修饰
+
+
+input新增type属性值：
+email: <input type="email" name="email"><br>
+url: <input type="url" name="url"><br>
+number: <input type="number" name="number" step="2"><br>
+search: <input type="search" name="search"><br>
+tele: <input type="tel" name="tel"><br>
+range: <input type="range" name="range"><br>
+color: <input type="color" name="color"><br>
+date: <input type="date" name="date"><br>
+month: <input type="month" name="month"><br>
+week: <input type="week" name="week"><br>
+time: <input type="time" name="time"><br>
+date+time: <input type="datetime-local" name="dtl"><br>
+
+
+新增视频标签：
+<!-- autoplay必须静音才生效 -->
+<!-- loop 循环播放 -->
+<!-- <video src="./124ac3.mp4" controls muted autoplay loop> -->
+<!-- preload metadata 元信息/基础信息 -->
+<video 
+    src="./124ac3.mp4" 
+    controls 
+    muted 
+    loop 
+    poster="./frigereter.jpg" 
+    preload="metadata" 
+></video>
+
+
+新增音频标签：
+<audio 
+    src="./music.mp3" 
+    controls 
+    autoplay 
+    muted 
+    loop
+    preload="auto"
+>
+</audio>
+
+
+兼容性处理：
+<!--[if lt ie 9]>
+<script src="./html5shiv.js"></script> 
+<![endif]-->
+
+
+=======================================CSS=============================================
+CSS编写位置
+位置1_行内样式
+<h1 style="color: red;font-size: 45px;">welcome</h1>
+
+位置2_内部样式
+通过<style></style>内指定
+
+位置3_外部样式
+<link rel="stylesheet" href="./position3.css">
+
+样式： 行内样式 > 内部样式 = 外部样式
+
+通配选择器：
+* {
+    font-size: 100px;
+}
+
+元素选择器：
+h1 {
+    font-size: 50px;
+}
+h2 {
+    color: chocolate;
+}
+h3 {
+    color: green;
+}
+p {
+    color: red;
+}
+
+类选择器：
+.fuck {
+    color: green;
+}
+.what {
+    color: red;
+}
+.big {
+    font-size: 20px;
+}
+
+ID选择器
+#shit {
+    color: red;
+}
+#fuck {
+    color: blue;
+}
+
+交集选择器：
+1. 元素必须在开头
+2. 可以多级/平级嵌套
+    选择器1选择器2选择器3  中间不能有任何空格
+
+/* 并集选择器 */
+逗号隔开
+.rich,
+.beau,
+.dog,
+.cat,
+#liu {
+    font-size: 40px;
+    background-color: brown;
+    width: 200px;
+}
+
+/* 后代 */ 空格隔开
+ul li {
+    color: red;
+}
+ol li {
+    color: green;
+}
+
+/* 子代选择器 */  第一个儿子
+div>a {
+    color: red;
+}
+
+/* 紧紧相邻的兄弟,下方第一个 */
+/* div+p {
+    color: red;
+} */
+
+/* 所有的兄弟 */
+div~p {
+    color: red;
+}
+
+属性选择器
+* 第一种写法,选中具有title属性的元素 */
+/* [title] {
+    color: red;
+} */
+
+/* 第二种写法,属性的属性值等于XXX */
+/* [title="fuck"] {
+    color: red;
+} */
+
+/* 第三种写法,属性的属性值以XXX开头的 */
+/* [title^="f"] {
+    color: red;
+} */
+
+/* 第四种写法,属性的属性值以XXX结尾的 */
+/* [title$="t"] {
+    color: red;
+} */
+
+/* 第五种写法,属性的属性值包含XXX的 */
+/* [title*="c"] {
+    color: red;
+} */
+
+
+伪类选择器：
+动态伪类
+/* 标准顺序 */
+a:link {
+    color: red;
+}
+
+a:visited {
+    color: gray;
+}
+
+/* 选中的是鼠标悬浮状态的a元素 */
+a:hover {
+    color: skyblue;
+}
+
+/* 选中的是鼠标激活状态的a元素 */
+a:active {
+    color: green;
+}
+
+span:hover {
+    color: green;
+}
+
+span:active {
+    color: red;
+}
+
+/* 表单类元素可focus */
+input:focus,select:focus {
+    color: orange;
+    background-color: green;
+}
+
+结构伪类
+/* 选中的是div的第一个儿子p元素--结构1 */
+/* div>p:first-child {
+    color: red;
+} */
+/* 选中的是div的第一个儿子p元素--结构2 */
+/* div>p:first-child {
+    color: red;
+} */
+/* 选中的是div的后代p元素,p的父元素无所谓,但必须是第一个儿子--结构3 */
+/* div p:first-child {
+    color: red;
+} */
+/* 选中的是div的后代p元素,p的父元素无所谓,但必须是第一个儿子--结构3 */
+p:first-child {
+    color: red;
+}
+
+
+/* 选中的是div的最后一个儿子元素(按照所有兄弟进行计算)--结构1 */
+/* div>p:last-child {
+    color: red;
+} */
+/* 选中的是div的第n个儿子元素(按照所有兄弟进行计算)--结构2 */
+/* div>p:nth-child(3) {
+    color: red;
+} */
+/* 选中的是div的an+b个儿子元素(按照所有兄弟进行计算)--结构2 */
+/* 下方展示前5个 */
+/* div>p:nth-child(-n+5) {
+    color: red;
+} */
+
+/* 选中的是div的第一个儿子XXX元素(按照所有同类型兄弟进行计算)--结构3 */
+/* div>p:first-of-type {
+    color: red;
+} */
+
+/* 选中的是div的最后一个儿子XXX元素(按照所有同类型兄弟进行计算)--结构3 */
+/* div>p:last-of-type {
+    color: red;
+} */
+
+/* 选中的是div的an+b个儿子XXX元素(按照所有同类型兄弟进行计算)--结构3 */
+div>p:nth-of-type(3) {
+    color: red;
+}
+
+
+/* 选中div中倒数第n个的儿子p元素(按照所有兄弟)--结构1 */
+/* div>p:nth-last-child(3) {
+    color: red;
+} */
+
+/* 选中div中倒数第n个的儿子p元素(按照所有同类型兄弟)--结构1 */
+/* div>p:nth-last-of-type(2) {
+    color: red;
+} */
+
+/* 选中没有兄弟的span元素 -- 结构2 */
+/* span:only-child {
+    color: red;
+} */
+
+/* 选中没有同类型的span元素 -- 结构2 */
+/* span:only-of-type {
+    color: red;
+} */
+
+/* 选中html根元素 */
+/* :root {
+    background-color: gray;
+} */
+
+/* 选中没有内容的div */
+div:empty {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+
+否定伪类：
+/* 选中div的儿子p里面的不是某个选择器的元素 */
+/* div>p:not(.failed) {
+    color: red;
+} */
+
+/* 选中div的儿子p里面的不是某个属性的属性值的元素 */
+/* div>p:not([title^="fu"]) {
+    color: red;
+} */
+
+/* 选中div的儿子p元素,但是排除第一个儿子 */
+div>p:not(:first-child) {
+    color: red;
+}
+
+
+UI伪类：
+/* 选中勾选的复选框或者单选框 */
+input:checked {
+    width: 50px;
+    height: 50px;
+}
+
+/* 选中的是被禁用的input元素 */
+input:disabled {
+    background-color: gray;
+}
+
+/* 选中的是可用的input元素 */
+input:enabled {
+    background-color: red;
+}
+
+
+目标伪类，可以配合锚点使用：
+div:target {
+    background-color: green;
+}
+<a href="#one">1</a>
+<a href="#two">2</a>
+<a href="#three">3</a>
+<a href="#four">4</a>
+<a href="#five">5</a>
+<a href="#six">6</a>
+<div id="one">1</div>
+<br>
+<div id="two">2</div>
+<br>
+<div id="three">3</div>
+<br>
+<div id="four">4</div>
+<br>
+<div id="five">5</div>
+<br>
+<div id="six">6</div>
+
+
+语言伪类：
+div:lang(en) {
+    color: red;
+}
+
+:lang(zh-CN) {
+    color: green;
+}
+
+
+伪元素选择器
+/* 伪元素是元素中一些特殊位置 */
+/* 选中的是div中的第一个文字 */
+div::first-letter {
+    color: red;
+    font-size: 40px;
+}
+
+/* 选中div中第一行文字 */
+div::first-line {
+    background-color: yellow;
+}
+
+/* 选中div中被鼠标选中的文字 */
+div::selection {
+    background-color: green;
+    color: orange;
+}
+
+/* 选中input中的提示元素 */
+input::placeholder {
+    color: skyblue;
+}
+
+/* 选中p元素最开始的位置,随后创建一个子元素 */
+p::before {
+    content: "$"; 
+}
+/* 选中p元素最后的位置,随后创建一个子元素 */
+p::after {
+    content: ".00";
+}
+
+
+选择器优先级：
+/* 行内 > ID选择器 > 类选择器 > 元素选择器 > 通配选择器 > 继承 */
+/* .slogan {
+    color: yellow;
+} */
+
+
+权重：
+(a,b,c)
+a: ID选择器的个数
+b: 类,伪类,属性选择器的个数
+c: 元素,伪元素选择器的个数
+
+vscode帮忙计算了
+ */
+ /* (0, 2, 1) */
+/* .container span.slogan {
+    color: red;
+}
+
+
+CSS三大特性:
+层叠性 继承性 优先级
+
+
+像素: px，显示屏上小点点的个数
+颜色：color rgb/rgba rgba(255,255,255,0.5)
+      HEX HEXA #FFFFFF50 
+      HSL HSLA (0, 51%, 20%, 0.623)
+
+
+字体：
+字体大小：font-size
+由于字体设计原因，文字最终呈现的大小，并不一定与 font-size 的值一致，可能大，也可能小。
+例如： font-size 设为 40px ，最终呈现的文字，可能比 40px 大，也可能比 40px小。
+通常情况下，文字相对字体设计框，并不是垂直居中的，通常都靠下 一些。
+
+字体族：font-family: "STCaiyun",sans-serif;   可以写多个，用第一个生效的，如果最后一个都不生效，应该就是默认的
+字体风格：font-style: normal/italic/oblique;    控制倾斜的
+字体粗细：font-weight: lighter/normal/bold/bolder/ 100 ~ 1000的数字;
+
+
+文本：
+颜色：color
+字母间距：etter-spacing: 20px;
+单词间距：word-spacing: 20px;
+
+
+文本修饰：
+不讲顺序，上划绿色虚线
+text-decoration: overline dotted green;
+下滑红色波浪线
+text-decoration: underline wavy red;
+中间线
+text-decoration: line-through;
+
+
+文本缩进：
+text-indent
+
+
+文本对齐_水平
+text-align: center;
+
+
+行高：
+/* 第一种写法：值为像素 */
+/* line-height: 40px; */
+
+/* 第二种写法：值为normal */
+/* line-height: normal; */
+
+/* 第三种写法：值为倍数，是font-size的XXX倍 -- 用的比较多 */
+line-height: 1.5;
+
+/* 第四种写法： 值为百分比，同上*/
+/* line-height: 150%; */
+
+
+ /* 注意点1：行高过小——文字会重叠，且最小为0，不能是负数 */
+ #d1 {
+     font-size: 40px;
+     background-color: skyblue;
+     line-height: 0px;
+ }
+
+ /* 注意点2：行高是可以继承的 */
+ #d2 {
+     font-size: 40px;
+     background-color: orange;
+     line-height: 1.5;
+ }
+
+ span {
+     font-size: 200px;
+     color: red;
+     /* 会继承line-height的1.5倍 */
+ }
+
+ /* 注意点3：line-height和height的区别和联系
+     设置了height，高度就是height的值
+     没有设置height，高度就是line-height * 行数
+ 
+ */
+
+/* 行高的应用场景1：调整多行文字的间距 */
+/* 行高的应用场景2：调整单行文字的垂直居中 */
+当设置line-height=height的时候文字就居中了
+height: 300px;
+line-height: 300px;
+
+子相对于父元素的垂直居中
+/* 相对于父元素的X基线加上X的一半的中间 */
+vertical-align: middle;
+vertical-align是相对于父元素字体大小来的，字体越小，对定位的影响就越小，所以可以设置父组件字体为0，再另外设置子组件的字体大小就能实现水平居中
+
+
+列表相关属性
+/* 列表符号 */
+/* list-style-type: none; */
+/* 列表符号位置 */
+/* list-style-position: inside; */
+/* 自定义列表符号 */
+/* list-style-image: url("./1.png"); */
+/* 复合属性 */
+list-style: decimal inside url("./1.png");
+
+
+边框相关属性
+ /* border-width: 2px;
+border-color: green;
+border-style: solid; */
+border: 2px green solid;    // 一般直接写混合的
+
+
+表格独有属性
+/* 控制表格的列宽 */
+table-layout: fixed;
+/* 控制单元格间距（生效的前提是不能合并边框） */
+border-spacing: 0px;
+/* 合并相邻单元格边框 */
+border-collapse: collapse;
+/* 隐藏没有内容的单元格（生效的前提是不能合并边框） */
+empty-cells: hide;
+/* 设置表格标题位置 */
+caption-side: top;
+
+
+背景相关属性：
+/* 设置背景颜色，默认值是transparent */
+background-color: skyblue;
+/* 设置背景图片 */
+background-image: url("./1.png");
+/* 设置背景图片重复方式 */
+background-repeat: no-repeat;
+/* 控制背景图片位置，第一种写法：用关键词 */
+/* background-position: center center; */
+/* 控制背景图片位置，第二种写法：用具体的像素值 */
+background-position: 60px 70px;
+// 混合配置
+background: green url("1.png") no-repeat 300px;
+
+
+鼠标相关属性：
+button {
+    cursor: pointer;
+}
+input {
+    cursor: move;
+}
+
+
+【CSS_盒子模型】
+
+CSS中常用的长度单位
+/* 第一种长度单位：px（像素） */
+/* 第二种长度单位：em（相对于当前元素或其父/祖先元素的font-size的倍数） */
+/* 第三种长度单位：rem（相对于根元素的font-size的倍数） */
+/* 第四种长度单位：% （相对其父元素的百分比） */
+
+
+元素的显示模式
+display: inline-block/inline/block/flex;
+
+
+盒子模型的组成部分
+/* 内容区域的宽 */
+width: 300px;
+min-width: XXXpx  // 最小宽度
+/* 内容区域的高 */
+height: 300px;
+min-height: XXXpx  // 最小高度
+/* 内边距 设置的背景颜色会填充内边距区域 */
+padding: 20px;
+/* 边框 设置的背景颜色会填充边框区域 */
+border: 10px solid transparent;
+/* 外边距 盒子与外界的距离，不会影响盒子的大小 */
+margin: 50px;
+
+
+盒子的内边距_padding
+/* 左侧内边距 */
+/* padding-left: 20px; */
+/* 上侧内边距 */
+/* padding-top: 30px; */
+/* 底部内边距 */
+/* padding-bottom: 40px; */
+/* 右侧内边距 */
+/* padding-right: 50px; */
+
+/* 复合属性 四个方向都是20px */
+/* padding: 20px; */
+
+/* 复合属性 上下 左右 */
+/* padding: 10px 20px; */
+
+/* 复合属性 上 左右 下 */
+/* padding: 10px 20px 30px; */
+
+/* 复合属性 上 右 下 左 */
+padding: 10px 20px 30px 40px;
+
+
+盒子的边框_border
+border:2px solid red;
+border-left-color: orange;
+border-right-color: black;
+border-top-color: green;
+border-bottom-color: yellow;
+border-left-style: dashed;
+border-right-style: solid;
+border-top-style: double;
+border-bottom-style: dotted;
+border-left-width: 2px;
+border-right-width: 3px;
+border-top-width: 4px;
+border-bottom-width: 5px;
+/* border-color: red;
+border-style: solid;
+border-width: 2px; */
+border-left: 2px purple dotted;
+border-right: 3px red dashed;
+border-top: 4px green solid;
+border-bottom: 5px yellow double;
+
+
+盒子的外边距_margin
+margin: 50px;
+margin-left: 20px;
+margin-right: 30px;
+margin-top: 40px;
+margin-bottom: 50px;
+margin: 30px 40px;
+margin: 30px 40px 50px;
+/* margin: 20px 30px 40px 50px; */
+
+
+margin的注意事项：
+1.子元素的margin是参考父元素的content计算的
+2.上margin、左margin会影响自身的位置，下margin、右margin会影响兄弟元素的位置
+3.对于行内元素，左右margin可以完美，上下margin无效
+4.margin的值也可以是auto，给一个块级元素左右margin设置auto可以实现该元素在其父元素内水平居中，前提是父元素要有宽高
+5.margin可以是负值
+
+
+margin塌陷问题：这个就是BFC那啥东西
+给父元素上样式：
+/* 解决margin塌陷第一种方案 */
+/* border: 1px solid transparent; */
+/* 解决margin塌陷第二种方案 */
+/* padding: 1px; */
+/* 解决margin塌陷第三种方案 */
+overflow: hidden;
+
+
+上下margin存在合并的情况，左右margin不会有合并的情况
+解决也就是只设置下margin或者上margin
+
+
+处理内容溢出： 挺好的东西
+overflow: auto/hidden/scroll;
+
+
+隐藏元素的两种方式：
+/* 第一种隐藏方式 */
+/* display: none; */
+/* 第二种隐藏方式，会占据原来的位置 */
+visibility: hidden;
+
+
+样式的继承，有一些不影响布局的样式会被继承，主要是字体、文本的样式
+
+
+元素之间的空白问题
+/* 行内元素、行内块元素，彼此之间的换行会被浏览器解析为一个空白字符，所以会有空白的问题 */
+/* 
+    解决方案：
+    1. 去掉换行和空格
+    2. 给父元素设置font-size: 0，再给需要显示文字的元素，单独设置字体大小
+ */
+
+行内块的幽灵空白问题：
+<div>
+    这种情况图片下方会多出一点空白，这是因为文本基线的问题
+    <img class="image" src="../14_CSS_背景相关属性/1.png" alt="">
+</div>
+
+对img设置样式：
+/* 第一种解决方式 */
+/* vertical-align:bottom; */
+/* 第二种解决方式 */
+/* display: block; */
+
+第三种解决方案：
+对div设置字体为0
+
+
+【浮动】
+float: left/right;
+子元素设置浮动后，父元素的文本会被迫环绕，所以最有效的解决办法是增加一个伪元素选择器
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+这样只要当子元素设置了浮动，父元素在class中添加这个clearfix就可以了
+
+
+【定位】
+
+相对定位：
+/* 相对于自己原来的位置 */
+position: relative;
+left: 10px;    // 可以是负值
+top: 10px;
+/* top: 50px; */
+/* 不推荐一起用 */
+/* margin-left: 50px; */
+/* 不推荐一起用 */
+/* float: right; */
+
+
+绝对定位：
+绝对定位点是包含块（第一个相对定位的祖先元素）
+定位可以越过padding：
+绝对定位的起始点是第一个相对定位的父元素的包含padding的左上角
+
+
+/* 元素变成了定位元素 */
+position: absolute;
+/* left: 10px; */
+top: 210px;
+left: 10px;
+/* right: -50px; */
+/* bottom: -50px; */
+/* 可以用，但是不推荐 */
+/* margin-left: 100px; */
+/* margin-top: 100px; */
+/* 不起作用 */
+/* float: right; */
+/* transition: 1s all linear; */
+
+
+固定定位：
+/* 起始点固定是视口的左上角 */
+position: fixed;
+/* top: 0px; */
+/* left: 0; */
+right: 0;
+bottom: 0;
+/* 有效，但是不建议，要与right和bottom相对应 */
+margin-right: 100px;
+margin-bottom: 100px;
+/* 会失效 */
+/* float: left; */
+
+
+粘性定位
+/* 粘性的 */
+position: sticky;
+top: 0px;
+
+
+定位的层级，数字越大，元素飘得越高
+z-index: XXX
+
+
+定位的特殊作用
+1.将子元素的背景自动拉满父元素的内容区
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+
+2.块元素的居中，前提是父元素有宽高
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+margin: auto;
+
+
+重置默认样式：
+通过引入css实现
+
+
+CSS3；
+
+
+新增长度单位:
+/* viewport width 视口宽的20% */
+width: 20vw;
+/* viewport height 视口高度的20% */
+height: 20vh;
+/* 视口宽或者高的最大值 */
+width: 20vmax;
+/* 视口宽或者高的最小值 */
+height: 20vmin;
+
+box-sizing:
+/* 默认值 */
+box-sizing: content-box/border-box;
+也就是设置的宽高是内容的，还是算上边框的
+
+
+resize:both/horizontal/vertical
+使得元素可以拉伸
+
+
+box-shadow:
+/* 两个值 水平方向 垂直方向 */
+/* box-shadow: 10px 10px; */
+
+/* 三个值 水平方向 垂直方向 阴影颜色 */
+/* box-shadow: 10px 10px blue; */
+
+/* 三个值 水平方向 垂直方向 模糊程度 */
+/* box-shadow: 10px 10px 10px; */
+
+/* 较多 */
+/* 四个值 水平方向 垂直方向 模糊程度 阴影颜色 */
+/* box-shadow: 10px 10px 10px blue; */
+
+/* 五个值 水平方向 垂直方向 模糊程度 外延值 阴影颜色 */
+/* box-shadow: -10px 10px 10px 10px blue; */
+
+/* 六个值 水平方向 垂直方向 模糊程度 外延值 阴影颜色 内阴影(往里面跑) */
+/* box-shadow: 10px 10px 10px 10px blue inset; */
+/* box-shadow: 0px 0px 200 px 10px red inset; */
+
+
+不透明度：
+opacity:0 ~ 1的值
+
+
+/* 背景图的起始位置 */
+background-origin: border-box/content-box/padding-box;
+
+
+/* 范围外的背景、样式不可见 */
+/* background-clip: padding-box; */
+/* 字体剪切图片，当字体为透明的时候生效 */
+background-clip: text;
+
+
+/* 宽 高 */
+background-size: 200px 200px;
+/* 参考元素的宽高 */
+background-size: 100% 100%;
+/* 填满 */
+background-size: contain;
+/* 等比例 */
+background-size: cover;
+
+
+/* 多背景图 */
+background: url('../../2_CSS/14_CSS_背景相关属性/1.png') no-repeat left top,
+            url('../../2_CSS/14_CSS_背景相关属性/1.png') no-repeat right top,
+            url('../../2_CSS/14_CSS_背景相关属性/1.png') no-repeat left bottom,
+            url('../../2_CSS/14_CSS_背景相关属性/1.png') no-repeat right bottom;
+
+
+边框圆角:
+/* border-radius: 50%; */
+/* border-top-left-radius: 50px;
+border-top-right-radius: 60px;
+border-bottom-left-radius: 70px;
+border-bottom-right-radius: 80px; */
+border-radius: 50px 60px 70px 80px
+
+/* 椭圆 */
+/* border-top-left-radius: 50px 60px;
+border-top-right-radius: 60px 70px;
+border-bottom-left-radius: 70px 80px;
+border-bottom-right-radius: 80px 90px;
+border-radius: 50px 60px 70px 80px / 80px 70px 60px 50px; */
+
+
+边框外轮廓:
+/* 外轮廓线 */
+/* outline-width: 20px;
+outline-color: red;
+outline-style: dotted; */
+outline-offset: 20px;
+outline: 20px orange solid;
+
+
+文本阴影，与盒子阴影差不多
+text-shadow: 2px 2px;
+text-shadow: 2px 3px orange; 
+text-shadow: 10px 10px 10px orange;
+
+
+文本换行：
+white-space: pre-wrap;
+white-space: pre-line;
+white-space: nowrap;
+white-space: normal;
+
+
+文本溢出：
+text-overflow: clip;
+text-overflow: ellipsis;   // 这个就是那个...的效果
+
+
+线性渐变：
+background-image: linear-gradient(red, yellow, green); 默认 从上到下
+background-image: linear-gradient(to left top, red, yellow, green); 通过关键词调整线性渐变的方向
+background-image: linear-gradient(30deg, red, yellow, green); 通过角度调整线性渐变的方向
+background-image: linear-gradient(red 50px, yellow 100px, green 150px); 调整线性渐变的区域
+background-image: linear-gradient(20deg, red 50px, yellow 100px, green 110px);调整角度+调整线性渐变的区域
+
+
+径向渐变
+background-image: radial-gradient(red, green, yellow);
+background-image: radial-gradient(at left top,red, green, yellow);
+background-image: radial-gradient(at 100px 50px,red, green, yellow);
+background-image: radial-gradient(circle,red, green, yellow);
+background-image: radial-gradient(200px 200px,red, green, yellow);
+background-image: repeating-radial-gradient(circle, red 50px, yellow 100px, green 150px);
+background-image: repeating-radial-gradient(100px 50px at 150px 150px, red 50px, yellow 100px, green 150px);
+
+
+重复渐变
+background-image: repeating-linear-gradient(red, yellow, green);
+background-image: repeating-linear-gradient(to left top, red, yellow, green);
+background-image: repeating-linear-gradient(30deg, red, yellow, green);
+background-image: repeating-linear-gradient(red 50px, yellow 100px, green 150px);
+background-image: repeating-radial-gradient(100px 50px at 150px 150px, red 50px, yellow 100px, green 150px);
+
+
+web字体
+
+
+2D变换
+
+/* 变换 */
+/* 水平位移 */
+transform: translateX(50px);
+/* 垂直位移 */
+transform: translateY(-50px);
+/* 移动自己位置的% */
+transform: translateX(50%);
+/* 水平+垂直位移 */
+transform: translate(50px,50px);
+
+
+缩放
+transform: scale(1.5);
+
+
+旋转
+transform: rotate(-20deg);
+
+
+多重变换
+transform: translate(100px,100px) scale(0.5) rotate(30deg);
+transform: rotate(30deg) translate(100px,100px) scale(0.5);
+
+
+变换原点
+/* 关键词调整变换远点 */
+transform-origin: left top;
+transform-origin: right bottom;
+
+/* 像素值调整变换原点 */
+transform-origin: 50px 50px;
+
+/* 百分比调整变换原点 */
+
+transform-origin: 30% 30%;
+/* 变换原点的位置只对旋转缩放有影响 */
+
+
+过渡：
+
+/* 加到需要变换的盒子上 */
+/* 设置需要过渡的属性 */
+/* transition-property: height,width,background-color; */
+
+/* 所有能过渡的属性都过渡 */
+transition-property: all;
+/* 分别设置过渡的时间 */
+transition-duration: 0.5s,0.5s,0.5s;
+/* 设置所有过渡的时间 */
+transition-duration: 0.5s;
+
+
+复合属性
+transition: 0.5s all linear;
+
+
+多列布局
+
+.outer {
+    width: 1000px;
+    /* height: 300px; */
+    margin: 0 auto;
+    /* background-color: orange; */
+    /* 多列布局 */
+    /* 直接给列数 */
+    /* column-count: 6; */
+    /* 给每一列的宽度 */
+    column-width: 220px;
+    /* 复合属性 */
+    columns: 6 220px;
+
+    /* 调整列间距 */
+    column-gap: 10px;
+
+    column-rule-color: red;
+    column-rule-style: solid;
+    column-rule-width: 1px;
+
+    column-rule: 2px dashed blue;
+}
+
+h1 {
+    column-span: all;
+    text-align: center;
+    font-size: 100px;
+}
+
+<div class="outer">
+    <h1>fuck1</h1>
+    XXXXX
+    XXXXX
+    XXXXX
+    XXXXX
+</div>
+
+
+
+多列图片案例
+
+.outer {
+    column-count: 5;
+}
+img {
+    width: 100%;
+}
+img:hover {
+    box-shadow: 0 0 10px black;
+}
+
+
+<div class="outer">
+    <img src="../../2_CSS/28_尚品汇_页脚/images/heat.jpg" alt="">
+    <img src="../../2_CSS/28_尚品汇_页脚/images/frigereter.jpg" alt="">
+    .....
+</div>
+
+
+
+【伸缩盒模型、弹性盒子】 挺重要
+
+/* 将该元素变为了 伸缩容器（开启了flex布局）*/
+display: flex;
+/* inline-flex 会把容器变为行内块 几乎不用 */
+/* display: inline-flex; */
+
+
+/* 调整主轴方向 水平 从左到右 默认 */
+flex-direction: row;
+
+/* 调整主轴方向 水平 从右到左 默认 */
+flex-direction: row-reverse;
+            
+/* 调整主轴方向 垂直 从上到下 默认 */
+flex-direction: column;
+
+/* 调整主轴方向 垂直 从下到上 默认 */
+flex-direction: column-reverse;
+
+
+/* 主轴换行方式 nowrap-默认，元素挤到一起 wrap-换行 wrap-reverse 反转之后从下到上*/
+flex-wrap: wrap;
+
+/* 尽量不要使用 */
+flex-flow: row wrap;
+flex-flow: row-reverse wrap-reverse;
+
+
+/* 主轴的对齐方式 主轴起始位置*/
+justify-content: flex-start;
+
+/* 主轴的对齐方式 主轴结束位置*/
+justify-content: flex-end;
+
+/* 主轴的对齐方式 居中 */
+justify-content:center;
+            
+/* 主轴的对齐方式 项目均匀分布一行中，项目之间的距离是项目距离边缘的两倍 */
+justify-content:space-around;
+            
+/* 主轴的对齐方式 项目均匀分布一行中，项目之间的距离是相等的，项目距离边缘没有距离 */
+justify-content:space-between;
+
+/* 主轴的对齐方式 项目均匀分布一行中，均匀分布在一行 */
+justify-content:space-evenly;
+
+
+/* 侧轴对齐方式一行 侧轴起始位置对齐*/
+align-items: flex-start;
+
+/* 侧轴对齐方式一行 侧轴结束位置对齐 */
+align-items: flex-end;
+
+/* 侧轴对齐方式一行 侧轴中间位置对齐 */
+align-items: center;
+
+/* 侧轴对齐方式一行 文字基线位置对齐 */
+align-items: baseline;
+
+/* 侧轴对齐方式一行 当项目没有高度时生效 延展对齐 默认值 拉伸到父容器底部，要注意*/
+align-items: stretch;
+
+
+/* 侧轴的对齐方式 多行 */
+align-content: flex-start;
+align-content: flex-end;
+align-content: center;
+align-content: baseline;
+align-content: stretch;
+align-content: space-around;
+align-content: space-between;
+align-content: space-evenly;
+
+
+父元素
+/* flex下的元素水平垂直居中 一 */
+/* justify-content: center; */
+/* align-items: center; */
+
+子元素
+/* flex下的元素水平垂直居中 二 */
+margin: auto;
+
+
+/* 设置伸缩项目在主轴上的基准长度，若主轴是横向的，宽失效；纵向的，高失效 */
+flex-basis: 300px;
+
+伸缩项目_伸
+flex-grow: 1;
+
+伸缩项目_缩
+flex-shrink: 1;
+
+
+/* 可以拉伸 */
+flex-grow: 1;
+/* 可以压缩 */
+flex-shrink: 1;
+/* 基准长度 */
+flex-basis: 100px;
+/* 可拉伸 可压缩 不设置基准长度，可简写为flex:auto */
+flex: 1 1 auto;
+flex: auto;
+/* 可拉伸 可压缩 设置基准长度为0，可简写为flex: 1 */
+flex: 1 1 0;
+flex: 1;
+/* 不可拉伸 不可压缩 不设置基准长度，可简写为flex: none */
+flex: 0 0 auto;
+flex: none;
+/* 不可拉伸 可压缩 不设置基准长度 ，可简写为flex: 0 auto*/
+flex: 0 1 auto;
+
+
+项目排序与单独对齐
+align-self: center;
+
+
+【响应式布局】
+
+
+/* 只有在打印机或打印预览才应用的样式 */
+/* 只有在屏幕上才应用的样式 */
+/* 一直都应用的样式 */
+@media print/screen/all {
+    h1 {
+        background: transparent;
+    }
+}
+
+
+/* 检测到视口的宽度为800px时，应用如下样式 */
+@media (width:800px) {
+    h1 {
+        background-color: green;
+    }
+}
+
+/* 检测到视口的宽度小于等于700px时，应用如下样式 */
+@media (max-width:700px) {
+    h1 {
+        background-color: orange;
+    }
+}
+
+/* 检测到视口的宽度大于等于900px时，应用如下样式 */
+@media (min-width:900px) {
+    h1 {
+        background-color: deepskyblue;
+    }
+}
+
+/* 检测到视口的高度等于800px时，应用如下样式 */
+/* @media (height:800px){
+    h1 {
+        background-color: yellow;
+    }
+} */
+
+/* 检测到屏幕的宽度等于1536px时，应用如下样式 */
+/* @media (device-width:1536px) {
+    h1 {
+        color: white;
+    }
+} */
+
+
+/* 且运算符 */
+/* @media (min-width:700px) and (max-width:800px) {
+    h1 {
+        background-color: orange;
+    }
+} */
+/* @media screen and (min-width:700px) and (max-width:800px) {
+    h1 {
+        background-color: orange;
+    }
+} */
+
+/* 或运算符 */
+/* @media screen and (max-width:700px) or (min-width:800px) {
+    h1 {
+        background-color: orange;
+    }
+} */
+
+/* 否定运算符 */
+/* @media not screen {
+    h1 {
+        background-color: orange;
+    }
+} */
+
+/* 肯定运算符 */
+@media only screen and (width:800px) {
+    h1 {
+        background-color: orange;
+    }
+}
+
+
+
+可以配置在head中，并指定一些条件
+<link rel="stylesheet" href="./css/index.css">
+<link rel="stylesheet" href="./css/small.css">
+<link rel="stylesheet" href="./css/middle.css">
+<link rel="stylesheet" href="./css/large.css">
+<link rel="stylesheet" media="screen and (min-width:1200px)" href="./css/huge.css">
+
+
+body {
+    /* 父元素开启BFC，子元素不会出现塌陷问题 */
+    display: flex;
+}
+
+
+/* 解决margin塌陷问题常用方式 */
+/* 下列行为会开启BFC */
+/* overflow: auto; */
+/* float: left; */
+/* position: absolute; */
+/* display: inline-block; */
+/* display: table; */
+/* column-count: 1; */
+display: flow-root;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

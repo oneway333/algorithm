@@ -4,9 +4,9 @@
     <div class="content">
       <Game>
         <!-- 这个就印证了一个道理，Vue是从外向内读取、编译，再从内向外加载的，所以内内层的数据是最先进入内存的，所以父组件总是会有方法拿到子组件的数据 -->
-        <template v-slot="params">
+        <template v-slot="fuck">
           <ul>
-            <li v-for="y in params.youxi" :key="y.id">
+            <li v-for="y in fuck.youxi" :key="y.id">
               {{ y.name }}
             </li>
           </ul>

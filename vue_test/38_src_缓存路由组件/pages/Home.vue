@@ -25,7 +25,7 @@
         <!-- 单个的情况 -->
         <!-- <keep-alive include="News"> -->
         <!-- 多个的情况 -->
-        <keep-alive :include="['News', 'Message']">
+        <keep-alive :include="['News',' Message']">
           <router-view></router-view>
         </keep-alive>
       </div>

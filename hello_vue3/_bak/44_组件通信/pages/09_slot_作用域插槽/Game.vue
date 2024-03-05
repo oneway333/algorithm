@@ -2,6 +2,7 @@
   <div class="game">
     <h2>游戏列表</h2>
     <slot :youxi="games" x="哈哈" y="你好"></slot>
+    
   </div>
 </template>
 
