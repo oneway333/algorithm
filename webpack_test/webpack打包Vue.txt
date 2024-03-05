@@ -41,16 +41,16 @@ pack.json里面会有依赖 dependencies 和开发依赖 dependencies
 
 需要注意版本
 
-npm install webpack@4.42.0 --save-dev
-npm install webpack-cli@3.3.11 -D
+--legacy-peer-deps 当出现ELS问题的时候，就是npm安装的前置依赖出了问题，用这个命令再跑一下
 
-
-npm install -D html-webpack-plugin@3.2.0
+npm install webpack@4.41.6 --save-dev --legacy-peer-deps
+npm install webpack-cli@3.3.8 -D --legacy-peer-deps
+npm install -D html-webpack-plugin@3.2.0  --legacy-peer-deps
 npm install -D css-loader@3.3.1
 npm install -D style-loader@1.1.3
 npm install -D url-loader@3.0.0
 npm install -D file-loader@5.0.2
-npm install -D vue-loader@15.7.1
+npm install -D vue-loader@15.7.1 --legacy-peer-deps
 npm install -D less-loader@5.0.0
 
 
