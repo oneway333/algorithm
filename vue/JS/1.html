@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <script src="./css/jquery-3.6.1.js"></script>
 </head>
+
 <body>
-    <div>shit</div>
+    <button id="btnJSONP">shit</button>
     <script>
-        class Person {
-            
-            constructor(name, age){
-                this.name = name
-                this.age = age
-            }
-            gender = 'shit'
-            fuck = 'dmn'
-
-        }
-
-
-        const p1 = new Person('1', 2)
-        const p2 = new Person('2', 3)
-        console.log('p1', p1);
-        console.log('p2', p2);
-
-        p1.gender= 'shit p1'
-
-        console.log('p1', p1);
-        console.log('p2', p2);
-
+        // $('#btnJSONP').on('click', function ({
+        //     $.ajax({
+        //         method: 'GET',
+        //         url: 'http://127.0.0.1/api/jsonp',
+        //         dataType: 'jsonp',	// 表示要发起JSONP的请求
+        //         success: function (res) {
+        //             console.log(res)
+        //         }
+        //     })
+        // })
+        $(function(){
+            $('#btnJSONP').click(function(){
+                $.ajax({
+                    method: 'get',
+                    url: 'http://localhost:5000/api/jsonp',
+                    dataType: 'jsonp',
+                    success: res => console.log(res),
+                })
+            })
+        })
     </script>
 </body>
+
 </html>

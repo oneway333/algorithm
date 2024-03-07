@@ -37,7 +37,7 @@ export default {
         // vue2注意要使用箭头函数
         setInterval(() => {
            this.n = (this.n + 1) % this.imgAddrLen
-        }, 1000);
+        }, 5000);
     },
     beforeDestroy(){
         clearTimeout()

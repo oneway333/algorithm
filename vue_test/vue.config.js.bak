@@ -6,7 +6,7 @@ module.exports = {
         // proxy: 'http://localhost:5001'
         proxy: {
             '/': {
-                target: 'http://localhost:5001',
+                target: 'http://localhost:5000',
                 changeOrigin: true,
                 // pathRewrite: {"^/api": ""}    // 给服务器的时候，会把/api前缀给干掉
             }
