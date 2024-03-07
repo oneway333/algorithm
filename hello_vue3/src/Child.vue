@@ -17,7 +17,7 @@ let sum = ref(0)
 // }
 
 // emo().then((res)=>{
-//   console.log(res.data.content);  
+//   console.log(res.daa.tcontent);  
 // })
 
 // console.log(await axios.get('https://api.uomg.com/api/rand.qinghua?format=json'));

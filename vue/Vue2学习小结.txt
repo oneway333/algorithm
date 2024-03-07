@@ -13,6 +13,100 @@ Vue是怎样实现数据监视的？应该也就是通过给每个属性（无�
 MVVM：M model 模型数据  V view 视图  VM 实例对象，控制模型数据变化，刷新视图
 
 
+==================================一些面试题===================================
+
+
+* Vue组件间通信方式
+
+props 属性的方式
+emit  自定义事件
+$attrs vue3的祖孙传参
+$parent $root
+ref 
+全局事件总线
+vuex
+pinia
+
+
+* v-if v-for 优先级
+
+不推荐一起使用
+
+一个节点上时：
+
+v-if读不到todo，会报错，
+<li v-for='todo in todos' v-if='!todo.isComplete'></li>
+
+解决办法
+
+这个时候就可以读到了
+<template  v-for='todo in todos'>
+    <li v-if='!todo.isComplete'></li>
+</template>
+
+
+Vue2 v-for > v-if
+Vue3 v-if > v-for
+
+
+* Vue生命周期
+
+- beforeCreate
+- created
+- beforeMount
+- mounted
+- beforeUpate
+- updated
+- beforeDestory
+- destoryed
+
+- activated   keep-alive 激活的时候
+- deactivated
+- errorCaptured   错误监听  vue.config.errorHandler
+- renderTracked renderTriggered  serverPrefetch
+
+- nextTick
+
+
+* 双向绑定
+
+1. v-model  双向绑定
+2. v-model :value @input
+3. <input v-model='str' type='text'>
+
+
+* Vue 响应式
+
+Vue2 Object.defineProperty()  getter setter Vue.$set
+Vue3 Proxy
+
+
+* Vue模板渲染原理
+
+template {{  }} -> compiler js 模板编译
+
+js -> cross-platform
+
+1. parse template 解析成完成的对象 AST
+2. AST -> 哪些节点发生改变 打标记tag diff打标记的节点 runtime
+3. generate AST -> render
+
+
+* template jsx区别
+
+
+* Vue2 和 Vue3 的区别
+
+1. 重写响应式 Object.defineProperty -> Proxy
+2. composition api 函数式编程 hooks 
+3. 虚拟DOM diff 双端比较 -> 最长递增子序列
+4. flow -> ts
+5. tree shaking
+6. template compiler 编译
+
+
+=======================================================================================
+
 全局过滤器
 Vue.filter('filter', function(val){return new_val})
 通过在双大括号中，{{name | filter}} 来实现过滤

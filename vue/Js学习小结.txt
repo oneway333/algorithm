@@ -1,3 +1,323 @@
+====================================一些面试题====================================
+
+* es5和es6
+
+es6新增的
+let const es6
+()=>{} 箭头函数
+模板字符串 `${vary}`
+解构赋值  let {a, b} = obj  let [a, b] = arr
+for of
+Set Map
+import export
+set数据结构
+...展开运算符
+修饰器 @decorator 函数
+class类
+async await promise 、promise异步编程解决方案
+Symbol 基本类型
+Proxy 代理 解决跨域问题？
+
+
+* promise的几种状态，进入catch的时机
+
+- pending     等待
+- fulfilled   完成
+- reject      拒绝
+
+状态不可逆
+pending -> fulfilled 成功
+pending -> reject 异常 catch
+
+const promise = new Promise((resolve, reject) => {
+    console.log(1)
+    resolve() // 异步的，不会阻塞运行
+    console.log(2)
+})
+
+promise.then(()=>{
+    console.log(3)
+})
+
+console.log(4)
+
+因为resolve()运行完成，then才会执行
+
+运行结果为1 2 4 3
+
+
+* 手写 promise
+
+class Promise {
+    constructor(executer) {
+        this.status = 'pending' 
+        this.value = undefined
+        this.reason = undefined
+        let resolveFn = (value) => {
+            if(this.status === 'pending'){
+                this.status = 'resolve'
+                this.value = value
+            }
+        }
+        let rejectFn = (reason) => {
+            if(this.status === 'pending'){
+                this.status = 'reject'
+                this.reason = reason
+            }
+        }
+        
+        try {
+            executer(resolveFn, rejectFn)
+        } catch (e) {
+            rejectFn(e)
+        }
+        
+        
+    }
+
+    // 类里面都是属性，没有什么let var的
+    then(onFulfilled, onRejected) {
+        if (this.status === 'resolve') onFulfilled(this.value)
+        if (this.status === 'reject')  onRejected(this.reason)
+    }
+}
+
+
+* 模块化开发
+
+export 三种
+import 三种
+
+
+* 字符串方法
+
+includes 用来检查字符串中是否包含某个内容
+indexof  默认-1
+endsWith startsWith
+
+
+* 数据方法
+
+1. Array.from(set/map)
+2. Array.of() 将一组值转成数组
+3. Array.fill()
+4. Array.find() Array.findIndex()
+5. entries() keys() values()
+6. includes()
+7. flat(n) 数组扁平化
+
+[1, [2, [3]]].flat(Infinity)  // [1, 2, 3]
+
+8. flatMap() 只能展开一层数组
+
+[1, 2, 3, 4].flatMap(x => [[x * 2]])    // [[2], [4], [6], [8]]
+
+
+* 对象拓展的属性
+
+- Object.keys()
+- Reflect.ownKeys(obj)
+- Object.is()
+- Object.assign(target, obj1, obj2)    对象复制，重复的后面覆盖前面
+
+
+* Generator
+
+异步编程解决方案
+迭代器生成函数 调用并不会立即执行 返回一个迭代器 可以进行异步调用
+支持挂起操作
+
+- function* testGenerator(){}
+- yield 定义不同的内部状态
+
+function* testGenerator() {
+    yield 'a';
+    yield 'b';
+    yield 'c';
+}
+
+var g = testGenerator()
+g.next()  // 返回值 {value: 'a', done: false} next执行函数内部状态
+g.next()  // 返回值 {value: 'b', done: false}
+g.next()  // 返回值 {value: 'c', done: true}
+
+
+* ES6模块与CommonJS 模块的相同点和区别
+
+相同点：
+- 对引入对象进行赋值 即使得对象内部属性的值改变
+
+区别：
+- CommonJS 通过require引入  ES6 通过import引入
+
+
+* 从输入url，到页面得画面展示的过程
+
+- 输入url
+- 浏览器缓存 - 系统缓存 - 浏览器缓存 有缓存 显示页面内容
+- http 请求前 dns ip地址
+- tcp连接 三次握手
+- 握手成功 浏览器发送http请求 请求数据包
+- 服务器收到请求 返回数据到浏览器
+- http响应
+- 读取页面内容 渲染 解析html源码
+- 生成dom树 解析 css样式 js交互 渲染显示页面
+
+
+* 什么是虚拟 DOM 为什么需要虚拟 DOM
+
+js用对象的属性描述节点 映射到真是环境
+
+虚拟DOM 节点 与真实DOM属性一一对应
+
+dom操作引起性能问题
+虚拟DOM通过虚拟节点 进行diff算法，减少页面无谓的计算
+支持跨平台能力
+
+
+* Promise 中的值穿透
+
+.then .catch 期望是函数 如果传入非函数则会发生值穿透
+
+Promise.resolve(1).then(2).then(Promise.resolve(3)).then(console.log)  // 打印出1
+
+发生了值穿透
+promise 的data 就会保存上一个promise.data
+
+
+* JS脚本延迟加载的方式
+
+延迟加载 等页面加载完成后再加载 JS，有助于提升页面的加载速度
+
+1. defer 在 script 上加defer 同步加载 不会阻塞页面加载过程
+2. async 异步加载 不会阻塞页面加载过程
+3. 动态创建DOM方式：对文档的加载事件进行监听，当文档加载完成后再动态的创建 script标签来引入js脚本
+4. setTimeout 延迟加载js脚本
+5. 让js最后加载
+
+
+* 异步编程有哪些实现方式：
+
+异步机制
+1. 回调函数：回调地狱，代码耦合度高、不利于代码维护
+2. Promise：链式调用
+3. generator：同步顺序书写
+4. async  generator promise 自动执行的语法糖 内部自带执行器 await 等待Promise变成resolve 异步逻辑转化为同步顺序 自动执行
+
+
+* pnpm
+
+包管理器
+优势：
+- 包安装速度极快
+- 磁盘空间利用高效
+
+
+* 怎么理解Promise
+
+异步编程解决方案 对象 获取异步操作信息 避免回调地狱
+一个容器，保存某个未来才会结束的事件
+
+见上面的自己实现一个promise，注意回调函数一开始进去的只是形参，回调函数只是一段逻辑。只是放入对象之后，对象实际上也向回调函数中传递了参数，所以至始至终都是修改的对象的内部数据。
+
+let request = ()=>{}
+
+function XXX1(request) {
+    data = request()
+    return data
+}
+
+function XXX2(XXX1()){
+    data2 = XXX1()
+    return data2
+}
+
+function XXX3(XXX2()){
+    data3 = XXX2()
+    return data3
+}
+
+xxx3(xxx2(xxx1(request)))   这很地狱？
+
+
+状态：
+1. pending 等待
+2. resolved 已完成
+3. rejected 已拒绝
+
+两个过程
+1. pending -> fulfilled resolved 已完成
+2. pending -> rejected  rejected 已拒绝
+
+状态不可逆
+
+
+特点：
+1.对象状态不受外界影响    封装起来了，不给其他人看到
+2.只有异步操作的结果 可以决定当前是哪一种状态
+
+缺点
+无法取消 promise
+
+1.promise对象是异步编程解决方案，一个构造函数 接受一个函数作为参数 返回promise实例
+2.三个状态：
+
+注意：
+构造promise的时候，构造函数内部的代码立即执行
+
+
+* ES6 module 模块化 好
+
+* 函数式编程
+
+- 命令式编程 
+- 声明式编程
+- 函数式编程 强调结果而非过程
+
+* CSR 和 SSR
+
+- CSR 客户端渲染
+- SSR js文件大，加载慢，首屏白屏 解决？
+   服务端渲染 服务端直接生成 html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+========================================================================
+
+
 编写位置 
 变量声明
 常量声明
