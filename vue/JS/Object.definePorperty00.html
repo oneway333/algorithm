@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const obj1 = {}
+        Object.defineProperty(obj1, 'name', {
+            configurable: false, // 表示能否通过delete删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性，默认值为false。
+            writable: false,  // 然后我们给p1这个对象新加了一个age属性，并且设置成只读的。这样我们就无法修改这个age属性了。
+            value: 'fuck',  // 包含这个属性的数据值。默认值为undefined。
+            enumerable: false   // 在通过这个方法给enumerable设置为false，这样对象就不能通过迭代器遍历出age这个属性的值了。
+        })
+        // console.log(obj1);
+        // delete obj1.name
+        obj1.name = 'shit'
+        // console.log(obj1);
+        for (let o in obj1) console.log(o);  // 什么也没有
+
+
+        // 1.get：在读取属性时调用的函数，默认值是undefined 2..set：在写入属性的时候调用的函数，默认值是undefined
+        // 现在我们来用这两个方法来实践一下：
+
+        const book = {
+            _year: 2004,
+            edition: 1,
+        }
+
+        Object.defineProperty(book, 'year', {
+            get() {
+                return this._year
+            },
+            set(val) {
+                if (val > this._year) {
+                    this.edition += val - this._year
+                    this._year = val
+                }
+            }
+        })
+
+        // console.log(book.year);
+        // book.year = 2006
+        // console.log(book._year);
+        // console.log(book.edition);
+
+        // 最后我们再说一下如何进行定义多个属性
+        var student = {};
+        Object.defineProperties(student, {
+            name: {
+                writable: false,
+                value: "lisi"
+            },
+            age: {
+                writable: true,
+                value: 16,
+            },
+            sex: {
+                get() {
+                    return '男';
+                },
+            }
+        })
+
+        console.log(student);
+        student.sex = "男";
+        console.log(student.name + ":" + student.age);
+        console.log(student.sex); // 男
+        student.sex = "女";
+        console.log(student.sex); //男
+        console.log(student.sex); // 女
+
+
+
+    </script>
+</body>
+
+</html>

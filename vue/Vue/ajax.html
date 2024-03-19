@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">fuck</button>
+    <script>
+        const btn = document.querySelector('#btn')
+        btn.addEventListener('click', () => {
+            const xhr = new XMLHttpRequest()
+            xhr.open('get', 'http://localhost:5001/')
+            xhr.send()
+            xhr.onreadyStateChange = function () {
+                // 每次 readyState 改变的时候都会触发该事件
+                // 我们就在这里判断 readyState 的值是不是到 4
+                // 并且 http 的状态码是不是 200 ~ 299
+                if (xhr.readyState === 4 && /^2\d{2|$/.test(xhr.status)) {
+                    // 这里表示验证通过
+                    // 我们就可以获取服务端给我们响应的内容了 }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

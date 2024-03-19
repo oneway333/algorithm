@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>00_基本使用</title>
+    <style>
+        canvas {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 有默认高度，默认是一张图片 -->
+    <!-- 无法放入文本内容 或者 子结点 -->
+    <!-- 想显示任何东西都必须使用js -->
+    <!-- 通过属性设置宽、高，不能用样式设置 -->
+    <canvas width="600px" height="300px">
+
+    </canvas>
+    <script>
+        // 获取DOM对象
+        let canvas = document.querySelector('canvas')
+        // 创建实例？
+        let ctx = canvas.getContext('2d')
+        // 线段端点
+        ctx.moveTo(50, 50)
+        // 线段另一个端点
+        ctx.lineTo(150, 150)
+        // 绘制图像
+        ctx.stroke()
+    </script>
+</body>
+</html>

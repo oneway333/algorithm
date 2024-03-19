@@ -12,8 +12,24 @@ Vue是怎样实现数据监视的？应该也就是通过给每个属性（无�
 
 MVVM：M model 模型数据  V view 视图  VM 实例对象，控制模型数据变化，刷新视图
 
+vue-cli安装vue，这样就创建了一个 app 为名字的目录
+vue create app 
+
+
+Vue2 后台管理系统模板
+https://github.com/PanJiaChen/vue-admin-template    简洁版模板
+https://github.com/PanJiaChen/vue-element-admin     加强版模板
+
 
 ==================================一些面试题===================================
+
+* vue中的data为什么是一个函数
+
+Vue 中的 data 必须是个函数，因为当 data 是函数时，"组件实例化"的时候"这个函数将会被调用"，返回一个对象，计算机会给这个对象分配一个内存地址，实例化几次就分配几个内存地址，他们的地址都不一样，所以每个组件中的数据不会相互干扰，改变其中一个组件的状态，其它组件不变。
+简单来说，就是为了保证"组件的独立性和可复用性"，如果 data 是个函数的话，每复用一次组件就会返回新的 data，类似于给每个组件实例创建一个私有的数据空间，保护各自的数据互不影响.
+
+实际上就是一个"闭包"，因为vue是单页面应用，是由很多组件构成，每一个组件中都有一个data，所以通过闭包给每一个组件创建了一个"私有的作用域"，这样就不会相互影响。
+
 
 
 * Vue组件间通信方式
@@ -65,7 +81,7 @@ Vue3 v-if > v-for
 - errorCaptured   错误监听  vue.config.errorHandler
 - renderTracked renderTriggered  serverPrefetch
 
-- nextTick
+- nextTick  专门用来给input focus的
 
 
 * 双向绑定
@@ -189,8 +205,6 @@ new Vue({
             console.log(new_val, old_val);
         }
     },
-    
-    
 })
 
 
@@ -361,7 +375,7 @@ deactivated () {
 }
 
 
-// 在DOM元挂载完之后执行，可与ref配合，实现input框的focus
+// 在DOM元挂载完之后执行，可与ref配合，实现input框在页面重新加载渲染时的focus
 this.$nextTick(()=>{})
 
 
@@ -427,6 +441,10 @@ export default {
 
 
 ref 给元素或者组件打上标记，再通过this.$refs.btn就能获取这个元素或者组件，使用其身上的所有方法和属性
+其实更正确的是代替js中获取DOM元素的操作来获取DOM元素
+
+
+可用来标记input,获取组件或者元素,进行focus
 <button ref="btn">previous</button>
 应用在组件上时，可以获取其所以的数据和方法
 <School ref="sch"></School>
@@ -831,6 +849,488 @@ app.listen(5005,(err)=>{
 
 node server    // 启动服务
 应该默认是localhost然后加上那个端口号访问
+
+
+
+---------------------------------------------------------------------------
+
+
+ECharts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+
+
+Vue开发规范 一些规范
+
+增删改查方法命名
+add / update / delete / detail / get 
+
+附： 函数方法常用的动词: 
+get 获取/set 设置, 
+add 增加/remove 删除, 
+create 创建/destory 销毁, 
+start 启动/stop 停止, 
+open 打开/close 关闭, 
+read 读取/write 写入, 
+load 载入/save 保存,
+begin 开始/end 结束, 
+backup 备份/restore 恢复,
+import 导入/export 导出, 
+split 分割/merge 合并,
+inject 注入/extract 提取,
+attach 附着/detach 脱离, 
+bind 绑定/separate 分离, 
+view 查看/browse 浏览, 
+edit 编辑/modify 修改,
+select 选取/mark 标记, 
+copy 复制/paste 粘贴,
+undo 撤销/redo 重做, 
+insert 插入/delete 移除,
+add 加入/append 添加, 
+clean 清理/clear 清除,
+index 索引/sort 排序,
+find 查找/search 搜索, 
+increase 增加/decrease 减少, 
+play 播放/pause 暂停, 
+launch 启动/run 运行, 
+compile 编译/execute 执行, 
+debug 调试/trace 跟踪, 
+observe 观察/listen 监听,
+build 构建/publish 发布,
+input 输入/output 输出,
+encode 编码/decode 解码, 
+encrypt 加密/decrypt 解密, 
+compress 压缩/decompress 解压缩, 
+pack 打包/unpack 解包,
+parse 解析/emit 生成,
+connect 连接/disconnect 断开,
+send 发送/receive 接收, 
+download 下载/upload 上传, 
+refresh 刷新/synchronize 同步,
+update 更新/revert 复原, 
+lock 锁定/unlock 解锁, 
+check out 签出/check in 签入, 
+submit 提交/commit 交付, 
+push 推/pull 拉,
+expand 展开/collapse 折叠, 
+enter 进入/exit 退出,
+abort 放弃/quit 离开, 
+obsolete 废弃/deprecate 废旧, 
+collect 收集/aggregate 聚集
+
+
+script 标签内部结构顺序
+components > props > data > computed > watch > filter > 钩子函数（钩子函数按其执行顺序） > methods
+
+
+6) 组件的 data 必须是一个函数
+当在组件中使用 data 属性的时候 (除了 new Vue 外的任何地方)，它的值必须是返回一个对象的函数。因为如果直接是一个对象的话，子组件之间的属性值会互相影响。
+
+export default {
+  data () {
+    return {
+      name: 'jack'
+    }
+  }
+}
+
+
+7) Prop 定义应该尽量详细
+必须使用 camelCase 驼峰命名
+必须指定类型
+必须加上注释，表明其含义
+必须加上 required 或者 default，两者二选其一
+如果有业务需要，必须加上 validator 验证
+
+ props: {
+  // 组件状态，用于控制组件的颜色
+   status: {
+     type: String,
+     required: true,
+     validator: function (value) {
+       return [
+         'succ',
+         'info',
+         'error'
+       ].indexOf(value) !== -1
+     }
+   },
+    // 用户级别，用于显示皇冠个数
+   userLevel：{
+      type: String,
+      required: true
+   }
+}
+
+
+页面跳转数据传递使用路由参数
+页面跳转，例如 A 页面跳转到 B 页面，需要将 A 页面的数据传递到 B 页面，推荐使用 路由参数进行传参，而不是将需要传递的数据保存 vuex，然后在 B 页面取出 vuex 的数据，因为如果在 B 页面刷新会导致 vuex 数据丢失，导致 B 页面无法正常显示数据。
+
+let id = ' 123';
+this.$router.push({ name: 'userCenter', query: { id: id } });
+
+使用路由懒加载（延迟加载）机制
+{
+    path: '/uploadAttachment',
+    name: 'uploadAttachment',
+    meta: {
+      title: '上传附件'
+    },
+    component: () => import('@/view/components/uploadAttachment/index.vue')
+  },
+
+
+
+
+
+
+3) router 中的命名规范
+path、childrenPoints 命名规范采用kebab-case命名规范（尽量vue文件的目录结构保持一致，因为目录、文件名都是kebab-case，这样很方便找到对应的文件）
+
+name 命名规范采用KebabCase命名规范且和component组件名保持一致！（因为要保持 keep-alive 特性， keep-alive 按照component的name进行缓存，所以两者必须高度保持一致）
+
+// 动态加载
+export const reload = [
+  {
+    path: '/reload',
+    name: 'reload',
+    component: Main,
+    meta: {
+      title: '动态加载',
+      icon: 'icon iconfont'
+    },
+
+    children: [
+      {
+        path: '/reload/smart-reload-list',
+        name: 'SmartReloadList',
+        meta: {
+          title: 'SmartReload',
+          childrenPoints: [
+            {
+              title: '查询',
+              name: 'smart-reload-search'
+            },
+            {
+              title: '执行reload',
+              name: 'smart-reload-update'
+            },
+            {
+              title: '查看执行结果',
+              name: 'smart-reload-result'
+            }
+          ]
+        },
+        component: () =>
+          import('@/views/reload/smart-reload/smart-reload-list.vue')
+      }
+    ]
+  }
+];
+
+
+4) router 中的 path 命名规范  有道理啊
+path除了采用kebab-case命名规范以外，必须以 / 开头，即使是children里的path也要以 / 开头。如下示例
+
+
+经常有这样的场景：某个页面有问题，要立刻找到这个vue文件，如果不用以/开头，path为parent和children组成的，可能经常需要在router文件里搜索多次才能找到，而如果以/开头，则能立刻搜索到对应的组件
+
+
+
+{
+    path: '/file',
+    name: 'File',
+    component: Main,
+    meta: {
+      title: '文件服务',
+      icon: 'ios-cloud-upload'
+    },
+    children: [
+      {
+        path: '/file/file-list',
+        name: 'FileList',
+        component: () => import('@/views/file/file-list.vue')
+      },
+      {
+        path: '/file/file-add',
+        name: 'FileAdd',
+        component: () => import('@/views/file/file-add.vue')
+      },
+      {
+        path: '/file/file-update',
+        name: 'FileUpdate',
+        component: () => import('@/views/file/file-update.vue')
+      }
+    ]
+  }
+
+
+vue 项目中的所有命名一定要与后端命名统一。
+
+比如权限：后端 privilege, 前端无论 router , store, api 等都必须使用 privilege 单词！
+
+
+使用 vue-cli3 来初始化项目，项目名按照上面的命名规范。
+
+目录名按照上面的命名规范，其中 components 组件用大写驼峰，其余除 components 组件目录外的所有目录均使用 kebab-case 命名。
+
+src                                  源码目录
+|-- api                              所有api接口
+|-- assets                           静态资源，images, icons, styles等
+|-- components                       公用组件
+|-- config                           配置信息
+|-- constants                        常量信息，项目所有Enum, 全局常量等
+|-- directives                       自定义指令
+|-- filters                          过滤器，全局工具
+|-- datas                            模拟数据，临时存放
+|-- lib                              外部引用的插件存放及修改文件
+|-- mock                             模拟接口，临时存放
+|-- plugins                          插件，全局使用
+|-- router                           路由，统一管理
+|-- store                            vuex, 统一管理
+|-- themes                           “自定义样式”主题
+|-- views                            视图目录
+|   |-- role                                 role模块名
+|   |-- |-- role-list.vue                    role列表页面
+|   |-- |-- role-add.vue                     role新建页面
+|   |-- |-- role-update.vue                  role更新页面
+|   |-- |-- index.less                       role模块样式
+|   |-- |-- components                       role模块通用组件文件夹
+|   |-- employee                             employee模块
+
+
+1) api 目录
+* 文件、变量命名要与后端保持一致。
+* 此目录对应后端 API 接口，按照后端一个 controller 一个 api js 文件。若项目较大时，可以按照业务划分子目录，并与后端保持一致。
+* api 中的方法名字要与后端 api url 尽量保持语义高度一致性。
+* 对于 api 中的每个方法要添加注释，注释与后端 swagger 文档保持一致。
+
+
+正例：
+
+后端 url： EmployeeController.java
+
+/employee/add
+/employee/delete/{id}
+/employee/update
+
+前端： employee.js
+
+// 添加员工
+addEmployee: (data) => {
+  return postAxios('/employee/add', data)
+},
+// 更新员工信息
+updateEmployee: (data) => {
+  return postAxios('/employee/update', data)
+},
+  // 删除员工
+deleteEmployee: (employeeId) => {
+  return postAxios('/employee/delete/' + employeeId)
+},
+
+
+2) assets 目录
+assets 为静态资源，里面存放 images, styles, icons 等静态资源，静态资源命名格式为 kebab-case
+
+|assets
+|-- icons
+|-- images
+|   |-- background-color.png
+|   |-- upload-header.png
+|-- styles
+
+3) components 目录
+此目录应按照组件进行目录划分，目录命名为 KebabCase，组件命名规则也为 KebabCase
+
+|components
+|-- error-log
+|   |-- index.vue
+|   |-- index.less
+|-- markdown-editor
+|   |-- index.vue
+|   |-- index.js
+|-- kebab-case
+
+
+4) constants 目录
+此目录存放项目所有常量，如果常量在 vue 中使用，请使用 vue-enum 插件
+
+(https://www.npmjs.com/package/vue-enum)
+
+|constants
+|-- index.js
+|-- role.js
+|-- employee.js
+
+
+export const EMPLOYEE_STATUS = {
+  NORMAL: {
+    value: 1,
+    desc: '正常'
+  },
+  DISABLED: {
+    value: 1,
+    desc: '禁用'
+  },
+  DELETED: {
+    value: 2,
+    desc: '已删除'
+  }
+};
+
+export const EMPLOYEE_ACCOUNT_TYPE = {
+  QQ: {
+    value: 1,
+    desc: 'QQ登录'
+  },
+  WECHAT: {
+    value: 2,
+    desc: '微信登录'
+  },
+  DINGDING: {
+    value: 3,
+    desc: '钉钉登录'
+  },
+  USERNAME: {
+    value: 4,
+    desc: '用户名密码登录'
+  }
+};
+
+export default {
+  EMPLOYEE_STATUS,
+  EMPLOYEE_ACCOUNT_TYPE
+};
+
+
+5) router 与 store 目录
+这两个目录一定要将业务进行拆分，不能放到一个 js 文件里。
+
+router 尽量按照 views 中的结构保持一致
+
+store 按照业务进行拆分不同的 js 文件
+
+
+6) views 目录
+命名要与后端、router、api 等保持一致
+components 中组件要使用 PascalCase 规则
+
+|-- views                                    视图目录
+|   |-- role                                 role模块名
+|   |   |-- role-list.vue                    role列表页面
+|   |   |-- role-add.vue                     role新建页面
+|   |   |-- role-update.vue                  role更新页面
+|   |   |-- index.less                      role模块样式
+|   |   |-- components                      role模块通用组件文件夹
+|   |   |   |-- role-header.vue             role头部组件
+|   |   |   |-- role-modal.vue              role弹出框组件
+|   |-- employee                            employee模块
+|   |--behavior -log                        行为日志log模块
+|   |-- code-generator                      代码生成器模块
+
+
+
+注释说明
+
+整理必须加注释的地方
+
+* 公共组件使用说明
+* api 目录的接口 js 文件必须加注释
+* store 中的 state, mutation, action 等必须加注释
+* vue 文件中的 template 必须加注释，若文件较大添加 start end 注释
+* vue 文件的 methods，每个 method 必须添加注释
+* vue 文件的 data, 非常见单词要加注释
+
+其他
+
+1) 尽量不要手动操作 DOM
+因使用 vue 框架，所以在项目开发中尽量使用 vue 的"数据驱动"更新 DOM，尽量（不到万不得已）不要手动操作 DOM，包括：增删改 dom 元素、以及更改样式、添加事件等。
+
+2) 删除无用代码
+因使用了 git/svn 等代码版本工具，对于无用代码必须"及时删除"，例如：一些调试的 console 语句、无用的弃用功能代码。
+
+
+=======================小小的心得体会=======================
+
+模块化开发、接口化的开发
+
+element-ui 的东西
+
+节流、防抖 都是 定时器+闭包的原理
+
+css玩儿简单的、固定的、组件内的样式，js玩儿复杂的，多组件效果联动、区别的样式
+
+优化：
+    事件委派
+    减少请求    缓存 将数据交给vuex管理 只在App.vue的 mounted 阶段进行请求
+
+
+刷新页面会导致组件的重新创建和挂载。并且路由无论如何都会重新解析一次
+
+
+loading可以写在接口的请求函数里，用普通函数，this.loading=true 请求数据 this.loading=false，因为普通函数的this是调用者的this，这样就可以了
+
+
+打包流程
+
+业务的话最重要的还是数据结构和算法的定义
+
+权限管理 Vue的
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

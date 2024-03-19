@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>03_组件</title>
+    <script src="./echarts.js"></script>
+    <style>
+        .box {
+            width: 1000px;
+            height: 600px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box box1"></div>
+    <script>
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.querySelector('.box1'));
+        // 指定图表的配置项和数据
+        let option = {
+            color: ["#3398DB"],
+            tooltip: {
+            },
+            xAxis: [{
+                type: "category",
+                data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            }],
+            yAxis: [{
+                type: "value"
+            }],
+            series: [
+                {
+                    name: "直接访问",
+                    type: "bar",
+                    data: [10, 52, 200, 334, 390, 330, 220]
+                },
+                {
+                    name: "直接访问",
+                    type: "line",
+                    data: [20, 72, 220, 354, 410, 350, 240]
+                }
+
+            ]
+        }
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        window.addEventListener('resize', myChart.resize);
+    </script>
+</body>
+
+</html>

@@ -10,14 +10,15 @@
         fuck <input type="text" v-model="fuck"> <br><br>
         you <input type="text" v-model="you"><br><br>
         full <span>{{full}}</span>
-
+        shit <input type="text" v-model="shit">
     </div>
     <script>
-        new Vue({
+        const vm = new Vue({
             el:'#root',
             data:{
                 fuck: 'fuck',
-                you:'you'
+                you:'you',
+                shit: ''
             },
             // 计算属性是当用到的属性发生变化时就调用
             computed: {    // 计算属性，因为是要计算的，所以需要方法，而方法就是get和set

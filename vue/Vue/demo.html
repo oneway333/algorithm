@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-        li {
-            list-style: none;
-
-        }
-    </style>
+    <script src="./js/vue.js"></script>
 </head>
 <body>
-    <input type="text" name="" id="">    
-    <ul>
-        <li><input type="checkbox"> fuck you <button>shit</button></li>
-        <li><input type="checkbox"> fuck you <button>shit</button></li>
-        <li><input type="checkbox"> fuck you <button>shit</button></li>
-    </ul>
-    <input type="checkbox"> done n / total m
+    <div id="app">
+        <input type="text" v-model="input">
+    </div>
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            input:''
+        }
+    })
+
+
+
+    
+</script>    
 </body>
 </html>

@@ -787,7 +787,7 @@ app.get('/user', (req, res) =>{
     res.send({ name:'zs', age: 20, gender: '男'})
 })
 app.post( '/user', (req,res) =>{
-    // 调用express提供的res.sent()方法，向客户端发送文本内容
+    // 调用express提供的res.send()方法，向客户端发送文本内容
     res.send('请求成功')
 })
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>01节流</title>
+    <style>
+        .test {
+            width: 150px;
+            height: 150px;
+            background-color: deepskyblue;
+        }
+    </style>
+    <!-- 封装了节流与防抖，对外暴露的是_ -->
+    <script src="./lodash.js"></script>
+</head>
+
+<body>
+    <h1>num: <span>0</span></h1>
+    <button>num++</button>
+    <script>
+        const btn = document.querySelector('button')
+        const span = document.querySelector('span')
+        // 节流
+        // btn.onclick = ()=>{
+        //     span.textContent = parseInt(span.textContent) + 1
+        // }
+        btn.onclick = _.throttle(()=>{
+            span.textContent = parseInt(span.textContent) + 1
+        }, 1000)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 150px;
+            height: 150px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="my-input">
+    <div class="container"></div>
+    <script>
+        // js的双向数据绑定
+        const myInput = document.querySelector('#my-input')
+        const myDiv = document.querySelector('.container')
+        Object.defineProperty(window, '_data', {
+            // configurable: true,
+            // enumerable: true,
+            // writable: true,
+            // value: ''
+            get(){
+                return ''
+            },
+            set(val){
+                // console.log(val);
+                myInput.value = val
+                myDiv.textContent = val
+            }
+        })
+
+        myInput.addEventListener('input', (e)=>{
+            // console.log(e.target.value);
+            myDiv.textContent = e.target.value
+        })
+
+    </script>
+</body>
+
+</html>

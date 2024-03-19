@@ -28,16 +28,17 @@ export default {
             return this.imgAddr.length
         }
     },
-    methods: {
-        change(e, index){
-            this.n = index
-        }
-    },
     mounted(){
         // vue2注意要使用箭头函数
         setInterval(() => {
            this.n = (this.n + 1) % this.imgAddrLen
         }, 5000);
+    },
+    methods: {
+        change(e, index){
+            this.n = index
+            console.log(document.title);
+        }
     },
     beforeDestroy(){
         clearTimeout()

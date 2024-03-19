@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>00防抖</title>
+    <style>
+        .test {
+            width: 150px;
+            height: 150px;
+            background-color: deepskyblue;
+        }
+    </style>
+    <!-- 封装了节流与防抖，对外暴露的是_ -->
+    <script src="./lodash.js"></script>
+</head>
+
+<body>
+    <p>
+        fuck you <input type="text" name="" id="">
+    </p>
+    <script>
+        const input = document.querySelector('input')
+        // 防抖
+        input.oninput = _.debounce(()=>{
+            console.log('ajax');
+        }, 1000)
+    </script>
+</body>
+
+</html>
